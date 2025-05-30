@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 import Navbar from './components/Navbar/index';
 import Footer from './components/Footer/index';
+
+
 // //@ts-ignore
 // import { HttpsProxyAgent } from 'https-proxy-agent';
 // import nodefetch from 'node-fetch';

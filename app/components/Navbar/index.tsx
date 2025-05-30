@@ -6,127 +6,57 @@ import Image from 'next/image';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isToolsMenuOpen, setIsToolsMenuOpen] = useState(false);
   
   // 关闭菜单的函数
   const closeMenu = () => {
     setIsMenuOpen(false);
-    setIsToolsMenuOpen(false);
+  };
+
+  // 页面内锚点定位功能
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+    closeMenu();
   };
 
   return (
     <nav className="fixed top-0 w-full z-50 bg-white text-black shadow-md">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold flex items-center gap-2" onClick={closeMenu}>
-          <div className="rounded-full overflow-hidden shadow-md">
-            <Image src="/logo-192x192.png"
-             alt="Breed.dog Logo" 
-             width={32} 
-             height={32} 
-             className="rounded-full" 
-             priority
-             />
-          </div>
-          <span>Breed.dog</span>
+          <span>WhatBreedIsMyCat</span>
         </Link>
         
-        <div className="hidden md:flex space-x-6 items-center ml-auto">
-          <Link href="/" className="transition-colors hover:text-primary">
+        <div className="hidden md:flex space-x-8 items-center ml-auto">
+          <Link href="/" className="transition-colors hover:text-pink-600 font-medium">
             Home
           </Link>
           
-          {/* Other Tools 下拉菜单 */}
-          <div className="relative group">
-            <button 
-              className="flex items-center transition-colors hover:text-primary"
-              onClick={() => setIsToolsMenuOpen(!isToolsMenuOpen)}
-              onMouseEnter={() => setIsToolsMenuOpen(true)}
-              onMouseLeave={() => setIsToolsMenuOpen(false)}
-            >
-              Other Tools
-              <svg 
-                className="w-4 h-4 ml-1" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24" 
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
-              </svg>
-            </button>
-            
-            <div 
-              className={`absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 ${isToolsMenuOpen ? 'block' : 'hidden'} group-hover:block`}
-              onMouseEnter={() => setIsToolsMenuOpen(true)}
-              onMouseLeave={() => setIsToolsMenuOpen(false)}
-              style={{ marginTop: '-1px', paddingTop: '10px' }}
-            >
-
-              <div className="py-1">
-              <Link 
-                  href="/dog-translator-online" 
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  onClick={closeMenu}
-                >
-                  Dog Translator Online
-                </Link>
-                <Link 
-                  href="/dog-breed-quiz" 
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  onClick={closeMenu}
-                >
-                  Dog Breed Quiz: Guess the Breed
-                </Link>
-                <Link 
-                  href="/dog-weight-calculator" 
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  onClick={closeMenu}
-                >
-                  Dog Weight Calculator
-                </Link>
-              <Link 
-                  href="/what-dog-breed-am-i" 
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  onClick={closeMenu}
-                >
-                  What Dog Breed Am I?
-                </Link>
-                <Link 
-                  href="/dog-breed-finder" 
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  onClick={closeMenu}
-                >
-                  Dog Breed Finder
-                </Link>
-
-                <Link 
-                  href="/random-dog-breed-generator" 
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  onClick={closeMenu}
-                >
-                  Random Dog Breed Generator
-                </Link>
-                <Link 
-                  href="/dog-name-generator" 
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  onClick={closeMenu}
-                >
-                  Dog Name Generator
-                </Link>
-                <Link 
-                  href="/dog-age-calculator" 
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  onClick={closeMenu}
-                >
-                  Dog Age Calculator
-                </Link>
-              </div>
-            </div>
-          </div>
+          <button 
+            onClick={() => scrollToSection('how-it-works')}
+            className="transition-colors hover:text-pink-600 font-medium"
+          >
+            How it Works
+          </button>
           
-          <Link href="/about-us" className="transition-colors hover:text-primary">
-            About Us
-          </Link>
+          <button 
+            onClick={() => scrollToSection('cat-breed-chart')}
+            className="transition-colors hover:text-pink-600 font-medium"
+          >
+            Cat Breed Chart
+          </button>
+          
+          <button 
+            onClick={() => scrollToSection('faq')}
+            className="transition-colors hover:text-pink-600 font-medium"
+          >
+            FAQ
+          </button>
+
         </div>
         
         <div className="md:hidden">
@@ -151,86 +81,36 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       <div className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'} transition-all duration-300 ease-in-out`}>
-        <div className="px-4 pt-2 pb-4 space-y-3 bg-white">
+        <div className="px-4 pt-2 pb-4 space-y-3 bg-white border-t border-gray-200">
           <Link 
             href="/" 
-            className="block py-2 px-4 rounded-md hover:bg-blue-100"
+            className="block py-2 px-4 rounded-md hover:bg-pink-50 hover:text-pink-600 transition-colors"
             onClick={closeMenu}
           >
             Home
           </Link>
           
-          {/* Tools 分组标题 */}
-          <div className="py-2 px-4 text-gray-500 font-medium">
-            Tools
-          </div>
-          <Link 
-            href="/dog-translator-online" 
-            className="block py-2 px-4 rounded-md hover:bg-blue-100 ml-2"
-            onClick={closeMenu}
+          <button 
+            onClick={() => scrollToSection('how-it-works')}
+            className="block w-full text-left py-2 px-4 rounded-md hover:bg-pink-50 hover:text-pink-600 transition-colors"
           >
-            Dog Translator Online
-          </Link>
-          <Link 
-            href="/dog-breed-quiz" 
-            className="block py-2 px-4 rounded-md hover:bg-blue-100 ml-2"
-            onClick={closeMenu}
-          >
-            Dog Breed Quiz: Guess the Breed
-          </Link>
-          <Link 
-            href="/dog-weight-calculator" 
-            className="block py-2 px-4 rounded-md hover:bg-blue-100 ml-2"
-            onClick={closeMenu}
-          >
-            Dog Weight Calculator
-          </Link>
-          <Link 
-            href="/what-dog-breed-am-i" 
-            className="block py-2 px-4 rounded-md hover:bg-blue-100 ml-2"
-            onClick={closeMenu}
-          >
-            What Dog Breed Am I?
-          </Link>
-          <Link 
-            href="/dog-breed-finder" 
-            className="block py-2 px-4 rounded-md hover:bg-blue-100 ml-2"
-            onClick={closeMenu}
-          >
-            Dog Breed Finder
-          </Link>
+            How it Works
+          </button>
           
-          <Link 
-            href="/random-dog-breed-generator" 
-            className="block py-2 px-4 rounded-md hover:bg-blue-100 ml-2"
-            onClick={closeMenu}
+          <button 
+            onClick={() => scrollToSection('cat-breed-chart')}
+            className="block w-full text-left py-2 px-4 rounded-md hover:bg-pink-50 hover:text-pink-600 transition-colors"
           >
-            Random Dog Breed Generator
-          </Link>
+            Cat Breed Chart
+          </button>
           
-          <Link 
-            href="/dog-name-generator" 
-            className="block py-2 px-4 rounded-md hover:bg-blue-100 ml-2"
-            onClick={closeMenu}
+          <button 
+            onClick={() => scrollToSection('faq')}
+            className="block w-full text-left py-2 px-4 rounded-md hover:bg-pink-50 hover:text-pink-600 transition-colors"
           >
-            Dog Name Generator
-          </Link>
+            FAQ
+          </button>
           
-          <Link 
-            href="/dog-age-calculator" 
-            className="block py-2 px-4 rounded-md hover:bg-blue-100 ml-2"
-            onClick={closeMenu}
-          >
-            Dog Age Calculator
-          </Link>
-          
-          <Link 
-            href="/about-us" 
-            className="block py-2 px-4 rounded-md hover:bg-blue-100"
-            onClick={closeMenu}
-          >
-            About Us
-          </Link>
         </div>
       </div>
     </nav>

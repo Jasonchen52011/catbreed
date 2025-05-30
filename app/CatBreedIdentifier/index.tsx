@@ -4,11 +4,22 @@
 import { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useRouter } from 'next/navigation';
+import LoadingSpinner from '../components/LoadingSpinner';
+
 
 // 定义允许的图片文件类型
 const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/bmp', 'image/webp'];
-const MAX_FILE_SIZE_MB = 5; // 最大文件大小 (MB)
+const MAX_FILE_SIZE_MB = 10; // 最大文件大小 (MB)
 const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
+
+// 示例猫咪图片
+const EXAMPLE_CATS = [
+  { name: 'Persian', image: '/cat/persian.jpg' },
+  { name: 'Maine Coon', image: '/cat/maine-coon.jpg' },
+  { name: 'British Shorthair', image: '/cat/british-shorthair.jpg' },
+  { name: 'Siamese', image: '/cat/siamese.jpg' },
+  { name: 'Ragdoll', image: '/cat/ragdoll.jpg' }
+];
 
 export default function HomePage() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -45,6 +56,27 @@ export default function HomePage() {
     disabled: isLoading,
     maxFiles: 1,
   });
+
+  // 处理示例图片点击
+  const handleExampleClick = async (imagePath: string) => {
+    try {
+      setError(null);
+      setImgError(false);
+      
+      // 从public路径获取图片并转换为File对象
+      const response = await fetch(imagePath);
+      const blob = await response.blob();
+      const fileName = imagePath.split('/').pop() || 'example-cat.jpg';
+      const file = new File([blob], fileName, { type: blob.type });
+      
+      // 设置预览和文件
+      setPreviewUrl(imagePath);
+      setSelectedFile(file);
+    } catch (error) {
+      console.error('Error loading example image:', error);
+      setError('Failed to load example image');
+    }
+  };
 
   const handleSubmit = async () => {
     if (previewUrl && selectedFile) {
@@ -94,121 +126,130 @@ export default function HomePage() {
   };
 
   return (
-    <div className="w-full max-w-7xl mt-10 md:mt-8 mb-2 md:mb-16 mx-auto px-5">
-      <div className="flex flex-col-reverse md:flex-row mt-0 md:mt-10 items-center justify-between">
+    <>
+      <div id="cat-identifier" className="min-h-screen bg-white mt-16 px-12 py-16">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-9 items-center">
+            
+            {/* 左侧内容 */}
+            <div className="space-y-8">
+              <div>
+                <h1 className="text-5xl font-bold text-gray-900 mb-6">
+                  AI Cat Breed Identifier
+                </h1>
+                <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                   Upload a photo of your cat to let AI identify its possible breed. You'll get 3 likely breed types, each with a matching percentage, breed features, and care tips—free, fast, and smart.
+                </p>
 
-        {/* 右侧内容 */}
-        <div className="w-full max-w-xl mx-auto text-center mt-1 md:mt-8">
-          <div className="text-center mb-4 md:mb-8">
-            <h1 className="text-2xl text-black md:text-5xl font-extrabold mb-4 md:mb-6 whitespace-nowrap">
-              What Breed is My Cat?
-            </h1>
-            <p className="text-gray-800 mb-4 text-xs md:text-sm">
-               Not sure what kind of cat you have? Upload photo,and let breed.cat AI cat breed identifier free give you top 3 matches from 300+ cat breeds with personality and health. 
-            </p>
-            <p className="text-gray-800 mb-4 text-xs md:text-sm">
-              With over 5 years in the business, we've analyzed 28 similar tools and consulted with over 250 cat lovers to make our identifier the most reliable. Learn all about your cat for free!
-            </p>
-          
-            <div className="flex justify-center items-center space-x-1 text-base mb-3">
-              {['Upload Photo', 'Submit Image', 'View Results'].map((label, idx) => (
-                <div key={label} className="flex items-center">
-                  <div
-                    className={`flex items-center justify-center rounded-full w-8 h-8 text-white font-bold mr-2 ${
-                      (idx === 0 && !previewUrl) || (idx === 1 && previewUrl)
-                        ? 'bg-blue-600'
-                        : 'bg-gray-300'
-                    }`}
-                  >
-                    {idx + 1}
-                  </div>
-                  <span className="text-sm">{label}</span>
+              </div>
+
+              {/* 统计信息 */}
+              <div className="flex items-center space-x-4">
+                <div className="flex -space-x-2">
+                  <div className="w-10 h-10 bg-gray-300 rounded-full border-2 border-white"></div>
+                  <div className="w-10 h-10 bg-gray-400 rounded-full border-2 border-white"></div>
+                  <div className="w-10 h-10 bg-gray-500 rounded-full border-2 border-white"></div>
                 </div>
-              ))}
+                <span className="text-lg font-medium text-gray-700">50,000+ cat photos scanned</span>
+              </div>
             </div>
-          </div>
 
-          {/* 上传区域 */}
-          <div className="w-full max-w-md mx-auto">
-            <div
-              {...getRootProps()}
-              className={`border-2 border-dashed rounded-lg p-2 md:p-4 my-4 md:my-4 text-center cursor-pointer transition-colors ${
-                isDragActive ? 'border-blue-600 bg-blue-50' : 'border-gray-300 hover:border-blue-600'
-              } ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
-            >
-              <input {...getInputProps()} />
-
-              {previewUrl && !imgError ? (
-                <div className="flex flex-col items-center">
-                  <div className="relative w-full max-w-sm h-50 mb-4 transition-transform duration-300 hover:scale-105">
-                    <img
-                      src={previewUrl}
-                      alt="Preview"
-                      style={{ objectFit: 'contain', width: '100%', height: '150px', borderRadius: '0.5rem' }}
-                      onError={() => setImgError(true)}
-                    />
+            {/* 右侧上传区域 */}
+            <div className="bg-white border border-gray-100 shadow-md rounded-3xl p-6 mt-10">
+              {!previewUrl ? (
+                <div
+                  {...getRootProps()}
+                  className={`border-2 border-dashed border-gray-200 rounded-2xl p-12 text-center cursor-pointer transition-all duration-300 ${
+                    isDragActive ? 'border-blue-500 bg-blue-50' : 'hover:border-gray-300'
+                  } ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                >
+                  <input {...getInputProps()} />
+                  
+                  <div className="space-y-12">
+                    <p className="text-xl font-medium text-gray-700">
+                      Click or drag photo here to upload
+                    </p>
+                    <p className="text-sm text-gray-500">
+                      JPG, JPEG, PNG, WEBP, Less Than {MAX_FILE_SIZE_MB}MB
+                    </p>
+                    
+                    <button
+                      type="button"
+                      className="w-full max-w-xs mx-auto block bg-pink-500 text-white py-4 px-8 rounded-xl font-semibold text-lg hover:bg-pink-700 transition-colors disabled:opacity-50"
+                      disabled={isLoading}
+                    >
+                      Upload Cat Photo
+                    </button>
                   </div>
-                  <p className="text-sm text-gray-600">
-                    Click or drag images here to change uploaded image
-                  </p>
                 </div>
               ) : (
-                <div className="flex flex-col items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-12 w-12 text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                  <p className="text-lg text-gray-600 mb-4">
-                    Drag and drop or click to upload image
-                  </p>
-                  <button
-                    type="button"
-                    className="px-10 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50"
-                    disabled={isLoading}
+                <div className="space-y-6">
+                  <div
+                    {...getRootProps()}
+                    className="relative cursor-pointer group"
                   >
-                    Upload Image
+                    <input {...getInputProps()} />
+                    <div className="w-full h-60 rounded-2xl overflow-hidden border-2  border-gray-50">
+                      <img
+                        src={previewUrl}
+                        alt="Preview"
+                        className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105 rounded-2xl"
+                        onError={() => setImgError(true)}
+                      />
+                    </div>
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 rounded-2xl transition-colors duration-300 flex items-center justify-center">
+                      <p className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-medium">
+                        Click to change photo
+                      </p>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={handleSubmit}
+                    disabled={isLoading}
+                    className="w-full bg-pink-600 text-white py-4 px-5 rounded-xl font-semibold text-lg hover:bg-pink-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {isLoading ? (
+                      <LoadingSpinner />
+                    ) : (
+                      'Analyze Cat Breed'
+                    )}
                   </button>
-                  <p className="text-xs text-gray-600 mt-4">
-                    JPG, JPEG, PNG, BMP, WEBP
-                  </p>
                 </div>
               )}
+
+              {error && (
+                <div className="mt-4 bg-red-50 border border-red-200 rounded-lg p-4">
+                  <p className="text-red-600">{error}</p>
+                </div>
+              )}
+
+              {/* 示例图片区域 */}
+              <div className="mt-8">
+                <p className="text-sm text-gray-500 mb-4">No photo? Try one of these:</p>
+                <div className="grid grid-cols-5 gap-3">
+                  {EXAMPLE_CATS.map((cat) => (
+                    <div 
+                      key={cat.name} 
+                      className="aspect-square bg-gray-200 rounded-lg cursor-pointer hover:bg-gray-300 transition-all duration-300 overflow-hidden group hover:shadow-md"
+                      onClick={() => handleExampleClick(cat.image)}
+                      title={cat.name}
+                    >
+                      <img
+                        src={cat.image}
+                        alt={cat.name}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
 
-            {error && (
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
-                <p className="text-red-600">{error}</p>
-              </div>
-            )}
-
-            {/* 提交按钮 */}
-            {previewUrl && (
-              <div className="mt-4 flex justify-center">
-                <button
-                  onClick={handleSubmit}
-                  disabled={isLoading}
-                  className={`w-full max-w-xs px-8 py-3 rounded-lg font-semibold transition-colors ${
-                    isLoading
-                      ? 'bg-gray-300 cursor-not-allowed'
-                      : 'bg-blue-600 text-white hover:bg-blue-700'
-                  }`}
-                >
-                  {isLoading ? 'Analyzing...' : 'Submit for Analysis'}
-                </button>
-              </div>
-            )}
           </div>
         </div>
-
-        {/* 左图 */}
-        <div className="w-full h-auto max-w-xl mx-auto">
-          <img
-            src="/images/page/dogbreedhero.jpg"
-            alt="cat breed identifier intro, show how it works."
-            className="w-full object-contain rounded-lg transition-transform duration-300 md:h-[540px] h-[300px]"
-          />
-        </div>
-
       </div>
-    </div>
+      
+    </>
   );
 }

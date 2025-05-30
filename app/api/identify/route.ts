@@ -51,7 +51,9 @@ export async function POST(request: NextRequest) {
     console.log("res", res);
     return res;
   };
+  //@ts-ignore
 
+  
 
   if (!GEMINI_API_KEY) {
     return NextResponse.json({ error: 'API key not configured.' }, { status: 500 });
