@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useSearchParams, useRouter } from 'next/navigation';
@@ -60,6 +59,7 @@ function ResultContent() {
   const [selectedBreedData, setSelectedBreedData] = useState<DisplayBreedInfo | null>(null);
   const [isDownloading, setIsDownloading] = useState(false);
   const [currentDisplayImage, setCurrentDisplayImage] = useState<DisplayBreedInfo | null>(null);
+  const [userUploadedImage, setUserUploadedImage] = useState<string | null>(null);
   const resultCardRef = useRef<HTMLDivElement>(null);
 
   // 图片路径处理函数
@@ -94,6 +94,12 @@ function ResultContent() {
         setIsLoading(false);
       }
     };
+
+    // 2. 获取用户上传的图片
+    const savedImage = sessionStorage.getItem('userUploadedImage');
+    if (savedImage) {
+      setUserUploadedImage(savedImage);
+    }
 
     fetchCatJson();
   }, []);
@@ -178,6 +184,8 @@ function ResultContent() {
   useEffect(() => {
     return () => {
       document.body.style.overflow = 'unset';
+      // 清理sessionStorage中的图片数据
+      sessionStorage.removeItem('userUploadedImage');
     };
   }, []);
 
@@ -351,7 +359,15 @@ function ResultContent() {
                 <div className="flex flex-col lg:flex-row gap-8 mb-6">
                   {/* 左边：放大的结果图片 */}
                   <div className="w-full mt-8 lg:w-1/2">
-                    {currentDisplayImage && currentDisplayImage.image && (
+                    {userUploadedImage ? (
+                      <div className="relative rounded-lg overflow-hidden shadow-lg w-full h-64 lg:h-96">
+                        <img 
+                          src={userUploadedImage}
+                          alt="Your uploaded cat"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    ) : currentDisplayImage && currentDisplayImage.image && (
                       <div className="relative rounded-lg overflow-hidden shadow-lg w-full h-64 lg:h-96">
                         <Image 
                           src={getImageSrc(currentDisplayImage.image)}

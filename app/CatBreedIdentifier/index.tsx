@@ -90,6 +90,9 @@ export default function HomePage() {
             try {
               const mimeType = selectedFile.type;
 
+              // 保存用户上传的图片到sessionStorage
+              sessionStorage.setItem('userUploadedImage', reader.result);
+
               const response = await fetch('/api/identify', {
                 method: 'POST',
                 headers: {
