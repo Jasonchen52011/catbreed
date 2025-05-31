@@ -49,17 +49,12 @@ export default function Footer() {
             <div className="flex flex-col items-center md:items-start">
               <h3 className="text-gray-300 text-lg font-medium mb-3">Contact</h3>
               <div className="flex flex-col space-y-2 mb-4">
-                <Link href="mailto:hello@breed.dog" className="text-white hover:text-blue-500 transition-colors">
+                <Link href="mailto:hello@whatbreedismycat.app" className="text-white hover:text-blue-500 transition-colors">
                   hello@whatbreedismycat.app
                 </Link>
               </div>
               
-              <h3 className="text-gray-300 text-lg font-medium mb-3">Social</h3>
-              <div className="flex space-x-4">
-                <Link href="https://x.com/dogbreedai" aria-label="Twitter" className="text-white hover:text-blue-500 transition-colors">
-                  <FaTwitter size={24} />
-                </Link>
-              </div>
+、
             </div>
           </div>
         </div>

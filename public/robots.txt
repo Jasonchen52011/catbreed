@@ -6,7 +6,7 @@ Allow: /
 
 
 # Sitemap location
-Sitemap: https://whatbreedismycat.com/sitemap.xml
+Sitemap: https://whatbreedismycat.app/sitemap.xml
 
 # Host
-Host: https://whatbreedismycat.com/
+Host: https://whatbreedismycat.app/

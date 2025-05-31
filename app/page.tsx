@@ -563,7 +563,7 @@ export default function HomePage() {
                 {/* Left side - Content */}
                 <div>
                   <h2 className="text-2xl sm:text-4xl font-bold mb-6 text-gray-800">
-                    Cat Breed Chart: Compare 20 Popular Breeds at a Glance
+                    Cat Breed Chart: Compare 10 Popular Breeds at a Glance
                   </h2>
                   <p className="text-gray-700  max-w-6xl mx-auto text-base leading-relaxed mb-2">
                    Want to figure out your cat's breed based on its looks? We've created a helpful chart of 10 common cat breeds using official data from <a href="https://tica.org/find-a-cat/find-a-cat-breeder-listings/" target="_blank" rel="noopener noreferrer" className="text-gray-700 underline hover:text-pink-700">The International Cat Association (TICA)</a> and <a href="https://cfa.org/" target="_blank" rel="noopener noreferrer" className="text-gray-700 underline hover:text-pink-700">The Cat Fanciers' Association (CFA)</a>. You can use it to compare size, coat, eyes, ears, and personality traits—side by side. It's a great quick reference when you're trying to match your cat's features to possible breeds. <a href="https://docs.google.com/spreadsheets/d/1I_zX5jJnmUY45FxmqbSKuumagMo9wyYfZu6RRvQKkBE/edit?pli=1&gid=0#gid=0" target="_blank" rel="noopener noreferrer" className="text-pink-500 font-blod hover:text-pink-700">Click here to view the full interactive chart </a>  and explore 50+ cat breeds in detail.
@@ -610,6 +610,17 @@ export default function HomePage() {
                         <td className="px-4 py-3 text-gray-700">Generally healthy, potential for genetic problems; weekly/bi-weekly combing, more frequent during shedding; rarely needs bathing; bi-weekly nail trims, regular teeth brushing, weekly eye/ear cleaning</td>
                       </tr>
                       <tr className="hover:bg-gray-50">
+                        <td className="px-4 py-3 font-medium text-gray-900">American Bobtail Shorthair</td>
+                        <td className="px-4 py-3 text-gray-700">Medium-to-large; males 12-16 lbs, females 7-11 lbs; slow to mature (up to 3 years); well-muscled, substantial boning</td>
+                        <td className="px-4 py-3 text-gray-700">Shorthair (plush, rabbit pelt-like); any color/pattern</td>
+                        <td className="px-4 py-3 text-gray-700">Any color/pattern including black, brown, chocolate, cinnamon, blue, lilac, fawn, red, cream, with or without white</td>
+                        <td className="px-4 py-3 text-gray-700">Not specified in provided material</td>
+                        <td className="px-4 py-3 text-gray-700">Not specified in provided material</td>
+                        <td className="px-4 py-3 text-gray-700">Shortened, minimum 1 inch to hock length; unique, no two identical; proudly held, wags; tail mutation gene not controllable</td>
+                        <td className="px-4 py-3 text-gray-700">Confident, friendly, highly intelligent, clown-like, affectionate, loving, warm, devoted to entire family, dislikes being alone, good with older children/other pets, not very vocal (chirps, clicks, trills), moderately active, trainable (leash, fetch), good travelers, therapy cats</td>
+                        <td className="px-4 py-3 text-gray-700">Generally healthy, potential for genetic problems; easy to groom, weekly/bi-weekly combing, more frequent during shedding; rarely needs bathing; bi-weekly nail trims, regular teeth brushing, weekly eye/ear cleaning; life expectancy 11-15+ years</td>
+                      </tr>
+                      <tr className="hover:bg-gray-50">
                         <td className="px-4 py-3 font-medium text-gray-900">American Curl</td>
                         <td className="px-4 py-3 text-gray-700">Medium-sized; females 5-8 lbs, males 7-10 lbs</td>
                         <td className="px-4 py-3 text-gray-700">Long or short hair; silky, lies flat, little undercoat (less shedding, easier maintenance)</td>
@@ -621,6 +632,17 @@ export default function HomePage() {
                         <td className="px-4 py-3 text-gray-700">No known genetic health issues; shorthair brushed regularly, longhair occasionally; periodic nail trims; normal black ear wax (clean periodically); dental hygiene (brushing, professional cleaning); good quality food, enjoys canned food supplement; fresh water daily (3 ft from food)</td>
                       </tr>
                       <tr className="hover:bg-gray-50">
+                        <td className="px-4 py-3 font-medium text-gray-900">American Curl Longhair</td>
+                        <td className="px-4 py-3 text-gray-700">Medium-sized; females 5-8 lbs, males 7-10 lbs</td>
+                        <td className="px-4 py-3 text-gray-700">Long hair; silky, lies flat, little undercoat (less shedding, easier maintenance)</td>
+                        <td className="px-4 py-3 text-gray-700">All colors and patterns</td>
+                        <td className="px-4 py-3 text-gray-700">Large, walnut-shaped</td>
+                        <td className="px-4 py-3 text-gray-700">Unique curled ears (90-180 degrees arc); firm cartilage; born straight, curl at 2-3 days, final curvature at 4 months</td>
+                        <td className="px-4 py-3 text-gray-700">Beautifully plumed tail</td>
+                        <td className="px-4 py-3 text-gray-700">Sweet disposition, thrives on human interaction, lovable, affectionate, adaptable, curious, exuberant, loving companions, people-oriented, pat for attention, adore children, good with other pets, alert, inquisitive, even-tempered, intelligent, devoted, follow owners, quiet voices (gentle trilling/cooing), kitten-like (Peter Pan), playful, enjoys climbing/jumping, can learn fetch, open doors/cabinets</td>
+                        <td className="px-4 py-3 text-gray-700">No known genetic health issues; brushed occasionally; periodic nail trims; normal black ear wax (clean periodically); dental hygiene (brushing, professional cleaning); good quality food, enjoys canned food supplement; fresh water daily (3 ft from food)</td>
+                      </tr>
+                      <tr className="hover:bg-gray-50">
                         <td className="px-4 py-3 font-medium text-gray-900">American Shorthair</td>
                         <td className="px-4 py-3 text-gray-700">Medium-sized; males larger than females; muscular, firm, well-balanced</td>
                         <td className="px-4 py-3 text-gray-700">Short, lustrous, dense, hard texture; natural protective appearance</td>
@@ -630,6 +652,17 @@ export default function HomePage() {
                         <td className="px-4 py-3 text-gray-700">Medium long, heavy at base, tapering to abrupt blunt end; length equal to distance from shoulder blades to base of tail</td>
                         <td className="px-4 py-3 text-gray-700">Gentle, good-natured, easy-going, adaptable, loyal, loving, people-oriented, intelligent, curious, playful even in old age; females busier than males; retains hunting instincts; enjoys company but independent; easy to train, enjoys fetch</td>
                         <td className="px-4 py-3 text-gray-700">Not prone to genetic/hereditary illnesses; regular vet visits; weekly combing; nail trims, ear cleaning, teeth brushing regularly; tall scratching post; small portion wet food daily, dry food for grazing; fresh water daily (3 ft from food)</td>
+                      </tr>
+                      <tr className="hover:bg-gray-50">
+                        <td className="px-4 py-3 font-medium text-gray-900">American Wirehair</td>
+                        <td className="px-4 py-3 text-gray-700">Not specified in provided material</td>
+                        <td className="px-4 py-3 text-gray-700">Not specified in provided material</td>
+                        <td className="px-4 py-3 text-gray-700">Not specified in provided material</td>
+                        <td className="px-4 py-3 text-gray-700">Not specified in provided material</td>
+                        <td className="px-4 py-3 text-gray-700">Not specified in provided material</td>
+                        <td className="px-4 py-3 text-gray-700">Not specified in provided material</td>
+                        <td className="px-4 py-3 text-gray-700">Not specified in provided material</td>
+                        <td className="px-4 py-3 text-gray-700">Not specified in provided material</td>
                       </tr>
                       <tr className="hover:bg-gray-50">
                         <td className="px-4 py-3 font-medium text-gray-900">Australian Mist</td>

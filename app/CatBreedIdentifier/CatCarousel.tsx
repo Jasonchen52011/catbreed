@@ -4,33 +4,33 @@ import React, { useState, useEffect } from 'react';
 
 // 30种欧美流行猫咪品种
 const POPULAR_CATS = [
-  { name: 'Persian', image: '/cat/persian.jpg' },
-  { name: 'Maine Coon', image: '/cat/maine-coon.jpg' },
-  { name: 'British Shorthair', image: '/cat/british-shorthair.jpg' },
-  { name: 'Siamese', image: '/cat/siamese.jpg' },
-  { name: 'American Shorthair', image: '/cat/american-shorthair.jpg' },
-  { name: 'Abyssinian', image: '/cat/abyssinian.jpg' },
-  { name: 'Russian Blue', image: '/cat/russian-blue.jpg' },
-  { name: 'Birman', image: '/cat/birman.jpg' },
-  { name: 'Norwegian Forest Cat', image: '/cat/norwegian-forest-cat.jpg' },
-  { name: 'Scottish Fold', image: '/cat/scottish-fold.jpg' },
-  { name: 'Bengal', image: '/cat/bengal.jpg' },
-  { name: 'Exotic Shorthair', image: '/cat/exotic-shorthair.jpg' },
-  { name: 'Sphynx', image: '/cat/sphynx.jpg' },
-  { name: 'American Bobtail', image: '/cat/american-bobtail.jpg' },
-  { name: 'Turkish Angora', image: '/cat/turkish-angora.jpg' },
-  { name: 'Manx', image: '/cat/manx.jpg' },
-  { name: 'Cornish Rex', image: '/cat/cornish-rex.jpg' },
-  { name: 'Selkirk Rex', image: '/cat/selkirk-rex.jpg' },
-  { name: 'Bombay', image: '/cat/bombay.jpg' },
-  { name: 'Chartreux', image: '/cat/chartreux.jpg' },
-  { name: 'Havana Brown', image: '/cat/havana-brown.jpg' },
-  { name: 'Burmese', image: '/cat/burmese.jpg' },
-  { name: 'Tonkinese', image: '/cat/tonkinese.jpg' },
-  { name: 'Snowshoe', image: '/cat/snowshoe.jpg' },
-  { name: 'Ocicat', image: '/cat/ocicat.jpg' },
-  { name: 'Savannah', image: '/cat/savannah.jpg' },
-  { name: 'Munchkin', image: '/cat/munchkin.jpg' }
+  { name: 'Persian', image: '/cat/persian.jpg', percentage: 91 },
+  { name: 'Maine Coon', image: '/cat/maine-coon.jpg', percentage: 89 },
+  { name: 'British Shorthair', image: '/cat/british-shorthair.jpg', percentage: 93 },
+  { name: 'Siamese', image: '/cat/siamese.jpg', percentage: 87 },
+  { name: 'American Shorthair', image: '/cat/american-shorthair.jpg', percentage: 85 },
+  { name: 'Abyssinian', image: '/cat/abyssinian.jpg', percentage: 82 },
+  { name: 'Russian Blue', image: '/cat/russian-blue.jpg', percentage: 90 },
+  { name: 'Birman', image: '/cat/birman.jpg', percentage: 88 },
+  { name: 'Norwegian Forest Cat', image: '/cat/norwegian-forest-cat.jpg', percentage: 84 },
+  { name: 'Scottish Fold', image: '/cat/scottish-fold.jpg', percentage: 92 },
+  { name: 'Bengal', image: '/cat/bengal.jpg', percentage: 86 },
+  { name: 'Exotic Shorthair', image: '/cat/exotic-shorthair.jpg', percentage: 81 },
+  { name: 'Sphynx', image: '/cat/sphynx.jpg', percentage: 83 },
+  { name: 'American Bobtail', image: '/cat/american-bobtail.jpg', percentage: 80 },
+  { name: 'Turkish Angora', image: '/cat/turkish-angora.jpg', percentage: 87 },
+  { name: 'Manx', image: '/cat/manx.jpg', percentage: 85 },
+  { name: 'Cornish Rex', image: '/cat/cornish-rex.jpg', percentage: 88 },
+  { name: 'Selkirk Rex', image: '/cat/selkirk-rex.jpg', percentage: 84 },
+  { name: 'Bombay', image: '/cat/bombay.jpg', percentage: 89 },
+  { name: 'Chartreux', image: '/cat/chartreux.jpg', percentage: 86 },
+  { name: 'Havana Brown', image: '/cat/havana-brown.jpg', percentage: 82 },
+  { name: 'Burmese', image: '/cat/burmese.jpg', percentage: 90 },
+  { name: 'Tonkinese', image: '/cat/tonkinese.jpg', percentage: 83 },
+  { name: 'Snowshoe', image: '/cat/snowshoe.jpg', percentage: 87 },
+  { name: 'Ocicat', image: '/cat/ocicat.jpg', percentage: 85 },
+  { name: 'Savannah', image: '/cat/savannah.jpg', percentage: 91 },
+  { name: 'Munchkin', image: '/cat/munchkin.jpg', percentage: 81 }
 ];
 
 const CatCarousel: React.FC = () => {
@@ -155,7 +155,9 @@ const CatCarousel: React.FC = () => {
                       />
                     </div>
                     <div className="p-2 sm:p-3 text-center">
-                      <h3 className="font-semibold text-gray-900 text-xs sm:text-sm truncate">{cat.name}</h3>
+                      <h3 className="font-semibold text-gray-900 text-xs sm:text-sm truncate">
+                        {cat.name} <span className="text-pink-600 font-bold">{cat.percentage}%</span>
+                      </h3>
                     </div>
                   </div>
                 </div>

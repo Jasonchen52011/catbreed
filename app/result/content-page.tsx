@@ -614,9 +614,6 @@ function ResultContent() {
 
       </div>
 
-      <footer className="mt-12 text-center text-sm text-gray-600 pb-8">
-        <p>&copy; {new Date().getFullYear()} whatbreedismycat.app</p>
-      </footer>
     </div>
   );
 }
