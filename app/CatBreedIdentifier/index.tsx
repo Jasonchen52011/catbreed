@@ -132,7 +132,7 @@ export default function HomePage() {
     <>
       <div id="cat-identifier" className="bg-white mt-3 sm:mt-10 mb-14 px-4 sm:px-8 lg:px-12 py-6 sm:py-10 overflow-x-hidden">
         <div className="max-w-6xl mx-auto ">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 pl-10 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 items-center">
             
             {/* 左侧内容 - 只在桌面端显示 */}
             <div className="hidden lg:block space-y-6 sm:space-y-8  order-2 lg:order-1 lg:pt-8">
