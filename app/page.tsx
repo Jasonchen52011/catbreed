@@ -6,8 +6,233 @@ import TestimonialCarousel from './components/TestimonialCarousel';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import Head from 'next/head';
 import Image from 'next/image';
+import { Metadata } from 'next';
+
+
+export const metadata: Metadata = {
+  title: 'What Breed is My Cat? - Free AI Cat Breed Identifier',
+  description: 'Not sure what kind of cat you have? Upload photo,let AI cat breed identifier free give you top 3 matches form 360+ cat breeds with personality and health.',
+  metadataBase: new URL('https://whatbreedismycat.app'),
+  alternates: {
+    canonical: 'https://whatbreedismycat.app'
+  },
+  openGraph: {
+    title: 'What Breed is My Cat? - Free AI Cat Breed Identifier',
+    description: 'Not sure what kind of cat you have? Upload photo,let AI cat breed identifier free give you top 3 matches form 360+ cat breeds with personality and health.',
+    url: 'https://whatbreedismycat.app',
+    images: [
+      {
+        url: 'page/cathowto.jpg',
+        width: 1920,
+        height: 1080,
+        alt: 'Cat Breed Identifier - Find Your Perfect Cat'
+      }
+    ],
+    locale: 'en_US',
+    type: 'website'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@site',
+    creator: '@catbreedai',
+    title: 'What Breed is My Cat? - Free AI Cat Breed Identifier',
+    description: 'Not sure what kind of cat you have? Upload photo,let AI cat breed identifier free give you top 3 matches form 360+ cat breeds with personality and health.',
+    images: [
+      {
+        url: 'page/catbreed.jpg',
+        width: 1920,
+        height: 1080,
+        alt: 'Cat Breed Identifier - Find Your Perfect Cat'
+      }
+    ]
+  },
+  robots: {
+    index: true,
+    follow: true,
+    'max-image-preview': 'large',
+    'max-snippet': -1,
+    'max-video-preview': -1
+  },
+  icons: {
+    icon: [
+      { url: '/logo/favicon.ico', type: 'image/x-icon', sizes: 'any' },
+      { url: '/logo/logo-96x96.png', type: 'image/png', sizes: '96x96' },
+      { url: '/logo/logo-192x192.png', type: 'image/png', sizes: '192x192' },
+      { url: '/logo/logo-512x512.png', type: 'image/png', sizes: '512x512' },
+      { url: '/logo/favicon.svg', type: 'image/svg+xml', sizes: 'any' },
+    ],
+  },
+
+};
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Cat Breed Identifier',
+  applicationCategory: 'UtilityApplication',
+  operatingSystem: 'Windows, MacOS, Linux, ChromeOS, Android, iOS, iPadOS',
+  browserRequirements: 'Requires JavaScript. Requires HTML5.',
+  brand: {
+    '@type': 'Brand',
+    name: 'whatbreedismycat.app'
+  },
+  publishedTime: '2025-05-01',
+  modifiedTime: '2025-05-20',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD'
+  },
+  author: {
+    '@type': 'Organization',
+    name: 'Jason',
+    url: 'https://whatbreedismycat.app'
+  },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.8',
+    worstRating: '1',
+    bestRating: '5',
+    ratingCount: '1501'
+  }
+};
+
+
+
+const breadcrumbData = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: 'https://breed.dog'
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'What Breed is My Cat?',
+      item: 'https://whatbreedismycat.app'
+    }
+  ]
+  };
+
+const organizationData = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Cat Breed Identifier',
+  url: 'https://whatbreedismycat.app',
+  logo: {
+    '@type': 'ImageObject',
+    inLanguage: 'en-US',
+    '@id': 'https://whatbreedismycat.app/logo/logo-192x192.png',
+    url: 'https://whatbreedismycat.app/logo/logo-192x192.png',
+    width: '192',
+    height: '192',
+    caption: 'Cat Breed Identifier Logo'
+  }
+};
+
+
+
+const faqStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'How can I know what breed my cat is?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'To find out your cat\'s possible breed, just follow these steps: 1. Upload a clear photo of your cat. 2. Our AI scans its features instantly. 3. You\'ll see the top 3 matching breeds with traits and care tips. It\'s fast, free, and doesn\'t require an account.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'What\'s the best cat breed identifier app?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'The best cat breed identifier is one that\'s fast, accurate, and respects your privacy. WhatBreedIsMyCat uses AI trained on real breed data to show you the 3 closest matches—free, with no photo storage and no ads.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'How accurate is the AI detection?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Our AI is trained using official breed data from TICA, so it\'s very good at spotting physical traits. But it\'s not perfect—especially for mixed cats. Think of it as a smart guess, not a final answer like a DNA test.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Is my cat a purebred?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Most cats—over 90%—are not purebred. Unless you have official papers from a breeder, your cat is likely a mix. That\'s totally normal, and it doesn\'t make your cat any less special.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Can AI recognize mixed-breed cats?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes! AI can analyze physical traits and suggest the closest breed matches—even for mixed cats. It won\'t give a full genetic breakdown, but it helps you understand what your cat may be a mix of.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'What\'s the difference between AI detection and a DNA test?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'AI detection is based on what your cat looks like. DNA tests check what your cat is made of—its genetic history. For fun and fast insights, use AI. For deeper health or ancestry info, try a DNA test like Basepaws.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Can my cat\'s coat color or pattern tell me its breed?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Coat color and pattern alone can\'t tell you the breed. For example, "tabby" is a pattern, not a breed. Many different breeds can have the same color or markings, so you need more features to get a real match.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Why is knowing my cat\'s breed or genetic similarity important?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Knowing your cat\'s possible breed helps you understand its behavior, energy level, and health needs. Even if it\'s not purebred, breed-like traits can guide better care and bonding with your cat.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'How to identify cat breed by picture?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Here\'s how to do it: 1. Take or upload a clear photo of your cat\'s face. 2. The AI will scan its features like ears, eyes, fur, and shape. 3. In seconds, you\'ll get 3 possible breed matches with info to explore.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Can I use the cat breed identifier for free?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Yes! WhatBreedIsMyCat is completely free to use. You don\'t need to sign up or pay. Just upload a photo and enjoy instant breed results, matching scores, and care tips—no hidden fees.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: 'Is my photo safe and private?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Absolutely. Your photo is never saved or shared. We delete it right after processing. No accounts, no tracking—just one-time analysis with full privacy. Your cat\'s picture stays yours only.'
+      }
+    }
+  ]
+};
 
 export default function HomePage() {
+  
 
   // 用户评论数据
   const testimonials = [
@@ -58,7 +283,31 @@ export default function HomePage() {
           crossOrigin="anonymous" 
           referrerPolicy="no-referrer" 
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(breadcrumbData),
+          }}
+        />
+
+      <Script
+        id="schema-org"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <Script
+        id="organization-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationData) }}
+      />
+      <Script
+        id="faq-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
+      />
+
       </Head>
+      
       
       <div className=" min-h-screen bg-white flex flex-col">
 
@@ -164,7 +413,7 @@ export default function HomePage() {
                   {/* Right side - Image placeholder */}
                   <div className="md:col-span-2 h-100 rounded-lg overflow-hidden">
                     <Image
-                      src="/page/cathowto.png"
+                      src="/page/cathowto.jpg"
                       alt="Step-by-step guide for cat breed identification"
                       width={400}
                       height={384}
