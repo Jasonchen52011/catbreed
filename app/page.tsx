@@ -302,7 +302,7 @@ export default function HomePage() {
             <CatCarousel />
 
             {/* How Our AI Finds Your Cat's Breed Section */}
-            <section id="how-it-works" className="py-16 px-4 max-w-7xl mx-auto">
+            <section id="how-it-works" className="py-8 sm:py-16 px-4 max-w-7xl mx-auto">
               <h2 className="text-2xl sm:text-4xl font-bold text-center mb-12 text-gray-800">
                 How Our AI Finds Your Cat's Breed
               </h2>
@@ -346,7 +346,7 @@ export default function HomePage() {
             </section>
 
             {/* How to Identify Your Cat's Breed Section */}
-            <section className="py-16 px-4 w-full bg-gray-50">
+            <section className="py-8 sm:py-16 px-4 w-full bg-gray-50">
               <div className="max-w-7xl mx-auto">
                 <h2 className="text-2xl sm:text-4xl font-bold text-center mb-4 text-gray-800">
                   How to Identify Your Cat's Breed with Our AI Tool
@@ -420,7 +420,7 @@ export default function HomePage() {
             </section>
 
             {/* Just Got a New Cat Section */}
-            <section className="py-16 bg-white px-4 max-w-6xl mx-auto">
+            <section className="py-8 sm:py-16 bg-white px-4 max-w-6xl mx-auto">
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 {/* Left side - Image placeholder */}
                 <div className="h-80 rounded-lg overflow-hidden">
@@ -435,7 +435,7 @@ export default function HomePage() {
                 
                 {/* Right side - Content */}
                 <div>
-                  <h2 className="text-3xl font-bold mb-6 text-gray-800">
+                  <h2 className="text-2xl sm:text-4xl font-bold mb-6 text-gray-800">
                     Just Got a New Cat?
                   </h2>
                   <p className="text-gray-700 leading-relaxed mb-8">
@@ -453,11 +453,11 @@ export default function HomePage() {
             </section>
 
             {/* Curious About Your Cat's Looks Section */}
-            <section className="py-16 px-4 max-w-6xl mx-auto">
+            <section className="py-8 sm:py-16 px-4 max-w-6xl mx-auto">
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 {/* Left side - Content */}
                 <div>
-                  <h2 className="text-3xl font-bold mb-6 text-gray-800">
+                  <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-gray-800">
                     Curious About Your Cat's Looks?
                   </h2>
                   <p className="text-gray-700 text-base leading-relaxed mb-8">
@@ -488,7 +488,7 @@ export default function HomePage() {
             </section>
 
             {/* Sharing with Friends or Online Section */}
-            <section className="py-16 px-4 max-w-6xl mx-auto">
+            <section className="py-8 sm:py-16 px-4 max-w-6xl mx-auto">
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 {/* Left side - Image placeholder */}
                 <div className="h-80 rounded-lg overflow-hidden">
@@ -505,7 +505,7 @@ export default function HomePage() {
                 
                 {/* Right side - Content */}
                 <div>
-                  <h2 className="text-3xl font-bold mb-6 text-gray-800">
+                  <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-gray-800">
                     Sharing with Friends or Online?
                   </h2>
                   <p className="text-gray-700 text-base leading-relaxed mb-8">
@@ -523,11 +523,11 @@ export default function HomePage() {
             </section>
 
             {/* Helping Kids Learn About Pets Section */}
-            <section className="py-16 px-4 max-w-6xl mx-auto">
+            <section className="py-8 sm:py-16 px-4 max-w-6xl mx-auto">
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 {/* Left side - Content */}
                 <div>
-                  <h2 className="text-3xl font-bold mb-6 text-gray-800">
+                  <h2 className="text-2xl sm:text-3xl font-bold mb-6 text-gray-800">
                     Helping Kids Learn About Pets?
                   </h2>
                   <p className="text-gray-700 text-base leading-relaxed mb-8">
@@ -558,11 +558,11 @@ export default function HomePage() {
             </section>
 
             {/* Cat Breed Chart Section */}
-            <section id="cat-breed-chart" className="py-16 bg-gray-50 w-full px-4 ">
+            <section id="cat-breed-chart" className="py-8 sm:py-16 bg-gray-50 w-full px-4 ">
               <div className="grid grid-cols-1 gap-6 text-center  items-center">
                 {/* Left side - Content */}
                 <div>
-                  <h2 className="text-4xl font-bold mb-6 text-gray-800">
+                  <h2 className="text-2xl sm:text-4xl font-bold mb-6 text-gray-800">
                     Cat Breed Chart: Compare 20 Popular Breeds at a Glance
                   </h2>
                   <p className="text-gray-700  max-w-6xl mx-auto text-base leading-relaxed mb-2">
@@ -671,8 +671,8 @@ export default function HomePage() {
             </section>
 
             {/* Why Cat Owners Trust WhatBreedIsMyCat Section */}
-            <section className="py-16 px-4 max-w-7xl mx-auto">
-              <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">
+            <section className="py-8 sm:py-16 px-4 max-w-7xl mx-auto">
+              <h2 className="text-2xl sm:text-4xl font-bold text-center mb-12 text-gray-800">
                 Why Cat Owners Trust <span className="text-sky-400">WhatBreedIsMyCat</span>
               </h2>
               
@@ -799,7 +799,7 @@ It's fast, free, and doesn't require an account.`
             </section>
 
             {/* Call to Action Section */}
-            <section className="py-20 px-4 w-full bg-gray-50">
+            <section className="py-8 sm:py-20 px-4 w-full bg-gray-50">
               <div className="max-w-4xl mx-auto text-center">
                 <h2 className="text-4xl font-bold mb-6 text-gray-800">
                   Ready to Discover Your Cat's Breed?
