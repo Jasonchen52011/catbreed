@@ -79,7 +79,7 @@ export default function PrivacyPolicy() {
               </p>
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="text-gray-700 mb-2"><strong>Data Controller Contact Info:</strong></p>
-                <p className="text-gray-700">Email: contact@whatbreedismycat.app</p>
+                <p className="text-gray-700">Email: hello@whatbreedismycat.app</p>
                 <p className="text-gray-700">Website: <a href="https://whatbreedismycat.app" className="text-blue-600 hover:text-blue-800">https://whatbreedismycat.app</a></p>
               </div>
             </section>
@@ -155,7 +155,7 @@ export default function PrivacyPolicy() {
                 <li><strong>Withdraw Consent</strong> – At any time, with no effect on past processing</li>
               </ul>
               <p className="text-gray-700 leading-relaxed">
-                To exercise your rights, please contact us at: <a href="mailto:contact@whatbreedismycat.app" className="text-blue-600 hover:text-blue-800">contact@whatbreedismycat.app</a>
+                To exercise your rights, please contact us at: <a href="mailto:hello@whatbreedismycat.app" className="text-blue-600 hover:text-blue-800">hello@whatbreedismycat.app</a>
               </p>
             </section>
 
@@ -252,7 +252,7 @@ export default function PrivacyPolicy() {
                 If you have any questions about this Privacy Policy or how we handle data, feel free to reach out:
               </p>
               <div className="bg-gray-50 p-4 rounded-lg mb-4">
-                <p className="text-gray-700">Email: <a href="mailto:contact@whatbreedismycat.app" className="text-blue-600 hover:text-blue-800">contact@whatbreedismycat.app</a></p>
+                <p className="text-gray-700">Email: <a href="mailto:hello@whatbreedismycat.app" className="text-blue-600 hover:text-blue-800">hello@whatbreedismycat.app</a></p>
                 <p className="text-gray-700">Website: <a href="https://whatbreedismycat.app" className="text-blue-600 hover:text-blue-800">https://whatbreedismycat.app</a></p>
               </div>
               <p className="text-gray-700 leading-relaxed">

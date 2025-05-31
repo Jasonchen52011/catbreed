@@ -258,7 +258,7 @@ export default function TermsOfService() {
                 If you have questions about these Terms, our service, or anything else, reach out:
               </p>
               <div className="bg-gray-50 p-4 rounded-lg">
-                <p className="text-gray-700 mb-2">📧 Email: contact@whatbreedismycat.app</p>
+                <p className="text-gray-700 mb-2">📧 Email: hello@whatbreedismycat.app</p>
                 <p className="text-gray-700">🌐 Website: <a href="https://whatbreedismycat.app" className="text-blue-600 hover:text-blue-800">https://whatbreedismycat.app</a></p>
               </div>
             </section>
