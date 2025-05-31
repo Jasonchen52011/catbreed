@@ -170,7 +170,7 @@ export default function HomePage() {
               {/* 移动端内容区域 - 放在上传区域上方 */}
               <div className="lg:hidden mt-10 mb-6 text-center">
                 <h2 className="text-2xl sm:text-6xl  mb-8 sm:mb-8   lg:text-5xl font-bold text-gray-900 leading-tight">
-                  What Breed Is My Cat?
+                  AI Cat Breed Identifier
                 </h2>
                 <p className="text-base sm:text-2xl text-gray-600 mb-6 leading-relaxed">
                    Upload a photo of your cat to let AI identify its possible breed. You'll get 3 likely breed types, each with a matching percentage, breed features, and care tips—free, fast, and smart.
