@@ -3,6 +3,47 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Terms of Service - WhatBreedIsMyCat',
   description: 'Terms of Service for WhatBreedIsMyCat - Read our terms and conditions for using our AI-powered cat breed identification service.',
+  metadataBase: new URL('https://whatbreedismycat.app'),
+  alternates: {
+    canonical: '/terms-of-service'
+  },
+  openGraph: {
+    title: 'Terms of Service - WhatBreedIsMyCat',
+    description: 'Read the terms and conditions for using WhatBreedIsMyCat - our AI-powered cat breed identification service with detailed legal information.',
+    url: 'https://whatbreedismycat.app/terms-of-service',
+    type: 'website',
+    images: [
+      {
+        url: '/page/catbreed.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Terms of Service - WhatBreedIsMyCat Cat Breed Identifier'
+      }
+    ],
+    locale: 'en_US',
+    siteName: 'WhatBreedIsMyCat'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Terms of Service - WhatBreedIsMyCat',
+    description: 'Terms and conditions for using WhatBreedIsMyCat AI-powered cat breed identification service.',
+    images: ['/page/catbreed.jpg'],
+    creator: '@catbreedai'
+  },
+  robots: {
+    index: true,
+    follow: true,
+    'max-image-preview': 'large',
+    'max-snippet': -1,
+    'max-video-preview': -1
+  },
+  keywords: [
+    'cat breed identifier terms',
+    'AI cat identification terms',
+    'whatbreedismycat terms of service',
+    'cat breed app legal terms',
+    'pet identification service terms'
+  ]
 };
 
 export default function TermsOfService() {

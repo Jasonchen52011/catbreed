@@ -35,23 +35,14 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@site',
     creator: '@catbreedai',
-    title: 'What Breed is My Cat? - Free AI Cat Breed Identifier',
-    description: 'Not sure what kind of cat you have? Upload photo,let AI cat breed identifier free give you top 3 matches form 360+ cat breeds with personality and health.',
     images: [
       {
         url: 'page/catbreed.jpg',
         width: 1920,
         height: 1080,
-        alt: 'Cat Breed Identifier - Find Your Perfect Cat'
+        alt: 'Cat Breed Identifier - Identify Your Perfect Cat'
       }
     ]
-  },
-  robots: {
-    index: true,
-    follow: true,
-    'max-image-preview': 'large',
-    'max-snippet': -1,
-    'max-video-preview': -1
   },
   icons: {
     icon: [
@@ -76,8 +67,8 @@ const structuredData = {
     '@type': 'Brand',
     name: 'whatbreedismycat.app'
   },
-  publishedTime: '2025-05-01',
-  modifiedTime: '2025-05-20',
+  publishedTime: '2025-05-31',
+  modifiedTime: '2025-05-31',
   offers: {
     '@type': 'Offer',
     price: '0',
@@ -96,45 +87,6 @@ const structuredData = {
     ratingCount: '1501'
   }
 };
-
-
-
-const breadcrumbData = {
-  '@context': 'https://schema.org',
-  '@type': 'BreadcrumbList',
-  itemListElement: [
-    {
-      '@type': 'ListItem',
-      position: 1,
-      name: 'Home',
-      item: 'https://breed.dog'
-    },
-    {
-      '@type': 'ListItem',
-      position: 2,
-      name: 'What Breed is My Cat?',
-      item: 'https://whatbreedismycat.app'
-    }
-  ]
-  };
-
-const organizationData = {
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: 'Cat Breed Identifier',
-  url: 'https://whatbreedismycat.app',
-  logo: {
-    '@type': 'ImageObject',
-    inLanguage: 'en-US',
-    '@id': 'https://whatbreedismycat.app/logo/logo-192x192.png',
-    url: 'https://whatbreedismycat.app/logo/logo-192x192.png',
-    width: '192',
-    height: '192',
-    caption: 'Cat Breed Identifier Logo'
-  }
-};
-
-
 
 const faqStructuredData = {
   '@context': 'https://schema.org',
@@ -231,8 +183,46 @@ const faqStructuredData = {
   ]
 };
 
+const breadcrumbData = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: 'https://whatbreedismycat.app'
+    },
+  ]
+  };
+
+const organizationData = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Cat Breed Identifier',
+  url: 'https://whatbreedismycat.app',
+  logo: {
+    '@type': 'ImageObject',
+    inLanguage: 'en-US',
+    '@id': 'https://whatbreedismycat.app/logo/logo-192x192.png',
+    url: 'https://whatbreedismycat.app/logo/logo-192x192.png',
+    width: '192',
+    height: '192',
+    caption: 'Cat Breed Identifier Logo'
+  },
+  website: {
+    '@type': 'WebSite',
+    url: 'https://whatbreedismycat.app',
+    name: 'What Breed is My Cat?'
+  }
+};
+
+
+
+
+
 export default function HomePage() {
-  
+
 
   // 用户评论数据
   const testimonials = [
@@ -283,14 +273,7 @@ export default function HomePage() {
           crossOrigin="anonymous" 
           referrerPolicy="no-referrer" 
         />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(breadcrumbData),
-          }}
-        />
-
-      <Script
+       <Script
         id="schema-org"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -298,14 +281,18 @@ export default function HomePage() {
       <Script
         id="organization-structured-data"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationData) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData.organization) }}
       />
       <Script
         id="faq-structured-data"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData.faq) }}
       />
-
+      <Script
+        id="website-structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData.website) }}
+      />
       </Head>
       
       

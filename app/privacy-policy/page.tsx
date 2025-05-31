@@ -3,6 +3,48 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Privacy Policy - WhatBreedIsMyCat',
   description: 'Privacy Policy for WhatBreedIsMyCat - Learn how we protect your data and respect your privacy.',
+  metadataBase: new URL('https://whatbreedismycat.app'),
+  alternates: {
+    canonical: '/privacy-policy'
+  },
+  openGraph: {
+    title: 'Privacy Policy - WhatBreedIsMyCat',
+    description: 'Learn how WhatBreedIsMyCat protects your data and respects your privacy - comprehensive privacy policy for our AI cat breed identification service.',
+    url: 'https://whatbreedismycat.app/privacy-policy',
+    type: 'website',
+    images: [
+      {
+        url: '/page/catbreed.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Privacy Policy - WhatBreedIsMyCat Cat Breed Identifier'
+      }
+    ],
+    locale: 'en_US',
+    siteName: 'WhatBreedIsMyCat'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Privacy Policy - WhatBreedIsMyCat',
+    description: 'Learn how WhatBreedIsMyCat protects your data and respects your privacy in our AI cat breed identification service.',
+    images: ['/page/catbreed.jpg'],
+    creator: '@catbreedai'
+  },
+  robots: {
+    index: true,
+    follow: true,
+    'max-image-preview': 'large',
+    'max-snippet': -1,
+    'max-video-preview': -1
+  },
+  keywords: [
+    'cat breed identifier privacy',
+    'AI cat identification privacy policy',
+    'whatbreedismycat data protection',
+    'cat breed app privacy',
+    'GDPR compliance cat identification',
+    'pet photo privacy'
+  ]
 };
 
 export default function PrivacyPolicy() {

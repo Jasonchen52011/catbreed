@@ -3,6 +3,47 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'About Us - WhatBreedIsMyCat',
   description: 'Learn about the team behind WhatBreedIsMyCat - passionate cat lovers who built an AI-powered tool to help identify your cat\'s breed.',
+  metadataBase: new URL('https://whatbreedismycat.app'),
+  alternates: {
+    canonical: '/about'
+  },
+  openGraph: {
+    title: 'About Us - WhatBreedIsMyCat',
+    description: 'Meet the passionate cat lovers behind WhatBreedIsMyCat - we built an AI-powered tool to help identify your cat\'s breed with detailed information.',
+    url: 'https://whatbreedismycat.app/about',
+    type: 'website',
+    images: [
+      {
+        url: '/page/catwaitoutdoor.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'About WhatBreedIsMyCat Team - Cat Breed Identifier'
+      }
+    ],
+    locale: 'en_US',
+    siteName: 'WhatBreedIsMyCat'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About Us - WhatBreedIsMyCat',
+    description: 'Meet the passionate cat lovers behind WhatBreedIsMyCat - we built an AI-powered tool to help identify your cat\'s breed.',
+    images: ['/page/catwaitoutdoor.jpg'],
+    creator: '@catbreedai'
+  },
+  robots: {
+    index: true,
+    follow: true,
+    'max-image-preview': 'large',
+    'max-snippet': -1,
+    'max-video-preview': -1
+  },
+  keywords: [
+    'about cat breed identifier',
+    'cat breed AI team',
+    'whatbreedismycat team',
+    'cat identification app creators',
+    'AI cat breed tool developers'
+  ]
 };
 
 export default function AboutUs() {

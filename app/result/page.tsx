@@ -1,4 +1,53 @@
 // app/result/page.tsx
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Cat Breed Identification Results - WhatBreedIsMyCat',
+  description: 'View your cat breed identification results from our AI analysis. Discover your cat\'s breed with detailed information about traits, personality, and care tips.',
+  metadataBase: new URL('https://whatbreedismycat.app'),
+  alternates: {
+    canonical: '/result'
+  },
+  openGraph: {
+    title: 'Cat Breed Identification Results - WhatBreedIsMyCat',
+    description: 'Discover your cat\'s breed with AI-powered analysis results. Get detailed information about traits, personality, and care tips for your feline friend.',
+    url: 'https://whatbreedismycat.app/result',
+    type: 'website',
+    images: [
+      {
+        url: '/page/catbreed.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Cat Breed Identification Results - AI Analysis'
+      }
+    ],
+    locale: 'en_US',
+    siteName: 'WhatBreedIsMyCat'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Cat Breed Identification Results - WhatBreedIsMyCat',
+    description: 'Discover your cat\'s breed with AI-powered analysis results and detailed breed information.',
+    images: ['/page/catbreed.jpg'],
+    creator: '@catbreedai'
+  },
+  robots: {
+    index: true,
+    follow: true,
+    'max-image-preview': 'large',
+    'max-snippet': -1,
+    'max-video-preview': -1
+  },
+  keywords: [
+    'cat breed results',
+    'AI cat identification results',
+    'cat breed analysis results',
+    'identify cat breed results',
+    'cat breed recognition results',
+    'feline breed identification'
+  ]
+};
+
 'use client';
 
 import { useSearchParams, useRouter } from 'next/navigation';
