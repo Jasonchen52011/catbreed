@@ -281,17 +281,17 @@ export default function HomePage() {
       <Script
         id="organization-structured-data"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData.organization) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationData) }}
       />
       <Script
         id="faq-structured-data"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData.faq) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
       />
       <Script
-        id="website-structured-data"
+        id="breadcrumb-structured-data"
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData.website) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }}
       />
       </Head>
       
