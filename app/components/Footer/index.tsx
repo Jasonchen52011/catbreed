@@ -11,11 +11,17 @@ export default function Footer() {
           {/* 左侧LOGO和介绍 */}
           <div className="col-span-1 lg:col-span-2 flex flex-col items-center lg:items-start">
             <div className="flex items-center gap-2 mb-2">
-
+              <Image 
+                src="/logo/favicon.svg" 
+                alt="WhatBreedIsMyCat Logo" 
+                width={28} 
+                height={28}
+                className="rounded-2xl"
+              />
               <h2 className="text-xl font-bold text-white">WhatBreedIsMyCat</h2>
             </div>
-            <p className="text-white text-sm mb-6 text-center lg:text-left max-w-xs">
-            WhatBreedIsMyCat is a free AI tool that helps you find your cat’s breed from a photo.
+            <p className="text-white mt-4 text-base mb-6 text-center lg:text-left max-w-xs">
+            WhatBreedIsMyCat is a free AI tool that helps you find your cat's breed from a photo.
             </p>
           </div>
           

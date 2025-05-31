@@ -66,7 +66,7 @@ export default function HomePage() {
 
             {/* How Our AI Finds Your Cat's Breed Section */}
             <section id="how-it-works" className="py-16 px-4 max-w-7xl mx-auto">
-              <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
+              <h2 className="text-2xl sm:text-4xl font-bold text-center mb-12 text-gray-800">
                 How Our AI Finds Your Cat's Breed
               </h2>
               
@@ -80,7 +80,7 @@ export default function HomePage() {
                 <div className="space-y-4 text-gray-700 text-base leading-relaxed">
                   <p>
                     Our AI is trained using breed standards from trusted sources like{' '}
-                    <span className="font-semibold">The International Cat Association (TICA)</span>. 
+                    <a href="https://tica.org/find-a-cat/find-a-cat-breeder-listings/" target="_blank" rel="noopener noreferrer" className=" text-gray-800 underline hover:text-pink-700">The International Cat Association (TICA)</a>. 
                     This means our model has seen thousands of examples of purebred cats with known traits—like face shape, ear size, coat type, and more.
                   </p>
                   <p>
@@ -93,7 +93,7 @@ export default function HomePage() {
                     But here's the thing: most cats are mixed, and photos can only show so much. Our tool gives a smart guess based on visual features—but it's not perfect. It can't see your cat's full DNA or health background.
                   </p>
                   <p>
-                    Want to be 100% sure about your cat's breed? We recommend doing a DNA test with trusted providers like Basepaws or Wisdom Panel. They can reveal your cat's genetic history and even spot health risks.
+                    Want to be 100% sure about your cat's breed? We recommend doing a DNA test with trusted providers like <a href="https://basepaws.com/" target="_blank" rel="noopener noreferrer" className="text-gray-800 underline hover:text-pink-700">Basepaws</a> or <a href="https://www.wisdompanel.com/en-us" target="_blank" rel="noopener noreferrer" className="text-gray-800 underline hover:text-pink-700">Wisdom Panel</a>. They can reveal your cat's genetic history and even spot health risks.
                   </p>
                   <p>
                     Our AI is a fast, fun way to explore your cat's story—but for deep answers, DNA is still the gold standard.
@@ -105,11 +105,11 @@ export default function HomePage() {
             {/* How to Identify Your Cat's Breed Section */}
             <section className="py-16 px-4 w-full bg-gray-50">
               <div className="max-w-7xl mx-auto">
-                <h2 className="text-4xl font-bold text-center mb-4 text-gray-800">
+                <h2 className="text-2xl sm:text-4xl font-bold text-center mb-4 text-gray-800">
                   How to Identify Your Cat's Breed with Our AI Tool
                 </h2>
                 <p className="text-center text-gray-600 mb-12">
-                  Just upload a photo of your cat—our AI will start scanning right away. In a few seconds, you'll see 3 likely breeds with helpful info.
+                  Just upload a photo of your cat—our AI will start scanning right away. In a few seconds, you'll see <span className="text-sky-400">3 likely breeds</span> with helpful info.
                 </p>
 
                 <div className="grid md:grid-cols-5 gap-12 items-start">
@@ -287,31 +287,118 @@ export default function HomePage() {
                     Cat Breed Chart: Compare 20 Popular Breeds at a Glance
                   </h2>
                   <p className="text-gray-700  max-w-6xl mx-auto text-base leading-relaxed mb-2">
-                   Want to figure out your cat's breed based on its looks? We've created a helpful chart of 10 common cat breeds using official data from The International Cat Association (TICA) and The Cat Fanciers' Association (CFA). You can use it to compare size, coat, eyes, ears, and personality traits—side by side. It's a great quick reference when you're trying to match your cat's features to possible breeds. <a href="/page/catbreedchart.jpg" download="Cat-Breed-Chart.jpg" className="text-pink-500 hover:text-pink-700">Click here</a> to download the full chart and explore 50+ cat breeds in detail.
+                   Want to figure out your cat's breed based on its looks? We've created a helpful chart of 10 common cat breeds using official data from <a href="https://tica.org/find-a-cat/find-a-cat-breeder-listings/" target="_blank" rel="noopener noreferrer" className="text-gray-700 underline hover:text-pink-700">The International Cat Association (TICA)</a> and <a href="https://cfa.org/" target="_blank" rel="noopener noreferrer" className="text-gray-700 underline hover:text-pink-700">The Cat Fanciers' Association (CFA)</a>. You can use it to compare size, coat, eyes, ears, and personality traits—side by side. It's a great quick reference when you're trying to match your cat's features to possible breeds. <a href="https://docs.google.com/spreadsheets/d/1I_zX5jJnmUY45FxmqbSKuumagMo9wyYfZu6RRvQKkBE/edit?pli=1&gid=0#gid=0" target="_blank" rel="noopener noreferrer" className="text-pink-500 font-blod hover:text-pink-700">Click here to view the full interactive chart </a>  and explore 50+ cat breeds in detail.
                   </p>
                   
                 </div>
               
-                <div className="flex items-center border-2 border-gray-600 rounded-lg  justify-center">
-                  <img 
-                    src="/page/catbreedchart.jpg" 
-                    alt="Cat Breed Chart from TICA and CFA, explore 50+ cat breeds in detail" 
-                    className="w-full h-auto rounded-lg shadow-lg"
-                  />
+                <div className="w-full overflow-x-auto bg-white rounded-lg shadow-lg border border-gray-200">
+                  <table className="min-w-full text-xs">
+                    <thead className="bg-gray-50 border-b border-gray-200">
+                      <tr>
+                        <th className="px-4 py-3 text-left font-semibold text-gray-900 min-w-[120px]">Breed Name</th>
+                        <th className="px-4 py-3 text-left font-semibold text-gray-900 min-w-[100px]">Size</th>
+                        <th className="px-4 py-3 text-left font-semibold text-gray-900 min-w-[150px]">Coat Length & Type</th>
+                        <th className="px-4 py-3 text-left font-semibold text-gray-900 min-w-[150px]">Coat Color & Pattern</th>
+                        <th className="px-4 py-3 text-left font-semibold text-gray-900 min-w-[120px]">Eye Color & Shape</th>
+                        <th className="px-4 py-3 text-left font-semibold text-gray-900 min-w-[120px]">Ear Shape & Features</th>
+                        <th className="px-4 py-3 text-left font-semibold text-gray-900 min-w-[120px]">Tail Length & Features</th>
+                        <th className="px-4 py-3 text-left font-semibold text-gray-900 min-w-[200px]">Typical Temperament & Behavior</th>
+                        <th className="px-4 py-3 text-left font-semibold text-gray-900 min-w-[200px]">Notable Health Tendencies or Special Care Needs</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y text-left text-xs divide-gray-200">
+                      <tr className="hover:bg-gray-50">
+                        <td className="px-4 py-3 font-medium text-gray-900">Abyssinian</td>
+                        <td className="px-4 py-3 text-gray-700">Medium-sized</td>
+                        <td className="px-4 py-3 text-gray-700">Semi-long, soft, finely textured, agouti ticking</td>
+                        <td className="px-4 py-3 text-gray-700">Ruddy, cinnamon, blue, fawn, chocolate, lilac, with or without silver</td>
+                        <td className="px-4 py-3 text-gray-700">Large, almond-shaped, expressive; gold, amber, or green; ringed with dark color (eyeliner)</td>
+                        <td className="px-4 py-3 text-gray-700">Large, arched forward, often with ear tufts</td>
+                        <td className="px-4 py-3 text-gray-700">Long, tapering</td>
+                        <td className="px-4 py-3 text-gray-700">Loyal, affectionate, highly intelligent, active, inquisitive, playful, agile, athletic, enjoys climbing, not typically lap cats, happiest with company</td>
+                        <td className="px-4 py-3 text-gray-700">Potential for early periodontal disease, patellar luxation, amyloidosis, PRA, PK-deficiency; weekly/bi-weekly nail clipping, regular teeth brushing</td>
+                      </tr>
+                      <tr className="hover:bg-gray-50">
+                        <td className="px-4 py-3 font-medium text-gray-900">American Bobtail</td>
+                        <td className="px-4 py-3 text-gray-700">Medium-to-large; males 12-16 lbs, females 7-11 lbs; slow to mature (up to 3 years)</td>
+                        <td className="px-4 py-3 text-gray-700">Short (plush, rabbit pelt-like) or medium-long (easy to maintain); any color/pattern</td>
+                        <td className="px-4 py-3 text-gray-700">Any color/pattern including black, brown, chocolate, cinnamon, blue, lilac, fawn, red, cream, with or without white</td>
+                        <td className="px-4 py-3 text-gray-700">Almost almond-shaped; color varies with coat color</td>
+                        <td className="px-4 py-3 text-gray-700">Medium-sized, wide-based, rounded tips</td>
+                        <td className="px-4 py-3 text-gray-700">Shortened, minimum 1 inch to hock length; unique, no two identical; proudly held, wags</td>
+                        <td className="px-4 py-3 text-gray-700">Confident, friendly, highly intelligent, clown-like, affectionate, loving, devoted to entire family, good with older children/other pets, not very vocal (chirps, clicks, trills), moderately active, trainable (leash, fetch), good travelers, therapy cats</td>
+                        <td className="px-4 py-3 text-gray-700">Generally healthy, potential for genetic problems; weekly/bi-weekly combing, more frequent during shedding; rarely needs bathing; bi-weekly nail trims, regular teeth brushing, weekly eye/ear cleaning</td>
+                      </tr>
+                      <tr className="hover:bg-gray-50">
+                        <td className="px-4 py-3 font-medium text-gray-900">American Curl</td>
+                        <td className="px-4 py-3 text-gray-700">Medium-sized; females 5-8 lbs, males 7-10 lbs</td>
+                        <td className="px-4 py-3 text-gray-700">Long or short hair; silky, lies flat, little undercoat (less shedding, easier maintenance)</td>
+                        <td className="px-4 py-3 text-gray-700">All colors and patterns</td>
+                        <td className="px-4 py-3 text-gray-700">Large, walnut-shaped</td>
+                        <td className="px-4 py-3 text-gray-700">Unique curled ears (90-180 degrees arc); firm cartilage; born straight, curl at 2-3 days, final curvature at 4 months</td>
+                        <td className="px-4 py-3 text-gray-700">Longhaired has beautifully plumed tail</td>
+                        <td className="px-4 py-3 text-gray-700">Sweet disposition, thrives on human interaction, lovable, affectionate, adaptable, curious, exuberant, loving companions, people-oriented, pat for attention, adore children, good with other pets, alert, inquisitive, even-tempered, intelligent, devoted, follow owners, quiet voices (gentle trilling/cooing), kitten-like (Peter Pan), playful, enjoys climbing/jumping, can learn fetch, open doors/cabinets</td>
+                        <td className="px-4 py-3 text-gray-700">No known genetic health issues; shorthair brushed regularly, longhair occasionally; periodic nail trims; normal black ear wax (clean periodically); dental hygiene (brushing, professional cleaning); good quality food, enjoys canned food supplement; fresh water daily (3 ft from food)</td>
+                      </tr>
+                      <tr className="hover:bg-gray-50">
+                        <td className="px-4 py-3 font-medium text-gray-900">American Shorthair</td>
+                        <td className="px-4 py-3 text-gray-700">Medium-sized; males larger than females; muscular, firm, well-balanced</td>
+                        <td className="px-4 py-3 text-gray-700">Short, lustrous, dense, hard texture; natural protective appearance</td>
+                        <td className="px-4 py-3 text-gray-700">All traditional colors, tabby and tabby with white most common; clarity of markings desirable</td>
+                        <td className="px-4 py-3 text-gray-700">Wide-set, medium to large, proportionate to head; rounded (upper lid half almond, lower full curve)</td>
+                        <td className="px-4 py-3 text-gray-700">Medium size, slightly rounded at tip, set twice distance between eyes</td>
+                        <td className="px-4 py-3 text-gray-700">Medium long, heavy at base, tapering to abrupt blunt end; length equal to distance from shoulder blades to base of tail</td>
+                        <td className="px-4 py-3 text-gray-700">Gentle, good-natured, easy-going, adaptable, loyal, loving, people-oriented, intelligent, curious, playful even in old age; females busier than males; retains hunting instincts; enjoys company but independent; easy to train, enjoys fetch</td>
+                        <td className="px-4 py-3 text-gray-700">Not prone to genetic/hereditary illnesses; regular vet visits; weekly combing; nail trims, ear cleaning, teeth brushing regularly; tall scratching post; small portion wet food daily, dry food for grazing; fresh water daily (3 ft from food)</td>
+                      </tr>
+                      <tr className="hover:bg-gray-50">
+                        <td className="px-4 py-3 font-medium text-gray-900">Australian Mist</td>
+                        <td className="px-4 py-3 text-gray-700">Medium-sized</td>
+                        <td className="px-4 py-3 text-gray-700">Very short, lacks undercoat</td>
+                        <td className="px-4 py-3 text-gray-700">Spotted or marbled; 7 colors: brown, blue, chocolate, lilac, caramel, gold, peach; misted veil appearance (random ticking); legs/tail ringed/barred; face/neck lines</td>
+                        <td className="px-4 py-3 text-gray-700">Not specified</td>
+                        <td className="px-4 py-3 text-gray-700">Not specified</td>
+                        <td className="px-4 py-3 text-gray-700">Ringed or barred</td>
+                        <td className="px-4 py-3 text-gray-700">Easy-going, extremely sociable, loyal, loving, people-oriented, thrives on companionship, lively as kittens, calms with age, prefers warm lap as adults, easy to train, can play fetch, good with young children/other pets/elderly/disabled, tolerant of handling, not inclined to scratch, excellent indoor cats, can walk on lead</td>
+                        <td className="px-4 py-3 text-gray-700">Not prone to genetic/hereditary illnesses due to "hybrid vigor"; at risk for HCM (breeders screen via echo); weekly brushing; nail trims, ear cleaning, teeth brushing regularly; tall scratching post; good quality dry kibble; fresh water daily (3 ft from food); life expectancy 15-18 years</td>
+                      </tr>
+                      <tr className="hover:bg-gray-50">
+                        <td className="px-4 py-3 font-medium text-gray-900">Balinese</td>
+                        <td className="px-4 py-3 text-gray-700">Medium-sized; females 5-8 lbs, males 8-12 lbs; slow to mature (18-24 months)</td>
+                        <td className="px-4 py-3 text-gray-700">Single coat, close-lying, no undercoat (reduces matting); soft, fine, silky; 0.5-2 inches long</td>
+                        <td className="px-4 py-3 text-gray-700">Light/wispy main coat; dark mask/extremities (seal point); other colors: chocolate, blue, lilac, cinnamon, fawn, red, cream points; with/without white, silver/smoke, lynx point, tortie/tortie points</td>
+                        <td className="px-4 py-3 text-gray-700">Stunning deep sapphire blue eyes</td>
+                        <td className="px-4 py-3 text-gray-700">Strikingly large, pointed, wide at base, continuing triangular line of wedge-shaped head</td>
+                        <td className="px-4 py-3 text-gray-700">Magnificent plume (up to 5 inches long hair); long tail fringed with long hair</td>
+                        <td className="px-4 py-3 text-gray-700">Very social, talkative, loving, bonds closely with families (all ages, cat-friendly dogs, other cats), thrives on attention, "helpful" (follows humans), vocal (quieter/softer than Siamese), demands attention, mischievous, highly intelligent, agile, athletic, requires stimulation/toys, excels at feline agility, receptive to training (fetch, leash), enjoys lounging</td>
+                        <td className="px-4 py-3 text-gray-700">Generally healthy; sensitive to anesthesia (inform vet); susceptible to Amyloidosis (no test); weekly brushing; weekly nail trims (avoid quick); weekly eye/ear cleaning; regular teeth brushing/dental cleanings; adults fed twice daily, kittens 3-4 times; fresh water daily (3 ft from food); prefers canned food (higher protein/water, lower carbs)</td>
+                      </tr>
+                      <tr className="hover:bg-gray-50">
+                        <td className="px-4 py-3 font-medium text-gray-900">Bengal</td>
+                        <td className="px-4 py-3 text-gray-700">Medium to large; females 6-12 lbs, males 9-15 lbs; muscular, solid build; reaches full size by 2 years</td>
+                        <td className="px-4 py-3 text-gray-700">Luxurious short, soft coat; may have "glitter" (iridescent sparkle); Longhair Bengals exist</td>
+                        <td className="px-4 py-3 text-gray-700">Brown/black tabby (cool grey to golden/bronze/copper/mahogany with rich brown/black spots/marbling); "snow" colors (ivory/cream/light tan with light brown/dark chocolate spots/marbling); silver (grey to nearly white with dark grey/black patterns); nearly white undersides/facial markings; spotted or marble pattern; rosettes (two-toned spots); marble pattern (swirls/lines)</td>
+                        <td className="px-4 py-3 text-gray-700">Large, oval, almost round; blue to aqua for "snow" colors</td>
+                        <td className="px-4 py-3 text-gray-700">Relatively short, wide base, rounded tips</td>
+                        <td className="px-4 py-3 text-gray-700">Thick, low-set, medium-length</td>
+                        <td className="px-4 py-3 text-gray-700">Inquisitive, spirited, loving, social, people-oriented, confident, curious, devoted, extroverted/introverted, loving, communicative; high-energy (climbing, exploring, stimulating play); highly intelligent, trainable (leash, fetch, sit, stay, clicker); enjoys water; uses chirps, trills, meows to "chat"; coexists with other pets; needs enrichment/companionship if only pet</td>
+                        <td className="px-4 py-3 text-gray-700">Breeders test for HCM, PRA, PK-deficiency; commonly misdiagnosed with IBD (high-protein diet/parasite testing helps); shorthair needs little grooming (brush during shedding); monthly nail trimming; longhair needs daily grooming; high-quality diet (proper protein/nutrients); mindful of weight gain after spay/neuter (avoid free feeding); raw diet suitable; fresh water daily (3 ft from food)</td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
-
-             
               </div>
             </section>
 
             {/* Why Cat Owners Trust WhatBreedIsMyCat Section */}
             <section className="py-16 px-4 max-w-6xl mx-auto">
               <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">
-                Why Cat Owners Trust WhatBreedIsMyCat
+                Why Cat Owners Trust <span className="text-sky-400">WhatBreedIsMyCat</span>
               </h2>
               
               {/* Feature Cards Grid */}
-              <div className="grid md:grid-cols-4 gap-6 mb-16">
+              <div className="grid md:grid-cols-4 gap-6 mb-6">
                 {/* Easy & Free to Use */}
                 <div className="bg-white border border-gray-200 rounded-lg p-6 text-center">
                   <div className="h-20 w-20 rounded-lg mx-auto mb-4 flex items-center justify-center">
@@ -334,7 +421,7 @@ export default function HomePage() {
                     Trained with Trusted Breed Data
                   </h3>
                   <p className="text-gray-700 text-sm leading-relaxed">
-                    Our AI was trained using official breed standards from The International Cat Association (TICA), making the results more reliable and informed by expert knowledge.
+                    Our AI was trained using official breed standards from <a href="https://tica.org/find-a-cat/find-a-cat-breeder-listings/" target="_blank" rel="noopener noreferrer" className="text-gray-700 underline hover:text-pink-700">The International Cat Association (TICA)</a>, making the results more reliable and informed by expert knowledge.
                   </p>
                 </div>
 
@@ -366,11 +453,8 @@ export default function HomePage() {
               </div>
 
               {/* Testimonial Section */}
-              <div className="w-full px-4 py-16">
-                <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">
-                  What Users Say about our Cat Breed Identifier
-                </h2>
-                
+              <div className="w-full px-4 py-6">
+              
                 <TestimonialCarousel testimonials={testimonials} />
               </div>
             </section>
@@ -406,7 +490,7 @@ It's fast, free, and doesn't require an account.`
                   },
                   {
                     question: "What's the difference between AI detection and a DNA test?",
-                    answer: "AI detection is based on what your cat looks like. DNA tests check what your cat is made of—its genetic history. For fun and fast insights, use AI. For deeper health or ancestry info, try a DNA test like Basepaws."
+                    answer: "AI detection is based on what your cat looks like. DNA tests check what your cat is made of—its genetic history. For fun and fast insights, use AI. For deeper health or ancestry info, try a DNA test like <a href=\"https://basepaws.com/\" target=\"_blank\" rel=\"noopener noreferrer\" className=\"text-gray-800 underline hover:text-pink-700\">Basepaws</a>."
                   },
                   {
                     question: "Can my cat's coat color or pattern tell me its breed?",

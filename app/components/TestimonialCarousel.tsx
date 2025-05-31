@@ -111,10 +111,10 @@ export default function TestimonialCarousel({ testimonials }: TestimonialCarouse
       {/* 右箭头 - 移到外面 */}
       <button
         onClick={nextTestimonial}
-        className="p-3 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors ml-6 flex-shrink-0"
+        className="p-3 rounded-full bg-gray-50  hover:bg-gray-100 transition-colors ml-6 flex-shrink-0"
         aria-label="Next testimonial"
       >
-        <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="w-6 h-6 shadow-sm text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
         </svg>
       </button>

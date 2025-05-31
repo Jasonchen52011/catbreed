@@ -127,18 +127,20 @@ export default function HomePage() {
 
   return (
     <>
-      <div id="cat-identifier" className="min-h-screen bg-white mt-16 px-12 py-16">
+      <div id="cat-identifier" className="min-h-screen bg-white mt-6 px-12 py-10">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-9 items-center">
             
             {/* 左侧内容 */}
             <div className="space-y-8">
               <div>
-                <h1 className="text-5xl font-bold text-gray-900 mb-6">
+                <h1 className="text-2xl sm:text-5xl  font-bold text-gray-900 mb-6">
                   AI Cat Breed Identifier
+
                 </h1>
                 <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                    Upload a photo of your cat to let AI identify its possible breed. You'll get 3 likely breed types, each with a matching percentage, breed features, and care tips—free, fast, and smart.
+
                 </p>
 
               </div>
@@ -151,6 +153,7 @@ export default function HomePage() {
                   <div className="w-10 h-10 bg-gray-500 rounded-full border-2 border-white"></div>
                 </div>
                 <span className="text-lg font-medium text-gray-700">50,000+ cat photos scanned</span>
+                   <i className="fas fa-paw ml-2 text-2xl text-sky-400"></i>
               </div>
             </div>
 
@@ -160,7 +163,7 @@ export default function HomePage() {
                 <div
                   {...getRootProps()}
                   className={`border-2 border-dashed border-gray-200 rounded-2xl p-12 text-center cursor-pointer transition-all duration-300 ${
-                    isDragActive ? 'border-blue-500 bg-blue-50' : 'hover:border-gray-300'
+                    isDragActive ? 'border-blue-500 bg-blue-50' : 'hover:border-pink-300'
                   } ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
                 >
                   <input {...getInputProps()} />
@@ -175,7 +178,7 @@ export default function HomePage() {
                     
                     <button
                       type="button"
-                      className="w-full max-w-xs mx-auto block bg-pink-500 text-white py-4 px-8 rounded-xl font-semibold text-lg hover:bg-pink-700 transition-colors disabled:opacity-50"
+                      className="max-w-xs mx-auto block bg-pink-500 text-white py-4 px-8 rounded-xl font-semibold text-lg hover:bg-pink-700 transition-colors disabled:opacity-50"
                       disabled={isLoading}
                     >
                       Upload Cat Photo
@@ -207,7 +210,7 @@ export default function HomePage() {
                   <button
                     onClick={handleSubmit}
                     disabled={isLoading}
-                    className="w-full bg-pink-600 text-white py-4 px-5 rounded-xl font-semibold text-lg hover:bg-pink-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="max-w-sm mx-auto block bg-pink-500 text-white py-4 px-5 rounded-xl font-semibold text-lg hover:bg-pink-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isLoading ? (
                       <LoadingSpinner />

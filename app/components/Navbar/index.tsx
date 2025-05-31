@@ -28,6 +28,13 @@ export default function Navbar() {
     <nav className="fixed top-0 w-full z-50 bg-white text-black shadow-md">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold flex items-center gap-2" onClick={closeMenu}>
+          <Image 
+            src="/logo/favicon.svg" 
+            alt="WhatBreedIsMyCat Logo" 
+            width={32} 
+            height={32}
+            className="rounded-md"
+          />
           <span>WhatBreedIsMyCat</span>
         </Link>
         

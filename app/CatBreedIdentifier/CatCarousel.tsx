@@ -8,7 +8,6 @@ const POPULAR_CATS = [
   { name: 'Maine Coon', image: '/cat/maine-coon.jpg' },
   { name: 'British Shorthair', image: '/cat/british-shorthair.jpg' },
   { name: 'Siamese', image: '/cat/siamese.jpg' },
-  { name: 'Ragdoll', image: '/cat/ragdoll.jpg' },
   { name: 'American Shorthair', image: '/cat/american-shorthair.jpg' },
   { name: 'Abyssinian', image: '/cat/abyssinian.jpg' },
   { name: 'Russian Blue', image: '/cat/russian-blue.jpg' },
@@ -22,12 +21,10 @@ const POPULAR_CATS = [
   { name: 'Turkish Angora', image: '/cat/turkish-angora.jpg' },
   { name: 'Manx', image: '/cat/manx.jpg' },
   { name: 'Cornish Rex', image: '/cat/cornish-rex.jpg' },
-  { name: 'Devon Rex', image: '/cat/devon-rex.jpg' },
   { name: 'Selkirk Rex', image: '/cat/selkirk-rex.jpg' },
   { name: 'Bombay', image: '/cat/bombay.jpg' },
   { name: 'Chartreux', image: '/cat/chartreux.jpg' },
   { name: 'Havana Brown', image: '/cat/havana-brown.jpg' },
-  { name: 'Korat', image: '/cat/korat.jpg' },
   { name: 'Burmese', image: '/cat/burmese.jpg' },
   { name: 'Tonkinese', image: '/cat/tonkinese.jpg' },
   { name: 'Snowshoe', image: '/cat/snowshoe.jpg' },
@@ -46,7 +43,7 @@ const CatCarousel: React.FC = () => {
 
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => 
-        prevIndex === POPULAR_CATS.length - 6 ? 0 : prevIndex + 1
+        prevIndex >= POPULAR_CATS.length - 4 ? 0 : prevIndex + 1
       );
     }, 3000);
 
@@ -54,15 +51,25 @@ const CatCarousel: React.FC = () => {
   }, [isAutoPlaying]);
 
   const nextSlide = () => {
-    setCurrentIndex(currentIndex === POPULAR_CATS.length - 6 ? 0 : currentIndex + 1);
+    setIsAutoPlaying(false);
+    setCurrentIndex((prevIndex) => 
+      prevIndex >= POPULAR_CATS.length - 4 ? 0 : prevIndex + 1
+    );
+    setTimeout(() => setIsAutoPlaying(true), 5000);
   };
 
   const prevSlide = () => {
-    setCurrentIndex(currentIndex === 0 ? POPULAR_CATS.length - 6 : currentIndex - 1);
+    setIsAutoPlaying(false);
+    setCurrentIndex((prevIndex) => 
+      prevIndex <= 0 ? POPULAR_CATS.length - 4 : prevIndex - 1
+    );
+    setTimeout(() => setIsAutoPlaying(true), 5000);
   };
 
   const goToSlide = (index: number) => {
+    setIsAutoPlaying(false);
     setCurrentIndex(index);
+    setTimeout(() => setIsAutoPlaying(true), 5000);
   };
 
   const scrollToTop = () => {
@@ -76,7 +83,7 @@ const CatCarousel: React.FC = () => {
     <div className="bg-gray-50 py-9 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-9">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl sm:text-4xl font-bold text-gray-900 mb-4">
             Real Results from Real Cats
           </h2>
           <p className="text-lg text-gray-600 max-w-4xl mx-auto">
@@ -84,67 +91,68 @@ const CatCarousel: React.FC = () => {
           </p>
         </div>
 
-        <div 
-          className="relative overflow-hidden"
-          onMouseEnter={() => setIsAutoPlaying(false)}
-          onMouseLeave={() => setIsAutoPlaying(true)}
-        >
-          {/* 轮播容器 */}
-          <div 
-            className="flex transition-transform duration-500 ease-in-out"
-            style={{ transform: `translateX(-${currentIndex * (100 / 6)}%)` }}
-          >
-            {POPULAR_CATS.map((cat, index) => (
-              <div key={index} className="flex-shrink-0 w-1/4 px-2">
-                <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
-                  <div className="aspect-square">
-                    <img
-                      src={cat.image}
-                      alt={cat.name}
-                      className="w-full h-80 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity duration-300"
-                      onClick={scrollToTop}
-                      onError={(e) => {
-                        const target = e.target as HTMLImageElement;
-                        target.src = '/cat/placeholder.png';
-                      }}
-                    />
-                  </div>
-                  <div className="p-3 text-center">
-                    <h3 className="font-semibold text-gray-900 text-sm">{cat.name}</h3>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* 左右箭头 */}
+        <div className="flex items-center gap-4">
+          {/* 左导航按钮 */}
           <button
             onClick={prevSlide}
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-shadow duration-300 z-10"
+            className="flex-shrink-0 bg-white hover:bg-gray-50 shadow-lg rounded-full p-3 transition-all duration-300 hover:scale-110 border border-gray-200"
+            aria-label="Previous slides"
           >
-            <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
+            <i className="fas fa-chevron-left text-gray-700 text-lg"></i>
           </button>
 
+          {/* 轮播容器 */}
+          <div 
+            className="flex-1 overflow-hidden"
+            onMouseEnter={() => setIsAutoPlaying(false)}
+            onMouseLeave={() => setIsAutoPlaying(true)}
+          >
+            <div 
+              className="flex transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${currentIndex * (100 / 4)}%)` }}
+            >
+              {POPULAR_CATS.map((cat, index) => (
+                <div key={index} className="flex-shrink-0 w-1/4 px-2">
+                  <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300">
+                    <div className="aspect-square">
+                      <img
+                        src={cat.image}
+                        alt={cat.name}
+                        className="w-full h-80 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity duration-300"
+                        onClick={scrollToTop}
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.src = '/cat/placeholder.png';
+                        }}
+                      />
+                    </div>
+                    <div className="p-3 text-center">
+                      <h3 className="font-semibold text-gray-900 text-sm">{cat.name}</h3>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* 右导航按钮 */}
           <button
             onClick={nextSlide}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-white rounded-full p-2 shadow-lg hover:shadow-xl transition-shadow duration-300 z-10"
+            className="flex-shrink-0 bg-white hover:bg-gray-50 shadow-lg rounded-full p-3 transition-all duration-300 hover:scale-110 border border-gray-200"
+            aria-label="Next slides"
           >
-            <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
+            <i className="fas fa-chevron-right text-gray-700 text-lg"></i>
           </button>
         </div>
 
         {/* 指示器 */}
         <div className="flex justify-center mt-8 space-x-2">
-          {Array.from({ length: Math.ceil(POPULAR_CATS.length / 6) }).map((_, index) => (
+          {Array.from({ length: Math.min(8, POPULAR_CATS.length - 3) }).map((_, index) => (
             <button
               key={index}
-              onClick={() => goToSlide(index)}
+              onClick={() => goToSlide(index * 3)}
               className={`w-3 h-3 rounded-full transition-colors duration-300 ${
-                Math.floor(currentIndex / 6) === index ? 'bg-gray-800' : 'bg-gray-300'
+                Math.floor(currentIndex / 3) === index ? 'bg-gray-800' : 'bg-gray-300'
               }`}
             />
           ))}
