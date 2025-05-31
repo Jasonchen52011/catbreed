@@ -149,13 +149,13 @@ export default function HomePage() {
               <div className="flex items-center space-x-4">
                 <div className="flex -space-x-2">
                   <div className="w-10 h-10 rounded-full border-2 border-white overflow-hidden">
-                    <img src="/cat/ceylon .jpg" alt="Cat 1" className="w-full h-full object-cover" />
+                    <img src="/cat/ceylon.jpg" alt="ceylon Cat" className="w-full h-full object-cover" />
                   </div>
                   <div className="w-10 h-10 rounded-full border-2 border-white overflow-hidden">
-                    <img src="/cat/balinese.jpg" alt="Cat 2" className="w-full h-full object-cover" />
+                    <img src="/cat/balinese.jpg" alt="balinese Cat" className="w-full h-full object-cover" />
                   </div>
                   <div className="w-10 h-10 rounded-full border-2 border-white overflow-hidden">
-                    <img src="/cat/bombay.jpg" alt="Cat 3" className="w-full h-full object-cover" />
+                    <img src="/cat/bombay.jpg" alt="bombay Cat" className="w-full h-full object-cover" />
                   </div>
                 </div>
                 <span className="text-lg font-medium text-gray-700">50,000+ cat photos scanned</span>
