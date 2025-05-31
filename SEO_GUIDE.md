@@ -19,9 +19,8 @@
   - 隐私政策 (priority: 0.3)
 
 #### 动态版本
-- **位置**: `/app/sitemap.ts`
 - **优势**: 自动更新lastModified时间，更符合Next.js 14最佳实践
-- **访问地址**: `https://whatbreedismycat.com/sitemap.xml`
+- **访问地址**: `https://whatbreedismycat.app/sitemap.xml`
 
 ### 2. Robots.txt
 
@@ -34,8 +33,7 @@
   - 指向sitemap位置
 
 #### 动态版本
-- **位置**: `/app/robots.ts`
-- **访问地址**: `https://whatbreedismycat.com/robots.txt`
+- **访问地址**: `https://whatbreedismycat.app/robots.txt`
 
 ### 3. 结构化数据 (Schema Markup)
 
@@ -61,10 +59,9 @@
 
 ### 1. 域名配置
 
-请将以下文件中的域名从 `https://whatbreedismycat.com` 更新为你的实际域名：
+请将以下文件中的域名从 `https://whatbreedismycat.app` 更新为你的实际域名：
 
-- `/app/sitemap.ts`
-- `/app/robots.ts`
+
 - `/app/layout.tsx`
 - `/public/sitemap.xml`
 - `/public/robots.txt`

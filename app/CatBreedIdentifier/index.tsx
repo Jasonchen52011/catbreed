@@ -127,7 +127,7 @@ export default function HomePage() {
 
   return (
     <>
-      <div id="cat-identifier" className="bg-white mt-3 sm:mt-6 px-4 sm:px-8 lg:px-12 py-6 sm:py-10 overflow-x-hidden">
+      <div id="cat-identifier" className="bg-white mt-3 sm:mt-10 mb-14 px-4 sm:px-8 lg:px-12 py-6 sm:py-10 overflow-x-hidden">
         <div className="max-w-6xl mx-auto ">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 pl-10 items-center">
             
@@ -166,13 +166,13 @@ export default function HomePage() {
               
               {/* 移动端内容区域 - 放在上传区域上方 */}
               <div className="lg:hidden mt-10 mb-6 text-center">
-                <h1 className="text-2xl sm:text-6xl  mb-8 sm:mb-8   lg:text-5xl font-bold text-gray-900 leading-tight">
-                  AI Cat Breed Identifier
-                </h1>
+                <h2 className="text-2xl sm:text-6xl  mb-8 sm:mb-8   lg:text-5xl font-bold text-gray-900 leading-tight">
+                  What Breed Is My Cat?
+                </h2>
                 <p className="text-base sm:text-2xl text-gray-600 mb-6 leading-relaxed">
                    Upload a photo of your cat to let AI identify its possible breed. You'll get 3 likely breed types, each with a matching percentage, breed features, and care tips—free, fast, and smart.
                 </p>
-                
+                image.png
                 {/* 统计信息 - 移动端 */}
                 <div className="flex items-center justify-center space-x-3">
                   <div className="flex -space-x-2">
@@ -215,6 +215,7 @@ export default function HomePage() {
                         disabled={isLoading}
                       >
                         Upload Cat Photo
+                        <i className="fas fa-upload ml-2"></i>
                       </button>
                     </div>
                   </div>

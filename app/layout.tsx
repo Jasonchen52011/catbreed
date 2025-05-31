@@ -2,73 +2,10 @@ import type { Metadata } from 'next'
 import './globals.css'
 import Navbar from './components/Navbar/index';
 import Footer from './components/Footer/index';
-import StructuredData from './components/StructuredData';
+
 
 
 export const metadata: Metadata = {
-  title: {
-    default: 'WhatBreedIsMyCat - AI Cat Breed Identifier',
-    template: '%s | WhatBreedIsMyCat'
-  },
-  description: 'Discover your cat\'s breed with our AI-powered tool. Upload a photo and get instant results with detailed breed information, traits, and care tips.',
-  keywords: [
-    'cat breed identifier',
-    'AI cat breed',
-    'what breed is my cat',
-    'cat breed recognition',
-    'identify cat breed',
-    'cat photo analysis',
-    'feline breed detector',
-    'cat genetics',
-    'pet identification',
-    'artificial intelligence cats'
-  ],
-  authors: [{ name: 'WhatBreedIsMyCat Team' }],
-  creator: 'WhatBreedIsMyCat',
-  publisher: 'WhatBreedIsMyCat',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  metadataBase: new URL('https://whatbreedismycat.com'),
-  alternates: {
-    canonical: '/',
-  },
-  openGraph: {
-    title: 'WhatBreedIsMyCat - AI Cat Breed Identifier',
-    description: 'Discover your cat\'s breed with our AI-powered tool. Upload a photo and get instant results with detailed breed information.',
-    url: 'https://whatbreedismycat.com',
-    siteName: 'WhatBreedIsMyCat',
-    images: [
-      {
-        url: '/page/catbreed.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'AI Cat Breed Identifier - WhatBreedIsMyCat',
-      },
-    ],
-    locale: 'en_US',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'WhatBreedIsMyCat - AI Cat Breed Identifier',
-    description: 'Discover your cat\'s breed with our AI-powered tool. Upload a photo and get instant results.',
-    images: ['/page/catbreed.jpg'],
-    creator: '@whatbreedismycat',
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
   icons: {
     icon: [
       { url: '/logo/favicon.ico' },
@@ -80,12 +17,6 @@ export const metadata: Metadata = {
     other: [
       { url: '/logo/favicon.svg', type: 'image/svg+xml' },
     ],
-  },
-  manifest: '/logo/site.webmanifest',
-  verification: {
-    google: 'your-google-verification-code', // 请替换为真实的验证码
-    yandex: 'your-yandex-verification-code', // 请替换为真实的验证码
-    yahoo: 'your-yahoo-verification-code', // 请替换为真实的验证码
   },
 }
 
@@ -129,9 +60,27 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/logo/favicon.ico" sizes="any" />
-        <StructuredData type="WebSite" />
-        <StructuredData type="Organization" />
-        </head>
+        
+        {/* Clarity tracking code for https://whatbreedismycat.app/ */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(c,l,a,r,i,t,y){
+                  c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                  t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";
+                  y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+              })(window, document, "clarity", "script", "rs3n8wyq5g");
+            `
+          }}
+        />
+        
+        {/* Ahrefs analytics */}
+        <script 
+          src="https://analytics.ahrefs.com/analytics.js" 
+          data-key="7dOKmxxzXH22F/Ozh9yyRw" 
+          async 
+        />
+      </head>
       <body>
         <Navbar />
         {children}

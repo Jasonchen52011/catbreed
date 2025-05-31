@@ -1,6 +1,5 @@
 import CatCarousel from './CatBreedIdentifier/CatCarousel';
 import CatBreedIdentifier from './CatBreedIdentifier/index';
-import Script from 'next/script';
 import FAQ from './components/FAQ';
 import TestimonialCarousel from './components/TestimonialCarousel';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -273,26 +272,30 @@ export default function HomePage() {
           crossOrigin="anonymous" 
           referrerPolicy="no-referrer" 
         />
-       <Script
-        id="schema-org"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
-      <Script
-        id="organization-structured-data"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationData) }}
-      />
-      <Script
-        id="faq-structured-data"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqStructuredData) }}
-      />
-      <Script
-        id="breadcrumb-structured-data"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }}
-      />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(organizationData),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(faqStructuredData),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(breadcrumbData),
+          }}
+        />
       </Head>
       
       
