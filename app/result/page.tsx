@@ -350,7 +350,7 @@ function ResultContent() {
                 {/* 新的布局：左边大图，右边匹配结果 */}
                 <div className="flex flex-col lg:flex-row gap-8 mb-6">
                   {/* 左边：放大的结果图片 */}
-                  <div className="w-full lg:w-1/2">
+                  <div className="w-full mt-8 lg:w-1/2">
                     {currentDisplayImage && currentDisplayImage.image && (
                       <div className="relative rounded-lg overflow-hidden shadow-lg w-full h-64 lg:h-96">
                         <Image 

@@ -39,7 +39,7 @@ export default function AboutUs() {
             <section className="mb-8">
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Our Story</h3>
               <p className="text-gray-700 leading-relaxed mb-4">
-                It started when one of us adopted a kitten from a shelter. She had the fluff of a British Longhair, 
+                It started when one of us adopted a kitten from a shelter. She had the fluff of a Persian, 
                 the face of a Golden Chinchilla, and the attitude of a Bengal. We Googled, we joined forums, 
                 we even tried a few apps — but none of them gave a clear answer. And most didn't explain 
                 why the result came up.

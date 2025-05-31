@@ -5,6 +5,7 @@ import FAQ from './components/FAQ';
 import TestimonialCarousel from './components/TestimonialCarousel';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import Head from 'next/head';
+import Image from 'next/image';
 
 export default function HomePage() {
 
@@ -72,8 +73,14 @@ export default function HomePage() {
               
               <div className="grid md:grid-cols-2  gap-8 items-center">
                 {/* Left side - Image placeholder */}
-                <div className="bg-gray-300 h-64  rounded-lg flex items-center justify-center">
-                  <span className="text-gray-600">Cat Analysis Image</span>
+                <div className="h-100 rounded-lg overflow-hidden">
+                  <Image
+                    src="/page/catbreed.jpg"
+                    alt="Cat Analysis - AI analyzing cat breeds"
+                    width={500}
+                    height={800}
+                    className="w-full h-full object-cover rounded-lg"
+                  />
                 </div>
                 
                 {/* Right side - Text content */}
@@ -155,8 +162,14 @@ export default function HomePage() {
                   </div>
 
                   {/* Right side - Image placeholder */}
-                  <div className="md:col-span-2 mt-16 bg-gray-300 h-96 rounded-lg flex items-center justify-center">
-                    <span className="text-gray-600">Step-by-step Guide Image</span>
+                  <div className="md:col-span-2 h-100 rounded-lg overflow-hidden">
+                    <Image
+                      src="/page/cathowto.png"
+                      alt="Step-by-step guide for cat breed identification"
+                      width={400}
+                      height={384}
+                      className="w-full h-full object-cover rounded-lg"
+                    />
                   </div>
                 </div>
               </div>
@@ -174,8 +187,14 @@ export default function HomePage() {
             <section className="py-16 bg-white px-4 max-w-6xl mx-auto">
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 {/* Left side - Image placeholder */}
-                <div className="bg-gray-300 h-80 rounded-lg flex items-center justify-center">
-                  <span className="text-gray-600">New Cat Image</span>
+                <div className="h-80 rounded-lg overflow-hidden">
+                  <Image
+                    src="/page/playwithcat.jpg"
+                    alt="New cat - identifying breed for newly adopted cats"
+                    width={300}
+                    height={300}
+                    className="w-full h-full object-cover rounded-lg"
+                  />
                 </div>
                 
                 {/* Right side - Content */}
@@ -218,8 +237,16 @@ export default function HomePage() {
                 </div>
                 
                 {/* Right side - Image placeholder */}
-                <div className="bg-gray-300 h-80 rounded-lg flex items-center justify-center">
-                  <span className="text-gray-600">Cat Features Image</span>
+                <div className="h-90 rounded-lg overflow-hidden">
+                  <Image
+                    src="/page/catlook.png"
+                    alt="Want know your cat breed?"
+                    width={600}
+                    height={400}
+                    quality={95}
+                    priority={true}
+                    className="w-full h-full object-cover rounded-lg"
+                  />
                 </div>
               </div>
             </section>
@@ -228,8 +255,16 @@ export default function HomePage() {
             <section className="py-16 px-4 max-w-6xl mx-auto">
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 {/* Left side - Image placeholder */}
-                <div className="bg-gray-300 h-80 rounded-lg flex items-center justify-center">
-                  <span className="text-gray-600">Social Sharing Image</span>
+                <div className="h-80 rounded-lg overflow-hidden">
+                  <Image
+                    src="/cat/maine-coon.jpg"
+                    alt="Maine Coon cat - perfect for social sharing and showing off cat breeds"
+                    width={500}
+                    height={400}
+                    quality={95}
+                    priority={true}
+                    className="w-full h-full object-cover rounded-lg"
+                  />
                 </div>
                 
                 {/* Right side - Content */}
@@ -272,8 +307,16 @@ export default function HomePage() {
                 </div>
                 
                 {/* Right side - Image placeholder */}
-                <div className="bg-gray-300 h-80 rounded-lg flex items-center justify-center">
-                  <span className="text-gray-600">Kids Learning Image</span>
+                <div className="h-80 rounded-lg overflow-hidden">
+                  <Image
+                    src="/cat/british-shorthair.jpg"
+                    alt="British Shorthair cat - great for teaching kids about cat breeds"
+                    width={500}
+                    height={400}
+                    quality={95}
+                    priority={true}
+                    className="w-full h-full object-cover rounded-lg"
+                  />
                 </div>
               </div>
             </section>
@@ -392,7 +435,7 @@ export default function HomePage() {
             </section>
 
             {/* Why Cat Owners Trust WhatBreedIsMyCat Section */}
-            <section className="py-16 px-4 max-w-6xl mx-auto">
+            <section className="py-16 px-4 max-w-7xl mx-auto">
               <h2 className="text-4xl font-bold text-center mb-12 text-gray-800">
                 Why Cat Owners Trust <span className="text-sky-400">WhatBreedIsMyCat</span>
               </h2>
