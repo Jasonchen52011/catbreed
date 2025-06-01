@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: '/logo/favicon.ico' },
-      { url: '/logo/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
+      { url: '/logo/logo-96x96.png', sizes: '96x96', type: 'image/png' },
     ],
     apple: [
       { url: '/logo/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
@@ -60,6 +60,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/logo/favicon.ico" sizes="any" />
+        <link rel="manifest" href="/logo/site.webmanifest" />
         
         {/* FontAwesome CSS */}
         <link 
