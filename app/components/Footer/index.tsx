@@ -12,7 +12,7 @@ export default function Footer() {
           <div className="col-span-1 lg:col-span-2 flex flex-col items-center lg:items-start">
             <div className="flex items-center gap-2 mb-2">
               <Image 
-                src="/logo/favicon.icon" 
+                src="/logo/favicon.ico" 
                 alt="WhatBreedIsMyCat Logo" 
                 width={28} 
                 height={28}

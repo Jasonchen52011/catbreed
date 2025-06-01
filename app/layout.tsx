@@ -2,27 +2,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 import Navbar from './components/Navbar/index';
 import Footer from './components/Footer/index';
-import localFont from 'next/font/local';
 
-const satoshi = localFont({
-  src: [
-    {
-      path: '../fonts/satoshi-regular.woff2',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../fonts/satoshi-medium.woff2',
-      weight: '500',
-      style: 'normal',
-    },
-    {
-      path: '../fonts/satoshi-bold.woff2',
-      weight: '700',
-      style: 'normal',
-    },
-  ],
-})
+
 
 export const metadata: Metadata = {
   icons: {

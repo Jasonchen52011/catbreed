@@ -57,10 +57,10 @@ export const metadata: Metadata = {
 
 const structuredData = {
   '@context': 'https://schema.org',
-  '@type': 'SoftwareApplication',
+  '@type': 'WebApplication',
   name: 'Cat Breed Identifier',
   applicationCategory: 'UtilityApplication',
-  operatingSystem: 'Windows, MacOS, Linux, ChromeOS, Android, iOS, iPadOS',
+  operatingSystem: 'Windows, MacOS, Linux, ChromeOS, Android, iOS, iPadOS, Web',
   browserRequirements: 'Requires JavaScript. Requires HTML5.',
   brand: {
     '@type': 'Brand',

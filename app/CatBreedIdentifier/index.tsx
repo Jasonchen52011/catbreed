@@ -204,7 +204,7 @@ export default function HomePage() {
                   >
                     <input {...getInputProps()} />
                     
-                    <div className="space-y-6 sm:space-y-12">
+                    <div className="space-y-6 sm:space-y-8">
                       <p className="text-lg sm:text-xl font-medium text-gray-700">
                         Click or drag photo here to upload
                       </p>
