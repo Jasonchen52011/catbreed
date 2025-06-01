@@ -48,7 +48,7 @@ export default function Navbar() {
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold flex items-center gap-2" onClick={closeMenu}>
           <Image 
-            src="/logo/favicon.svg" 
+            src="/logo/favicon.icon" 
             alt="WhatBreedIsMyCat Logo" 
             width={32} 
             height={32}
