@@ -342,23 +342,23 @@ function ResultContent() {
     <div className="min-h-screen bg-gray-50">
       <div className="container mx-auto px-4 py-8 mt-2 max-w-6xl flex flex-col">
         {/* 标题区域 */}
-        <div className="text-center mb-8">
-          <h1 className="mt-8 text-2xl md:text-4xl font-bold mb-2 md:mb-3">
+        <div className="text-center mb-4 sm:mb-8">
+          <h1 className="mt-8  text-3xl md:text-4xl font-bold mb-2 md:mb-3">
             Cat Breed Results
           </h1>
           <p className="text-gray-600">Note: These AI results are based on visual features and may not be 100% accurate. For fun and reference only.</p>
         </div>
         
         {/* 整个结果区域的外框 */}
-        <div ref={resultCardRef} className="max-w-5xl mx-auto mb-3 bg-white border  rounded-2xl shadow-lg p-8">
+        <div ref={resultCardRef} className="max-w-3xl mx-auto mb-3 bg-white border  rounded-2xl shadow-lg p-4 sm:p-6">
           {/* 匹配的猫品种图片展示区域 */}
           <div className="w-full max-w-5xl mx-auto">
             {identifiedBreeds.length > 0 ? (
-              <div className="grid grid-cols-1 gap-8">
+              <div className="grid grid-cols-1 gap-4 sm:gap-6">
                 {/* 新的布局：左边大图，右边匹配结果 */}
-                <div className="flex flex-col lg:flex-row gap-8 mb-6">
+                <div className="flex flex-col lg:flex-row gap-8  mb-2 sm:mb-6">
                   {/* 左边：放大的结果图片 */}
-                  <div className="w-full mt-8 lg:w-1/2">
+                  <div className="w-full mt-1 sm:w-8 lg:w-1/2">
                     {userUploadedImage ? (
                       <div className="relative rounded-lg overflow-hidden shadow-lg w-full h-64 lg:h-96">
                         <img 
@@ -389,7 +389,7 @@ function ResultContent() {
                     {/* 主要匹配结果 */}
                     {identifiedBreeds[0] && (
                       <div 
-                        className={`rounded-lg max-w-5xl p-4 mb-8  cursor-pointer  flex items-center justify-between ${
+                        className={`rounded-lg max-w-5xl p-4 mb-4 sm:mb-8  cursor-pointer  flex items-center justify-between ${
                           currentDisplayImage?.breed_name === identifiedBreeds[0].breed_name 
                             ? 'bg-gray-50 border-2 border-pink-400' 
                             : ' hover:bg-gray-50'
@@ -458,7 +458,7 @@ function ResultContent() {
 
           {/* 品种详情显示区域 */}
           {selectedBreedData ? (
-            <div className="pt-4 ">
+            <div className="pt-1 ">
               {/* 品种名称标题 */}
               <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">{selectedBreedData.breed_name} <i className="fas fa-cat ms-2 text-pink-500"></i></h2>
               
