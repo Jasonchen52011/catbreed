@@ -61,6 +61,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/logo/favicon.ico" sizes="any" />
         <link rel="manifest" href="/logo/site.webmanifest" />
+        <meta name="msvalidate.01" content="518A1A066EA7B7ED31AA7B89CDC8BC86" />
         
         {/* FontAwesome CSS */}
         <link 
