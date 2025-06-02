@@ -62,6 +62,16 @@ export default function RootLayout({
         <link rel="icon" href="/logo/favicon.ico" sizes="any" />
         <link rel="manifest" href="/logo/site.webmanifest" />
         <meta name="msvalidate.01" content="518A1A066EA7B7ED31AA7B89CDC8BC86" />
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-C9WVR84FSV"></script>
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-C9WVR84FSV');
+          `
+        }}></script>
         
         {/* FontAwesome CSS */}
         <link 
