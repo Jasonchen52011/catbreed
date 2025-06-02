@@ -56,9 +56,10 @@ const FAQ: React.FC<FAQProps> = ({ title = "Frequently Asked Questions", faqs })
             >
               <div className="px-6 pb-5">
                 <div className="border-t border-gray-100 pt-4">
-                  <p className="text-gray-700 leading-relaxed whitespace-pre-line">
-                    {faq.answer}
-                  </p>
+                  <div 
+                    className="text-gray-700 leading-relaxed whitespace-pre-line"
+                    dangerouslySetInnerHTML={{ __html: faq.answer }}
+                  />
                 </div>
               </div>
             </div>

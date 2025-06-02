@@ -136,7 +136,7 @@ const faqStructuredData = {
       name: 'What\'s the difference between AI detection and a DNA test?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'AI detection is based on what your cat looks like. DNA tests check what your cat is made of—its genetic history. For fun and fast insights, use AI. For deeper health or ancestry info, try a DNA test like Basepaws.'
+        text: 'AI detection is based on what your cat looks like. DNA tests check what your cat is made of—its genetic history. For fun and fast insights, use AI. For deeper health or ancestry info, try a DNA test like <a href=\"https://basepaws.com/\" target=\"_blank\" rel=\"noopener noreferrer\" className=\"text-pink-800 underline hover:text-pink-700\">Basepaws</a>.'
       }
     },
     {
