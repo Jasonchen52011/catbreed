@@ -251,10 +251,6 @@ export default function TestimonialCarousel({ testimonials }: TestimonialCarouse
         </div>
       </div>
 
-      {/* 滑动提示文字（仅在移动端显示） */}
-      <div className="block sm:hidden text-center mt-2">
-        <p className="text-xs text-gray-500">← 滑动查看更多 →</p>
-      </div>
     </div>
   );
 } 
