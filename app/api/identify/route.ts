@@ -5,9 +5,9 @@ import fs from 'fs';
 import path from 'path';
 
 
-// import { HttpsProxyAgent } from "https-proxy-agent";
-// import fetch from "node-fetch";
-// const PROXY_URL = process.env.PROXY_URL || '';
+import { HttpsProxyAgent } from "https-proxy-agent";
+import fetch from "node-fetch";
+const PROXY_URL = process.env.PROXY_URL || '';
 
 
 
@@ -38,6 +38,29 @@ interface BreedPrediction {
   percentage: number;
 }
 
+// 重试机制函数
+async function retryWithBackoff<T>(
+  fn: () => Promise<T>,
+  maxRetries: number = 3,
+  baseDelay: number = 1000
+): Promise<T> {
+  for (let attempt = 0; attempt <= maxRetries; attempt++) {
+    try {
+      return await fn();
+    } catch (error) {
+      if (attempt === maxRetries) {
+        throw error;
+      }
+      
+      // 指数退避延迟
+      const delay = baseDelay * Math.pow(2, attempt);
+      console.log(`API call failed, retrying in ${delay}ms (attempt ${attempt + 1}/${maxRetries + 1})`);
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
+  }
+  throw new Error('Max retries exceeded');
+}
+
 // 读取猫种类数据
 function getValidBreeds(): string[] {
   try {
@@ -61,18 +84,18 @@ export async function POST(request: NextRequest) {
 
 
 
-  // //@ts-ignore
-  // global.fetch = async (url: URL, options: RequestInit) => {
-  //   console.log("fetch", url, options);
-  //   //@ts-ignore
-  //   const res = await fetch(url, {
-  //     ...options,
-  //     agent: new HttpsProxyAgent(PROXY_URL),
-  //   });
-  //   console.log("res", res);
-  //   return res;
-  // };
-  // //@ts-ignore
+  //@ts-ignore
+  global.fetch = async (url: URL, options: RequestInit) => {
+    console.log("fetch", url, options);
+    //@ts-ignore
+    const res = await fetch(url, {
+      ...options,
+      agent: new HttpsProxyAgent(PROXY_URL),
+    });
+    console.log("res", res);
+    return res;
+  };
+  //@ts-ignore
 
   
 
@@ -99,8 +122,22 @@ export async function POST(request: NextRequest) {
       },
     };
 
-    // 给 Gemini API 的提示
-    const prompt = `Identify the top 3 cat breeds in this image. For each breed, provide ONLY the breed name and a confidence percentage.
+    // 第一步：检测图片中是否有猫
+    const catDetectionPrompt = `Analyze this image and determine if it contains a cat. Respond with ONLY one word: "YES" if there is a cat visible in the image, or "NO" if there is no cat in the image. Do not include any other text, explanations, or descriptions.`;
+
+    const detectionResult = await model.generateContent([catDetectionPrompt, imagePart]);
+    const detectionResponse = await detectionResult.response;
+    const detectionText = detectionResponse.text().trim().toUpperCase();
+
+    // 如果检测到没有猫，返回错误信息
+    if (detectionText === "NO" || !detectionText.includes("YES")) {
+      return NextResponse.json({ 
+        error: 'Please upload a cat image. We could not detect a cat in the uploaded image.' 
+      }, { status: 400 });
+    }
+
+    // 第二步：如果检测到有猫，继续进行品种识别
+    const breedIdentificationPrompt = `Identify the top 3 cat breeds in this image. For each breed, provide ONLY the breed name and a confidence percentage.
     Strictly follow this format for each identified breed, on a new line: Breed Name: XX.X%
     Example:
     Siamese: 90.5%
@@ -108,7 +145,7 @@ export async function POST(request: NextRequest) {
     Persian: 78.2%
     Do not add any other text, explanations, or introductory phrases. Only list the breeds and percentages. Focus on common and officially recognized cat breeds.`;
 
-    const result = await model.generateContent([prompt, imagePart]);
+    const result = await model.generateContent([breedIdentificationPrompt, imagePart]);
     const response = await result.response;
     const text = response.text();
 

@@ -29,6 +29,37 @@ export default function HomePage() {
   const [imgError, setImgError] = useState(false);
   const router = useRouter();
 
+  // 重试机制函数
+  const retryWithBackoff = async (
+    fn: () => Promise<Response>,
+    maxRetries: number = 3,
+    baseDelay: number = 1000
+  ): Promise<Response> => {
+    for (let attempt = 0; attempt <= maxRetries; attempt++) {
+      try {
+        const response = await fn();
+        if (response.ok) {
+          return response;
+        }
+        // 如果是客户端错误（4xx），不重试
+        if (response.status >= 400 && response.status < 500) {
+          return response;
+        }
+        throw new Error(`Server error: ${response.status}`);
+      } catch (error) {
+        if (attempt === maxRetries) {
+          throw error;
+        }
+        
+        // 指数退避延迟
+        const delay = baseDelay * Math.pow(2, attempt);
+        console.log(`API call failed, retrying in ${delay}ms (attempt ${attempt + 1}/${maxRetries + 1})`);
+        await new Promise(resolve => setTimeout(resolve, delay));
+      }
+    }
+    throw new Error('Max retries exceeded');
+  };
+
   const onDrop = useCallback((acceptedFiles: File[]) => {
     setError(null);
     if (acceptedFiles.length > 0) {
@@ -93,12 +124,14 @@ export default function HomePage() {
               // 保存用户上传的图片到sessionStorage
               sessionStorage.setItem('userUploadedImage', reader.result);
 
-              const response = await fetch('/api/identify', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ image: reader.result, mimeType: mimeType }),
+              const response = await retryWithBackoff(async () => {
+                return await fetch('/api/identify', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({ image: reader.result, mimeType: mimeType }),
+                });
               });
 
               if (!response.ok) {
@@ -111,7 +144,12 @@ export default function HomePage() {
               router.push(`/result?predictions=${queryString}`);
 
             } catch (err: any) {
-              setError(err.message || 'Could not identify your cat. Please try again!');
+              // 更友好的错误信息
+              if (err.message.includes('fetch failed') || err.message.includes('Server error')) {
+                setError('Network connection failed. Please check your internet connection and try again.');
+              } else {
+                setError(err.message || 'Could not identify your cat. Please try again!');
+              }
               console.error(err);
             } finally {
               setIsLoading(false);
