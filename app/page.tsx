@@ -9,15 +9,15 @@ import { Metadata } from 'next';
 
 
 export const metadata: Metadata = {
-  title: 'What Breed is My Cat? - Free AI Cat Breed Identifier',
-  description: 'Not sure what kind of cat you have? Upload photo,let AI cat breed identifier free give you top 3 matches form 360+ cat breeds with personality and health.',
+  title: 'What Breed Is My Cat? | Free AI Cat Breed Identifier by Photo',
+  description: 'Upload your cat’s photo and find out its breed in seconds! Get 3 likely cat breed matches with traits and care tips. 100% free and no data saved.',
   metadataBase: new URL('https://whatbreedismycat.app'),
   alternates: {
     canonical: 'https://whatbreedismycat.app'
   },
   openGraph: {
-    title: 'What Breed is My Cat? - Free AI Cat Breed Identifier',
-    description: 'Not sure what kind of cat you have? Upload photo,let AI cat breed identifier free give you top 3 matches form 360+ cat breeds with personality and health.',
+    title: 'What Breed Is My Cat? | Free AI Cat Breed Identifier by Photo',
+    description: 'Upload your cat’s photo and find out its breed in seconds! Get 3 likely cat breed matches with traits and care tips. 100% free and no data saved.',
     url: 'https://whatbreedismycat.app',
     images: [
       {
