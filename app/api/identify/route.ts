@@ -5,9 +5,9 @@ import fs from 'fs';
 import path from 'path';
 
 
-// import { HttpsProxyAgent } from "https-proxy-agent";
-// import fetch from "node-fetch";
-// const PROXY_URL = process.env.PROXY_URL || '';
+import { HttpsProxyAgent } from "https-proxy-agent";
+import fetch from "node-fetch";
+const PROXY_URL = process.env.PROXY_URL || '';
 
 
 
@@ -84,18 +84,18 @@ export async function POST(request: NextRequest) {
 
 
 
-  // //@ts-ignore
-  // global.fetch = async (url: URL, options: RequestInit) => {
-  //   console.log("fetch", url, options);
-  //   //@ts-ignore
-  //   const res = await fetch(url, {
-  //     ...options,
-  //     agent: new HttpsProxyAgent(PROXY_URL),
-  //   });
-  //   console.log("res", res);
-  //   return res;
-  // };
-  // //@ts-ignore
+  //@ts-ignore
+  global.fetch = async (url: URL, options: RequestInit) => {
+    console.log("fetch", url, options);
+    //@ts-ignore
+    const res = await fetch(url, {
+      ...options,
+      agent: new HttpsProxyAgent(PROXY_URL),
+    });
+    console.log("res", res);
+    return res;
+  };
+  //@ts-ignore
 
   
 

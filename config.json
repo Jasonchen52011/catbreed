@@ -1,0 +1,534 @@
+{
+  "metadata": {
+    "title": "What Breed Is My Cat? | Free AI Cat Breed Identifier by Photo",
+    "description": "Upload your cat's photo and find out its breed in seconds! Get 3 likely cat breed matches with traits and care tips. 100% free and no data saved.",
+    "url": "https://whatbreedismycat.app",
+    "openGraph": {
+      "title": "What Breed Is My Cat? | Free AI Cat Breed Identifier by Photo",
+      "description": "Upload your cat's photo and find out its breed in seconds! Get 3 likely cat breed matches with traits and care tips. 100% free and no data saved.",
+      "url": "https://whatbreedismycat.app",
+      "images": [
+        {
+          "url": "page/cathowto.jpg",
+          "width": 1920,
+          "height": 1080,
+          "alt": "Cat Breed Identifier - Find Your Perfect Cat"
+        }
+      ],
+      "locale": "en_US",
+      "type": "website"
+    },
+    "twitter": {
+      "card": "summary_large_image",
+      "site": "@site",
+      "creator": "@catbreedai",
+      "images": [
+        {
+          "url": "page/catbreed.jpg",
+          "width": 1920,
+          "height": 1080,
+          "alt": "Cat Breed Identifier - Identify Your Perfect Cat"
+        }
+      ]
+    },
+    "icons": {
+      "icon": [
+        { "url": "/logo/favicon.ico", "type": "image/x-icon", "sizes": "any" },
+        { "url": "/logo/logo-96x96.png", "type": "image/png", "sizes": "96x96" },
+        { "url": "/logo/logo-192x192.png", "type": "image/png", "sizes": "192x192" },
+        { "url": "/logo/logo-512x512.png", "type": "image/png", "sizes": "512x512" },
+        { "url": "/logo/favicon.svg", "type": "image/svg+xml", "sizes": "any" }
+      ]
+    }
+  },
+  "structuredData": {
+    "webApplication": {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Cat Breed Identifier",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Windows, MacOS, Linux, ChromeOS, Android, iOS, iPadOS, Web",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "brand": {
+        "@type": "Brand",
+        "name": "whatbreedismycat.app"
+      },
+      "publishedTime": "2025-05-31",
+      "modifiedTime": "2025-05-31",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "Jason",
+        "url": "https://whatbreedismycat.app"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "worstRating": "1",
+        "bestRating": "5",
+        "ratingCount": "1501"
+      }
+    },
+    "faqPage": {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How can I know what breed my cat is?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "To find out your cat's possible breed, just follow these steps: 1. Upload a clear photo of your cat. 2. Our AI scans its features instantly. 3. You'll see the top 3 matching breeds with traits and care tips. It's fast, free, and doesn't require an account."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What's the best cat breed identifier app?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The best cat breed identifier is one that's fast, accurate, and respects your privacy. WhatBreedIsMyCat uses AI trained on real breed data to show you the 3 closest matches—free, with no photo storage and no ads."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How accurate is the AI detection?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our AI is trained using official breed data from TICA, so it's very good at spotting physical traits. But it's not perfect—especially for mixed cats. Think of it as a smart guess, not a final answer like a DNA test."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is my cat a purebred?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most cats—over 90%—are not purebred. Unless you have official papers from a breeder, your cat is likely a mix. That's totally normal, and it doesn't make your cat any less special."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can AI recognize mixed-breed cats?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! AI can analyze physical traits and suggest the closest breed matches—even for mixed cats. It won't give a full genetic breakdown, but it helps you understand what your cat may be a mix of."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What's the difference between AI detection and a DNA test?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "AI detection is based on what your cat looks like. DNA tests check what your cat is made of—its genetic history. For fun and fast insights, use AI. For deeper health or ancestry info, try a DNA test like <a href=\"https://basepaws.com/\" target=\"_blank\" rel=\"noopener noreferrer\" className=\"text-pink-800 underline hover:text-pink-700\">Basepaws</a>."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can my cat's coat color or pattern tell me its breed?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Coat color and pattern alone can't tell you the breed. For example, \"tabby\" is a pattern, not a breed. Many different breeds can have the same color or markings, so you need more features to get a real match."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is knowing my cat's breed or genetic similarity important?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Knowing your cat's possible breed helps you understand its behavior, energy level, and health needs. Even if it's not purebred, breed-like traits can guide better care and bonding with your cat."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How to identify cat breed by picture?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Here's how to do it: 1. Take or upload a clear photo of your cat's face. 2. The AI will scan its features like ears, eyes, fur, and shape. 3. In seconds, you'll get 3 possible breed matches with info to explore."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use the cat breed identifier for free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes! WhatBreedIsMyCat is completely free to use. You don't need to sign up or pay. Just upload a photo and enjoy instant breed results, matching scores, and care tips—no hidden fees."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is my photo safe and private?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely. Your photo is never saved or shared. We delete it right after processing. No accounts, no tracking—just one-time analysis with full privacy. Your cat's picture stays yours only."
+          }
+        }
+      ]
+    },
+    "breadcrumb": {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://whatbreedismycat.app"
+        }
+      ]
+    },
+    "organization": {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Cat Breed Identifier",
+      "url": "https://whatbreedismycat.app",
+      "logo": {
+        "@type": "ImageObject",
+        "inLanguage": "en-US",
+        "@id": "https://whatbreedismycat.app/logo/logo-192x192.png",
+        "url": "https://whatbreedismycat.app/logo/logo-192x192.png",
+        "width": "192",
+        "height": "192",
+        "caption": "Cat Breed Identifier Logo"
+      },
+      "website": {
+        "@type": "WebSite",
+        "url": "https://whatbreedismycat.app",
+        "name": "What Breed is My Cat?"
+      }
+    }
+  },
+  "content": {
+    "hero": {
+      "title": "AI Cat Breed Identifier",
+      "description": "Upload a photo of your cat to let AI identify its possible breed. You'll get 3 likely breed types, each with a matching percentage, breed features, and care tips—free, fast, and smart.",
+      "stats": {
+        "text": "50,000+ cat photos scanned",
+        "avatars": [
+          { "src": "/cat/ceylon.jpg", "alt": "ceylon Cat" },
+          { "src": "/cat/balinese.jpg", "alt": "balinese Cat" },
+          { "src": "/cat/bombay.jpg", "alt": "bombay Cat" }
+        ]
+      }
+    },
+    "upload": {
+      "maxFileSize": 10,
+      "allowedFormats": ["JPG", "JPEG", "PNG", "WEBP"],
+      "dragDropText": "Click or drag photo here to upload",
+      "uploadButtonText": "Upload Cat Photo",
+      "analyzeButtonText": "Analyze Cat Breed",
+      "exampleCats": [
+        { "name": "Persian", "image": "/cat/persian.jpg" },
+        { "name": "Maine Coon", "image": "/cat/maine-coon.jpg" },
+        { "name": "British Shorthair", "image": "/cat/british-shorthair.jpg" },
+        { "name": "Siamese", "image": "/cat/siamese.jpg" }
+      ],
+      "exampleText": "No photo? Try one of these:"
+    },
+    "sections": {
+      "howAIWorks": {
+        "title": "How Our AI Finds Your Cat's Breed",
+        "image": "/page/catbreed.jpg",
+        "imageAlt": "Cat Analysis - AI analyzing cat breeds",
+        "content": [
+          "Our AI is trained using breed standards from trusted sources like <a href=\"https://tica.org/find-a-cat/find-a-cat-breeder-listings/\" target=\"_blank\" rel=\"noopener noreferrer\" className=\"text-gray-800 underline hover:text-pink-700\">The International Cat Association (TICA)</a>. This means our model has seen thousands of examples of purebred cats with known traits—like face shape, ear size, coat type, and more.",
+          "When you upload a photo, the AI looks at your cat's physical features and compares them to these known patterns.",
+          "The result? You'll get the 3 most likely breeds your cat looks similar to, along with a match percentage, common traits, and care tips.",
+          "But here's the thing: most cats are mixed, and photos can only show so much. Our tool gives a smart guess based on visual features—but it's not perfect. It can't see your cat's full DNA or health background.",
+          "Want to be 100% sure about your cat's breed? We recommend doing a DNA test with trusted providers like <a href=\"https://basepaws.com/\" target=\"_blank\" rel=\"noopener noreferrer\" className=\"text-gray-800 underline hover:text-pink-700\">Basepaws</a> or <a href=\"https://www.wisdompanel.com/en-us\" target=\"_blank\" rel=\"noopener noreferrer\" className=\"text-gray-800 underline hover:text-pink-700\">Wisdom Panel</a>. They can reveal your cat's genetic history and even spot health risks.",
+          "Our AI is a fast, fun way to explore your cat's story—but for deep answers, DNA is still the gold standard."
+        ]
+      },
+      "howTo": {
+        "title": "How to Identify Your Cat's Breed with Our AI Tool",
+        "subtitle": "Just upload a photo of your cat—our AI will start scanning right away. In a few seconds, you'll see <span class=\"text-sky-400\">3 likely breeds</span> with helpful info.",
+        "image": "/page/cathowto.jpg",
+        "imageAlt": "Step-by-step guide for cat breed identification",
+        "steps": [
+          {
+            "title": "Step 1: Upload a Clear Photo",
+            "description": "Take a front-facing photo of your cat or choose one from your gallery. Make sure the image is bright, clear, and focused on your cat's face. Avoid pictures with blurry faces, heavy shadows, or other pets in the frame. Supported formats: JPG, JPEG, PNG, and WEBP. Max size: 10MB."
+          },
+          {
+            "title": "Step 2: Let AI Scan Automatically",
+            "description": "Once you upload the photo, our AI starts working right away—no buttons to press. It looks at your cat's face shape, ears, fur, and other features, then compares them to known breed patterns. The scan takes about 5 seconds. All done in real time!"
+          },
+          {
+            "title": "Step 3: Get Breed Match Results",
+            "description": "You'll see 3 cat breeds your cat most likely resembles. Each comes with a match percentage, key traits, behavior info, and care tips. These aren't random guesses—they're based on visual features and breed standards."
+          },
+          {
+            "title": "Step 4: Download or Share Your Results",
+            "description": "You can download a copy of your results or share it on social media. Show off your cat's \"hidden\" breed with friends! And don't worry—your photo is deleted right after analysis. We never store your data."
+          }
+        ],
+        "ctaText": "Identify My Cat Now →"
+      },
+      "justGotNewCat": {
+        "title": "Just Got a New Cat?",
+        "description": "Adopted a cat but have no idea what breed it might be? Whether it's from a shelter or a stray, knowing its possible breed mix helps you understand its traits, behavior, and care needs. It's a simple way to bond with your new furry friend and learn where it might come from.",
+        "image": "/page/playwithcat.jpg",
+        "imageAlt": "New cat - identifying breed for newly adopted cats",
+        "ctaText": "Identify My Cat Now →"
+      },
+      "curiousAboutLooks": {
+        "title": "Curious About Your Cat's Looks?",
+        "description": "Big ears? Super fluffy tail? Unique coat? If your cat has features you've always wondered about, breed insights can explain why. Maybe it shares traits with a Siamese or Maine Coon. Learning the \"why\" behind your cat's look makes it even more special.",
+        "image": "/page/catlook.png",
+        "imageAlt": "Want know your cat breed?",
+        "ctaText": "Identify My Cat Now →"
+      },
+      "sharingWithFriends": {
+        "title": "Sharing with Friends or Online?",
+        "description": "Posting cute cat pics? People will ask, \"What breed is that?\" Now you'll have a fun answer—plus a shareable result card with breed names and fun facts. Great for Instagram, TikTok, or just making your group chat smile.",
+        "image": "/cat/maine-coon.jpg",
+        "imageAlt": "Maine Coon cat - perfect for social sharing and showing off cat breeds",
+        "ctaText": "Identify My Cat Now →"
+      },
+      "helpingKidsLearn": {
+        "title": "Helping Kids Learn About Pets?",
+        "description": "Kids love asking questions—and cats are full of surprises. Turn breed results into a learning moment. Talk about where the breeds come from, their traits, and how to care for them. It's fun, hands-on, and sparks curiosity about animals.",
+        "image": "/cat/british-shorthair.jpg",
+        "imageAlt": "British Shorthair cat - great for teaching kids about cat breeds",
+        "ctaText": "Identify My Cat Now →"
+      },
+      "catBreedChart": {
+        "title": "Cat Breed Chart: Compare 10 Popular Breeds at a Glance",
+        "description": "Want to figure out your cat's breed based on its looks? We've created a helpful chart of 10 common cat breeds using official data from <a href=\"https://tica.org/find-a-cat/find-a-cat-breeder-listings/\" target=\"_blank\" rel=\"noopener noreferrer\" className=\"text-gray-700 underline hover:text-pink-700\">The International Cat Association (TICA)</a> and <a href=\"https://cfa.org/\" target=\"_blank\" rel=\"noopener noreferrer\" className=\"text-gray-700 underline hover:text-pink-700\">The Cat Fanciers' Association (CFA)</a>. You can use it to compare size, coat, eyes, ears, and personality traits—side by side. It's a great quick reference when you're trying to match your cat's features to possible breeds. <a href=\"https://docs.google.com/spreadsheets/d/1I_zX5jJnmUY45FxmqbSKuumagMo9wyYfZu6RRvQKkBE/edit?pli=1&gid=0#gid=0\" target=\"_blank\" rel=\"noopener noreferrer\" className=\"text-pink-500 font-blod hover:text-pink-700\">Click here to view the full interactive chart </a>  and explore 50+ cat breeds in detail."
+      },
+      "whyTrust": {
+        "title": "Why Cat Owners Trust <span class=\"text-sky-400\">WhatBreedIsMyCat</span>",
+        "features": [
+          {
+            "icon": "fa-upload",
+            "title": "Easy & Free to Use",
+            "description": "No sign-up. No long forms. Just upload a photo and see your cat's breed results in seconds. It's designed for anyone to use—no tech skills needed."
+          },
+          {
+            "icon": "fa-certificate",
+            "title": "Trained with Trusted Breed Data",
+            "description": "Our AI was trained using official breed standards from <a href=\"https://tica.org/find-a-cat/find-a-cat-breeder-listings/\" target=\"_blank\" rel=\"noopener noreferrer\" className=\"text-gray-700 underline hover:text-pink-700\">The International Cat Association (TICA)</a>, making the results more reliable and informed by expert knowledge."
+          },
+          {
+            "icon": "fa-shield-alt",
+            "title": "Private by Default",
+            "description": "Your photo is never saved. We delete it right after the scan. No accounts, no data tracking—just you and your cat's results, 100% private."
+          },
+          {
+            "icon": "fa-chart-pie",
+            "title": "More Than a Breed Name",
+            "description": "You don't just get a label. We show you matching percentages, key traits, behavior tips, and care info. It helps you understand your cat, not just name it."
+          }
+        ]
+      },
+      "cta": {
+        "title": "Ready to Discover Your Cat's Breed?",
+        "description": "Upload a photo and see your cat's top 3 breed matches in seconds—free, fast, and private.",
+        "buttonText": "Identify My Cat Now →"
+      }
+    },
+    "testimonials": [
+      {
+        "id": 1,
+        "quote": "We used it in class during pet week! My students loved seeing their cats' possible breeds. It sparked great conversations about genetics and animal traits.",
+        "author": "Jake Reynolds",
+        "title": "Elementary School Teacher",
+        "rating": 4.8
+      },
+      {
+        "id": 2,
+        "quote": "Uploaded a photo of my cat and got results in seconds. I found out she's 80% Maine Coon. Now I can finally tell people what kind of cat I have.",
+        "author": "Emily Chen",
+        "title": "Pet Care Student",
+        "rating": 5
+      },
+      {
+        "id": 3,
+        "quote": "Snapped a quick pic, hit upload, and boom—three breeds with exact match percentages. Loved how the cat breed identifier showed a clear winner with info I could understand.",
+        "author": "Marcus Hill",
+        "title": "Pet Store Assistant",
+        "rating": 4
+      },
+      {
+        "id": 4,
+        "quote": "Took just one photo to know what kind of cat I have. The biggest image helped me spot the match fast. Great for people with mixed breed cats.",
+        "author": "Josh Rivera",
+        "title": "Freelance Illustrator",
+        "rating": 5
+      },
+      {
+        "id": 5,
+        "quote": "Didn't just find the breed—this cat breed identifier told me the history and traits. You just upload and it does the rest.",
+        "author": "Sarah Long",
+        "title": "Vet Assistant",
+        "rating": 4
+      }
+    ],
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "items": [
+        {
+          "question": "How can I know what breed my cat is?",
+          "answer": "To find out your cat's possible breed, just follow these steps:\n1. Upload a clear photo of your cat.\n2. Our AI scans its features instantly.\n3. You'll see the top 3 matching breeds with traits and care tips.\nIt's fast, free, and doesn't require an account."
+        },
+        {
+          "question": "What's the best cat breed identifier app?",
+          "answer": "The best cat breed identifier is one that's fast, accurate, and respects your privacy. WhatBreedIsMyCat uses AI trained on real breed data to show you the 3 closest matches—free, with no photo storage and no ads."
+        },
+        {
+          "question": "How accurate is the AI detection?",
+          "answer": "Our AI is trained using official breed data from TICA, so it's very good at spotting physical traits. But it's not perfect—especially for mixed cats. Think of it as a smart guess, not a final answer like a DNA test."
+        },
+        {
+          "question": "Is my cat a purebred?",
+          "answer": "Most cats—over 90%—are not purebred. Unless you have official papers from a breeder, your cat is likely a mix. That's totally normal, and it doesn't make your cat any less special."
+        },
+        {
+          "question": "Can AI recognize mixed-breed cats?",
+          "answer": "Yes! AI can analyze physical traits and suggest the closest breed matches—even for mixed cats. It won't give a full genetic breakdown, but it helps you understand what your cat may be a mix of."
+        },
+        {
+          "question": "What's the difference between AI detection and a DNA test?",
+          "answer": "AI detection is based on what your cat looks like. DNA tests check what your cat is made of—its genetic history. For fun and fast insights, use AI. For deeper health or ancestry info, try a DNA test like <a href=\"https://basepaws.com/\" target=\"_blank\" rel=\"noopener noreferrer\" className=\"text-gray-800 underline hover:text-pink-700\">Basepaws</a>."
+        },
+        {
+          "question": "Can my cat's coat color or pattern tell me its breed?",
+          "answer": "Coat color and pattern alone can't tell you the breed. For example, \"tabby\" is a pattern, not a breed. Many different breeds can have the same color or markings, so you need more features to get a real match."
+        },
+        {
+          "question": "Why is knowing my cat's breed or genetic similarity important?",
+          "answer": "Knowing your cat's possible breed helps you understand its behavior, energy level, and health needs. Even if it's not purebred, breed-like traits can guide better care and bonding with your cat."
+        },
+        {
+          "question": "How to identify cat breed by picture?",
+          "answer": "Here's how to do it:\n1. Take or upload a clear photo of your cat's face.\n2. The AI will scan its features like ears, eyes, fur, and shape.\n3. In seconds, you'll get 3 possible breed matches with info to explore."
+        },
+        {
+          "question": "Can I use the cat breed identifier for free?",
+          "answer": "Yes! WhatBreedIsMyCat is completely free to use. You don't need to sign up or pay. Just upload a photo and enjoy instant breed results, matching scores, and care tips—no hidden fees."
+        },
+        {
+          "question": "Is my photo safe and private?",
+          "answer": "Absolutely. Your photo is never saved or shared. We delete it right after processing. No accounts, no tracking—just one-time analysis with full privacy. Your cat's picture stays yours only."
+        }
+      ]
+    },
+    "catBreedTable": {
+      "headers": ["Breed Name", "Size", "Coat Length & Type", "Coat Color & Pattern", "Eye Color & Shape", "Ear Shape & Features", "Tail Length & Features", "Typical Temperament & Behavior", "Notable Health Tendencies or Special Care Needs"],
+      "breeds": [
+        {
+          "name": "Abyssinian",
+          "size": "Medium-sized",
+          "coat": "Semi-long, soft, finely textured, agouti ticking",
+          "color": "Ruddy, cinnamon, blue, fawn, chocolate, lilac, with or without silver",
+          "eyes": "Large, almond-shaped, expressive; gold, amber, or green; ringed with dark color (eyeliner)",
+          "ears": "Large, arched forward, often with ear tufts",
+          "tail": "Long, tapering",
+          "temperament": "Loyal, affectionate, highly intelligent, active, inquisitive, playful, agile, athletic, enjoys climbing, not typically lap cats, happiest with company",
+          "health": "Potential for early periodontal disease, patellar luxation, amyloidosis, PRA, PK-deficiency; weekly/bi-weekly nail clipping, regular teeth brushing"
+        },
+        {
+          "name": "American Bobtail",
+          "size": "Medium-to-large; males 12-16 lbs, females 7-11 lbs; slow to mature (up to 3 years)",
+          "coat": "Short (plush, rabbit pelt-like) or medium-long (easy to maintain); any color/pattern",
+          "color": "Any color/pattern including black, brown, chocolate, cinnamon, blue, lilac, fawn, red, cream, with or without white",
+          "eyes": "Almost almond-shaped; color varies with coat color",
+          "ears": "Medium-sized, wide-based, rounded tips",
+          "tail": "Shortened, minimum 1 inch to hock length; unique, no two identical; proudly held, wags",
+          "temperament": "Confident, friendly, highly intelligent, clown-like, affectionate, loving, devoted to entire family, good with older children/other pets, not very vocal (chirps, clicks, trills), moderately active, trainable (leash, fetch), good travelers, therapy cats",
+          "health": "Generally healthy, potential for genetic problems; weekly/bi-weekly combing, more frequent during shedding; rarely needs bathing; bi-weekly nail trims, regular teeth brushing, weekly eye/ear cleaning"
+        },
+        {
+          "name": "American Bobtail Shorthair",
+          "size": "Medium-to-large; males 12-16 lbs, females 7-11 lbs; slow to mature (up to 3 years); well-muscled, substantial boning",
+          "coat": "Shorthair (plush, rabbit pelt-like); any color/pattern",
+          "color": "Any color/pattern including black, brown, chocolate, cinnamon, blue, lilac, fawn, red, cream, with or without white",
+          "eyes": "Not specified in provided material",
+          "ears": "Not specified in provided material",
+          "tail": "Shortened, minimum 1 inch to hock length; unique, no two identical; proudly held, wags; tail mutation gene not controllable",
+          "temperament": "Confident, friendly, highly intelligent, clown-like, affectionate, loving, warm, devoted to entire family, dislikes being alone, good with older children/other pets, not very vocal (chirps, clicks, trills), moderately active, trainable (leash, fetch), good travelers, therapy cats",
+          "health": "Generally healthy, potential for genetic problems; easy to groom, weekly/bi-weekly combing, more frequent during shedding; rarely needs bathing; bi-weekly nail trims, regular teeth brushing, weekly eye/ear cleaning; life expectancy 11-15+ years"
+        },
+        {
+          "name": "American Curl",
+          "size": "Medium-sized; females 5-8 lbs, males 7-10 lbs",
+          "coat": "Long or short hair; silky, lies flat, little undercoat (less shedding, easier maintenance)",
+          "color": "All colors and patterns",
+          "eyes": "Large, walnut-shaped",
+          "ears": "Unique curled ears (90-180 degrees arc); firm cartilage; born straight, curl at 2-3 days, final curvature at 4 months",
+          "tail": "Longhaired has beautifully plumed tail",
+          "temperament": "Sweet disposition, thrives on human interaction, lovable, affectionate, adaptable, curious, exuberant, loving companions, people-oriented, pat for attention, adore children, good with other pets, alert, inquisitive, even-tempered, intelligent, devoted, follow owners, quiet voices (gentle trilling/cooing), kitten-like (Peter Pan), playful, enjoys climbing/jumping, can learn fetch, open doors/cabinets",
+          "health": "No known genetic health issues; shorthair brushed regularly, longhair occasionally; periodic nail trims; normal black ear wax (clean periodically); dental hygiene (brushing, professional cleaning); good quality food, enjoys canned food supplement; fresh water daily (3 ft from food)"
+        },
+        {
+          "name": "American Curl Longhair",
+          "size": "Medium-sized; females 5-8 lbs, males 7-10 lbs",
+          "coat": "Long hair; silky, lies flat, little undercoat (less shedding, easier maintenance)",
+          "color": "All colors and patterns",
+          "eyes": "Large, walnut-shaped",
+          "ears": "Unique curled ears (90-180 degrees arc); firm cartilage; born straight, curl at 2-3 days, final curvature at 4 months",
+          "tail": "Beautifully plumed tail",
+          "temperament": "Sweet disposition, thrives on human interaction, lovable, affectionate, adaptable, curious, exuberant, loving companions, people-oriented, pat for attention, adore children, good with other pets, alert, inquisitive, even-tempered, intelligent, devoted, follow owners, quiet voices (gentle trilling/cooing), kitten-like (Peter Pan), playful, enjoys climbing/jumping, can learn fetch, open doors/cabinets",
+          "health": "No known genetic health issues; brushed occasionally; periodic nail trims; normal black ear wax (clean periodically); dental hygiene (brushing, professional cleaning); good quality food, enjoys canned food supplement; fresh water daily (3 ft from food)"
+        },
+        {
+          "name": "American Shorthair",
+          "size": "Medium-sized; males larger than females; muscular, firm, well-balanced",
+          "coat": "Short, lustrous, dense, hard texture; natural protective appearance",
+          "color": "All traditional colors, tabby and tabby with white most common; clarity of markings desirable",
+          "eyes": "Wide-set, medium to large, proportionate to head; rounded (upper lid half almond, lower full curve)",
+          "ears": "Medium size, slightly rounded at tip, set twice distance between eyes",
+          "tail": "Medium long, heavy at base, tapering to abrupt blunt end; length equal to distance from shoulder blades to base of tail",
+          "temperament": "Gentle, good-natured, easy-going, adaptable, loyal, loving, people-oriented, intelligent, curious, playful even in old age; females busier than males; retains hunting instincts; enjoys company but independent; easy to train, enjoys fetch",
+          "health": "Not prone to genetic/hereditary illnesses; regular vet visits; weekly combing; nail trims, ear cleaning, teeth brushing regularly; tall scratching post; small portion wet food daily, dry food for grazing; fresh water daily (3 ft from food)"
+        },
+        {
+          "name": "American Wirehair",
+          "size": "Not specified in provided material",
+          "coat": "Not specified in provided material",
+          "color": "Not specified in provided material",
+          "eyes": "Not specified in provided material",
+          "ears": "Not specified in provided material",
+          "tail": "Not specified in provided material",
+          "temperament": "Not specified in provided material",
+          "health": "Not specified in provided material"
+        },
+        {
+          "name": "Australian Mist",
+          "size": "Medium-sized",
+          "coat": "Very short, lacks undercoat",
+          "color": "Spotted or marbled; 7 colors: brown, blue, chocolate, lilac, caramel, gold, peach; misted veil appearance (random ticking); legs/tail ringed/barred; face/neck lines",
+          "eyes": "Not specified",
+          "ears": "Not specified",
+          "tail": "Ringed or barred",
+          "temperament": "Easy-going, extremely sociable, loyal, loving, people-oriented, thrives on companionship, lively as kittens, calms with age, prefers warm lap as adults, easy to train, can play fetch, good with young children/other pets/elderly/disabled, tolerant of handling, not inclined to scratch, excellent indoor cats, can walk on lead",
+          "health": "Not prone to genetic/hereditary illnesses due to \"hybrid vigor\"; at risk for HCM (breeders screen via echo); weekly brushing; nail trims, ear cleaning, teeth brushing regularly; tall scratching post; good quality dry kibble; fresh water daily (3 ft from food); life expectancy 15-18 years"
+        },
+        {
+          "name": "Balinese",
+          "size": "Medium-sized; females 5-8 lbs, males 8-12 lbs; slow to mature (18-24 months)",
+          "coat": "Single coat, close-lying, no undercoat (reduces matting); soft, fine, silky; 0.5-2 inches long",
+          "color": "Light/wispy main coat; dark mask/extremities (seal point); other colors: chocolate, blue, lilac, cinnamon, fawn, red, cream points; with/without white, silver/smoke, lynx point, tortie/tortie points",
+          "eyes": "Stunning deep sapphire blue eyes",
+          "ears": "Strikingly large, pointed, wide at base, continuing triangular line of wedge-shaped head",
+          "tail": "Magnificent plume (up to 5 inches long hair); long tail fringed with long hair",
+          "temperament": "Very social, talkative, loving, bonds closely with families (all ages, cat-friendly dogs, other cats), thrives on attention, \"helpful\" (follows humans), vocal (quieter/softer than Siamese), demands attention, mischievous, highly intelligent, agile, athletic, requires stimulation/toys, excels at feline agility, receptive to training (fetch, leash), enjoys lounging",
+          "health": "Generally healthy; sensitive to anesthesia (inform vet); susceptible to Amyloidosis (no test); weekly brushing; weekly nail trims (avoid quick); weekly eye/ear cleaning; regular teeth brushing/dental cleanings; adults fed twice daily, kittens 3-4 times; fresh water daily (3 ft from food); prefers canned food (higher protein/water, lower carbs)"
+        },
+        {
+          "name": "Bengal",
+          "size": "Medium to large; females 6-12 lbs, males 9-15 lbs; muscular, solid build; reaches full size by 2 years",
+          "coat": "Luxurious short, soft coat; may have \"glitter\" (iridescent sparkle); Longhair Bengals exist",
+          "color": "Brown/black tabby (cool grey to golden/bronze/copper/mahogany with rich brown/black spots/marbling); \"snow\" colors (ivory/cream/light tan with light brown/dark chocolate spots/marbling); silver (grey to nearly white with dark grey/black patterns); nearly white undersides/facial markings; spotted or marble pattern; rosettes (two-toned spots); marble pattern (swirls/lines)",
+          "eyes": "Large, oval, almost round; blue to aqua for \"snow\" colors",
+          "ears": "Relatively short, wide base, rounded tips",
+          "tail": "Thick, low-set, medium-length",
+          "temperament": "Inquisitive, spirited, loving, social, people-oriented, confident, curious, devoted, extroverted/introverted, loving, communicative; high-energy (climbing, exploring, stimulating play); highly intelligent, trainable (leash, fetch, sit, stay, clicker); enjoys water; uses chirps, trills, meows to \"chat\"; coexists with other pets; needs enrichment/companionship if only pet",
+          "health": "Breeders test for HCM, PRA, PK-deficiency; commonly misdiagnosed with IBD (high-protein diet/parasite testing helps); shorthair needs little grooming (brush during shedding); monthly nail trimming; longhair needs daily grooming; high-quality diet (proper protein/nutrients); mindful of weight gain after spay/neuter (avoid free feeding); raw diet suitable; fresh water daily (3 ft from food)"
+        }
+      ]
+    }
+  }
+}

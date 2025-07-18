@@ -5,21 +5,16 @@ import { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useRouter } from 'next/navigation';
 import LoadingSpinner from '../components/LoadingSpinner';
+import config from '../../config.json';
 
 
 // 定义允许的图片文件类型
 const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/bmp', 'image/webp'];
-const MAX_FILE_SIZE_MB = 10; // 最大文件大小 (MB)
+const MAX_FILE_SIZE_MB = config.content.upload.maxFileSize; // 最大文件大小 (MB)
 const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
 
 // 示例猫咪图片
-const EXAMPLE_CATS = [
-  { name: 'Persian', image: '/cat/persian.jpg' },
-  { name: 'Maine Coon', image: '/cat/maine-coon.jpg' },
-  { name: 'British Shorthair', image: '/cat/british-shorthair.jpg' },
-  { name: 'Siamese', image: '/cat/siamese.jpg' },
-  { name: 'Ragdoll', image: '/cat/ragdoll.jpg' }
-];
+const EXAMPLE_CATS = config.content.upload.exampleCats;
 
 export default function HomePage() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -126,11 +121,11 @@ export default function HomePage() {
 
               const response = await retryWithBackoff(async () => {
                 return await fetch('/api/identify', {
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json',
-                  },
-                  body: JSON.stringify({ image: reader.result, mimeType: mimeType }),
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ image: reader.result, mimeType: mimeType }),
                 });
               });
 
@@ -148,7 +143,7 @@ export default function HomePage() {
               if (err.message.includes('fetch failed') || err.message.includes('Server error')) {
                 setError('Network connection failed. Please check your internet connection and try again.');
               } else {
-                setError(err.message || 'Could not identify your cat. Please try again!');
+              setError(err.message || 'Could not identify your cat. Please try again!');
               }
               console.error(err);
             } finally {
@@ -168,7 +163,7 @@ export default function HomePage() {
 
   return (
     <>
-      <div id="cat-identifier" className="bg-white mt-3 sm:mt-10 mb-14 px-4 sm:px-8 lg:px-12 py-6 sm:py-10 overflow-x-hidden">
+      <div id="cat-identifier" className="bg-white mt-3 sm:mt-10 sm:smb-14 px-4 sm:px-8 lg:px-12 py-6 sm:py-10 overflow-x-hidden">
         <div className="max-w-6xl mx-auto ">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 items-center">
             
@@ -176,27 +171,23 @@ export default function HomePage() {
             <div className="hidden lg:block space-y-6 sm:space-y-8  order-2 lg:order-1 lg:pt-8">
               <div>
                 <h1 className="text-3xl sm:text-5xl  mb-8 sm:mb-8   font-bold text-gray-900 leading-tight">
-                  AI Cat Breed Identifier
+                  {config.content.hero.title}
                 </h1>
                 <p className="text-base sm:text-2xl text-gray-600 mb-4 sm:mb-6 leading-relaxed">
-                   Upload a photo of your cat to let AI identify its possible breed. You'll get 3 likely breed types, each with a matching percentage, breed features, and care tips—free, fast, and smart.
+                  {config.content.hero.description}
                 </p>
               </div>
 
               {/* 统计信息 - 桌面端 */}
               <div className="flex items-center space-x-3 sm:space-x-4">
                 <div className="flex -space-x-2">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-white overflow-hidden flex-shrink-0">
-                    <img src="/cat/ceylon.jpg" alt="ceylon Cat" className="w-full h-full object-cover" />
-                  </div>
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-white overflow-hidden flex-shrink-0">
-                    <img src="/cat/balinese.jpg" alt="balinese Cat" className="w-full h-full object-cover" />
-                  </div>
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-white overflow-hidden flex-shrink-0">
-                    <img src="/cat/bombay.jpg" alt="bombay Cat" className="w-full h-full object-cover" />
-                  </div>
+                  {config.content.hero.stats.avatars.map((avatar, index) => (
+                    <div key={index} className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-white overflow-hidden flex-shrink-0">
+                      <img src={avatar.src} alt={avatar.alt} className="w-full h-full object-cover" />
+                    </div>
+                  ))}
                 </div>
-                <span className="text-base sm:text-lg font-medium text-gray-700 min-w-0 flex-shrink">50,000+ cat photos scanned</span>
+                <span className="text-base sm:text-lg font-medium text-gray-700 min-w-0 flex-shrink">{config.content.hero.stats.text}</span>
               </div>
               
               
@@ -208,26 +199,22 @@ export default function HomePage() {
               {/* 移动端内容区域 - 放在上传区域上方 */}
               <div className="lg:hidden mt-10 mb-6 text-center">
                 <h2 className="text-2xl sm:text-6xl  mb-8 sm:mb-8   lg:text-5xl font-bold text-gray-900 leading-tight">
-                  AI Cat Breed Identifier
+                  {config.content.hero.title}
                 </h2>
                 <p className="text-base sm:text-2xl text-gray-600 mb-6 leading-relaxed">
-                   Upload a photo of your cat to let AI identify its possible breed. You'll get 3 likely breed types, each with a matching percentage, breed features, and care tips—free, fast, and smart.
+                  {config.content.hero.description}
                 </p>
 
                 {/* 统计信息 - 移动端 */}
                 <div className="flex items-center justify-center space-x-3">
                   <div className="flex -space-x-2">
-                    <div className="w-8 h-8 rounded-full border-2 border-white overflow-hidden flex-shrink-0">
-                      <img src="/cat/ceylon.jpg" alt="ceylon Cat" className="w-full h-full object-cover" />
-                    </div>
-                    <div className="w-8 h-8 rounded-full border-2 border-white overflow-hidden flex-shrink-0">
-                      <img src="/cat/balinese.jpg" alt="balinese Cat" className="w-full h-full object-cover" />
-                    </div>
-                    <div className="w-8 h-8 rounded-full border-2 border-white overflow-hidden flex-shrink-0">
-                      <img src="/cat/bombay.jpg" alt="bombay Cat" className="w-full h-full object-cover" />
-                    </div>
+                    {config.content.hero.stats.avatars.map((avatar, index) => (
+                      <div key={index} className="w-8 h-8 rounded-full border-2 border-white overflow-hidden flex-shrink-0">
+                        <img src={avatar.src} alt={avatar.alt} className="w-full h-full object-cover" />
+                      </div>
+                    ))}
                   </div>
-                  <span className="text-base font-medium text-gray-700 min-w-0 flex-shrink">50,000+ cat photos scanned</span>
+                  <span className="text-base font-medium text-gray-700 min-w-0 flex-shrink">{config.content.hero.stats.text}</span>
                 </div>
               </div>
 
@@ -244,10 +231,10 @@ export default function HomePage() {
                     
                     <div className="space-y-6 sm:space-y-8">
                       <p className="text-lg sm:text-xl font-medium text-gray-700">
-                        Click or drag photo here to upload
+                        {config.content.upload.dragDropText}
                       </p>
                       <p className="text-sm text-gray-500">
-                        JPG, JPEG, PNG, WEBP, Less Than {MAX_FILE_SIZE_MB}MB
+                        {config.content.upload.allowedFormats.join(', ')}, Less Than {MAX_FILE_SIZE_MB}MB
                       </p>
                       
                       <button
@@ -255,7 +242,7 @@ export default function HomePage() {
                         className="max-w-xs mx-auto block bg-pink-500 text-white py-3 sm:py-4 px-6 sm:px-8 rounded-xl font-semibold text-base sm:text-lg hover:bg-pink-700 transition-colors disabled:opacity-50 w-full sm:w-auto"
                         disabled={isLoading}
                       >
-                        Upload Cat Photo
+                        {config.content.upload.uploadButtonText}
                         <i className="fas fa-upload ml-2"></i>
                       </button>
                     </div>
@@ -290,7 +277,7 @@ export default function HomePage() {
                       {isLoading ? (
                         <LoadingSpinner />
                       ) : (
-                        'Analyze Cat Breed'
+                        config.content.upload.analyzeButtonText
                       )}
                     </button>
                   </div>
@@ -304,12 +291,12 @@ export default function HomePage() {
 
                 {/* 示例图片区域 */}
                 <div className="mt-6 sm:mt-8 w-full">
-                  <p className="text-sm text-gray-500 mb-3 sm:mb-4">No photo? Try one of these:</p>
-                  <div className="grid grid-cols-3 sm:grid-cols-5 gap-2 sm:gap-3 w-full">
+                  <p className="text-sm text-gray-500 mb-3 sm:mb-4">{config.content.upload.exampleText}</p>
+                  <div className="grid grid-cols-4 sm:grid-cols-4 gap-1.5 sm:gap-3 w-full max-w-xs sm:max-w-none mx-auto">
                     {EXAMPLE_CATS.map((cat) => (
                       <div 
                         key={cat.name} 
-                        className="aspect-square bg-gray-200 rounded-lg cursor-pointer hover:bg-gray-300 transition-all duration-300 overflow-hidden group hover:shadow-md w-full"
+                        className="aspect-square bg-gray-200 rounded-md sm:rounded-lg cursor-pointer hover:bg-gray-300 transition-all duration-300 overflow-hidden group hover:shadow-md w-full"
                         onClick={() => handleExampleClick(cat.image)}
                         title={cat.name}
                       >

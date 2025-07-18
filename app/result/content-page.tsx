@@ -4,6 +4,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { useEffect, useState, Suspense, useRef } from 'react';
 import Image from 'next/image';
 import LoadingSpinner from '../components/LoadingSpinner';
+import DownloadResultButton from '../components/DownloadResultButton';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 // 定义 cat.json 中猫品种的类型结构
@@ -57,10 +58,11 @@ function ResultContent() {
   const [error, setError] = useState<string | null>(null);
   const [selectedBreed, setSelectedBreed] = useState<string | null>(null);
   const [selectedBreedData, setSelectedBreedData] = useState<DisplayBreedInfo | null>(null);
-  const [isDownloading, setIsDownloading] = useState(false);
   const [currentDisplayImage, setCurrentDisplayImage] = useState<DisplayBreedInfo | null>(null);
   const [userUploadedImage, setUserUploadedImage] = useState<string | null>(null);
-  const resultCardRef = useRef<HTMLDivElement>(null);
+
+  // 添加用于截图的ref
+  const pageContentRef = useRef<HTMLDivElement>(null);
 
   // 图片路径处理函数
   const getImageSrc = (imagePath: string) => {
@@ -189,112 +191,6 @@ function ResultContent() {
     };
   }, []);
 
-  // 获取随机描述信息
-  const getRandomDescription = (breed: DisplayBreedInfo) => {
-    const fields = [
-      "personality",
-      "fun_fact",
-      "Grooming_Needs",
-      "Exercise_Needs",
-      "Is_it_suitable_for_kids_or_the_elderly",
-      "How_to_build_a_close_relationship"
-    ];
-    const available = fields.map(f => breed[f as keyof DisplayBreedInfo]).filter(Boolean);
-    if (available.length === 0) return null;
-    const randomContent = available[Math.floor(Math.random() * available.length)];
-    return randomContent as string;
-  };
-
-  // 检测设备类型
-  const isMobileDevice = () => {
-    if (typeof window === 'undefined') return false;
-    return window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-  };
-
-  // 下载结果为图片
-  const downloadAsImage = async () => {
-    if (!resultCardRef.current) return;
-    
-    setIsDownloading(true);
-    
-    try {
-      // 动态导入 html2canvas
-      const html2canvas = (await import('html2canvas')).default;
-      
-      // 隐藏按钮区域
-      const buttonContainer = document.querySelector('.download-buttons-container');
-      if (buttonContainer) {
-        (buttonContainer as HTMLElement).style.display = 'none';
-      }
-      
-      // 等待一下确保DOM更新
-      await new Promise(resolve => setTimeout(resolve, 100));
-      
-      // 直接截取当前的结果卡片
-      const canvas = await html2canvas(resultCardRef.current, {
-        backgroundColor: '#ffffff',
-        useCORS: true,
-        allowTaint: true,
-        scale: 2,
-        scrollX: 0,
-        scrollY: 0,
-        logging: false,
-        removeContainer: false
-      });
-      
-      // 恢复按钮显示
-      if (buttonContainer) {
-        (buttonContainer as HTMLElement).style.display = '';
-      }
-      
-      // 创建下载链接
-      const link = document.createElement('a');
-      const breedName = identifiedBreeds[0]?.breed_name?.replace(/\s+/g, '-').toLowerCase() || 'cat-breed';
-      const timestamp = new Date().toISOString().slice(0, 10);
-      link.download = `${breedName}-results-${timestamp}.png`;
-      link.href = canvas.toDataURL('image/png', 1.0);
-      
-      // 触发下载
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      
-      console.log('Cat breed result image downloaded successfully!');
-      
-    } catch (error) {
-      console.error('Download failed:', error);
-      alert('Failed to download image. Please try again.');
-    } finally {
-      setIsDownloading(false);
-    }
-  };
-
-  // 社交媒体分享
-  const shareToSocial = (platform: string) => {
-    const url = window.location.href;
-    const text = `Check out my cat breed identification results! ${identifiedBreeds[0]?.breed_name} - ${identifiedBreeds[0]?.percentage.toFixed(1)}% confident`;
-    
-    let shareUrl = '';
-    switch (platform) {
-      case 'facebook':
-        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
-        break;
-      case 'twitter':
-        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
-        break;
-      case 'pinterest':
-        shareUrl = `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&description=${encodeURIComponent(text)}`;
-        break;
-      case 'linkedin':
-        shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`;
-        break;
-    }
-    
-    if (shareUrl) {
-      window.open(shareUrl, '_blank', 'width=600,height=400');
-    }
-  };
-
   if (isLoading && identifiedBreeds.length === 0) {
     return (
       <div className="min-h-screen bg-white dark:bg-white flex flex-col items-center justify-center p-4 text-center">
@@ -340,7 +236,7 @@ function ResultContent() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="container mx-auto px-4 py-8 mt-2 max-w-6xl flex flex-col">
+      <div ref={pageContentRef} className="container mx-auto px-4 py-8 mt-2 max-w-6xl flex flex-col">
         {/* 标题区域 */}
         <div className="text-center mb-4 sm:mb-8">
           <h1 className="mt-8  text-3xl md:text-4xl font-bold mb-2 md:mb-3">
@@ -350,7 +246,7 @@ function ResultContent() {
         </div>
         
         {/* 整个结果区域的外框 */}
-        <div ref={resultCardRef} className="max-w-3xl mx-auto mb-3 bg-white border  rounded-2xl shadow-lg p-4 sm:p-6">
+        <div className="max-w-3xl mx-auto mb-3 bg-white border  rounded-2xl shadow-lg p-4 sm:p-6">
           {/* 匹配的猫品种图片展示区域 */}
           <div className="w-full max-w-5xl mx-auto">
             {identifiedBreeds.length > 0 ? (
@@ -407,7 +303,7 @@ function ResultContent() {
                               alt={identifiedBreeds[0].breed_name}
                               width={48}
                               height={48}
-                              className="w-full h-full object-cover"
+                              className="w-full h-full object-contain"
                               onError={handleImageError}
                             />
                           )}
@@ -439,7 +335,7 @@ function ResultContent() {
                                     alt={breed.breed_name}
                                     width={64}
                                     height={64}
-                                    className="w-full h-full object-cover"
+                                    className="w-full h-full object-contain"
                                     onError={handleImageError}
                                   />
                                 )}
@@ -615,6 +511,11 @@ function ResultContent() {
                   <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
                     {/* 下载和检查按钮 */}
                     <div className="flex flex-col sm:flex-row gap-3">
+                      {/* 使用下载组件 */}
+                      <DownloadResultButton 
+                        captureRef={pageContentRef}
+                        disabled={identifiedBreeds.length === 0}
+                      />
                       
                       <button
                         onClick={() => router.push('/')}
@@ -638,7 +539,6 @@ function ResultContent() {
 export default function ResultPage() {
     return (
         <>
-
             <Suspense fallback={
                 <div className="min-h-screen bg-white dark:bg-white flex items-center justify-center">
                     <p className="text-xl text-gray-700 dark:text-gray-700">Loading results...</p>
