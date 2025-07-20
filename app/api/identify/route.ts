@@ -41,20 +41,24 @@ interface BreedPrediction {
 // 重试机制函数
 async function retryWithBackoff<T>(
   fn: () => Promise<T>,
-  maxRetries: number = 3,
+  maxRetries: number = 4,
   baseDelay: number = 1000
 ): Promise<T> {
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
     try {
       return await fn();
-    } catch (error) {
+    } catch (error: any) {
+      console.error(`API call attempt ${attempt + 1} failed:`, error.message);
+      
       if (attempt === maxRetries) {
+        console.error(`All ${maxRetries + 1} attempts failed. Final error:`, error);
         throw error;
       }
       
-      // 指数退避延迟
-      const delay = baseDelay * Math.pow(2, attempt);
-      console.log(`API call failed, retrying in ${delay}ms (attempt ${attempt + 1}/${maxRetries + 1})`);
+      // 指数退避延迟，加入随机抖动
+      const jitter = Math.random() * 1000;
+      const delay = baseDelay * Math.pow(2, attempt) + jitter;
+      console.log(`Retrying in ${Math.round(delay)}ms (attempt ${attempt + 1}/${maxRetries + 1})`);
       await new Promise(resolve => setTimeout(resolve, delay));
     }
   }
@@ -122,10 +126,12 @@ export async function POST(request: NextRequest) {
       },
     };
 
-    // 第一步：检测图片中是否有猫
+    // 第一步：检测图片中是否有猫 - 使用重试机制
     const catDetectionPrompt = `Analyze this image and determine if it contains a cat. Respond with ONLY one word: "YES" if there is a cat visible in the image, or "NO" if there is no cat in the image. Do not include any other text, explanations, or descriptions.`;
 
-    const detectionResult = await model.generateContent([catDetectionPrompt, imagePart]);
+    const detectionResult = await retryWithBackoff(async () => {
+      return await model.generateContent([catDetectionPrompt, imagePart]);
+    });
     const detectionResponse = await detectionResult.response;
     const detectionText = detectionResponse.text().trim().toUpperCase();
 
@@ -136,7 +142,7 @@ export async function POST(request: NextRequest) {
       }, { status: 400 });
     }
 
-    // 第二步：如果检测到有猫，继续进行品种识别
+    // 第二步：如果检测到有猫，继续进行品种识别 - 使用重试机制
     const breedIdentificationPrompt = `Identify the top 3 cat breeds in this image. For each breed, provide ONLY the breed name and a confidence percentage.
     Strictly follow this format for each identified breed, on a new line: Breed Name: XX.X%
     Example:
@@ -145,7 +151,9 @@ export async function POST(request: NextRequest) {
     Persian: 78.2%
     Do not add any other text, explanations, or introductory phrases. Only list the breeds and percentages. Focus on common and officially recognized cat breeds.`;
 
-    const result = await model.generateContent([breedIdentificationPrompt, imagePart]);
+    const result = await retryWithBackoff(async () => {
+      return await model.generateContent([breedIdentificationPrompt, imagePart]);
+    });
     const response = await result.response;
     const text = response.text();
 
@@ -256,14 +264,53 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ predictions: processedPredictions });
 
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error identifying cat breed:', error);
-    // 根据错误类型，可以返回更具体的错误信息
+    
+    // 根据错误类型，返回更具体的错误信息
     if (error instanceof Error) {
-        if (error.message.includes("SAFETY")) {
-             return NextResponse.json({ error: 'Image could not be processed due to safety reasons. Try a different image.' }, { status: 400 });
-        }
+      const errorMessage = error.message.toLowerCase();
+      
+      // Gemini API 安全过滤器
+      if (errorMessage.includes("safety") || errorMessage.includes("harm")) {
+        return NextResponse.json({ 
+          error: 'Image could not be processed due to safety reasons. Please try a different image.' 
+        }, { status: 400 });
+      }
+      
+      // 网络连接错误
+      if (errorMessage.includes("fetch failed") || 
+          errorMessage.includes("network") || 
+          errorMessage.includes("connection") ||
+          errorMessage.includes("timeout")) {
+        return NextResponse.json({ 
+          error: 'Network connection failed. Please check your internet connection and try again.' 
+        }, { status: 503 });
+      }
+      
+      // API 限制或授权错误
+      if (errorMessage.includes("quota") || 
+          errorMessage.includes("limit") || 
+          errorMessage.includes("unauthorized") ||
+          errorMessage.includes("api key")) {
+        return NextResponse.json({ 
+          error: 'Service temporarily unavailable. Please try again later.' 
+        }, { status: 503 });
+      }
+      
+      // 图片格式或大小错误
+      if (errorMessage.includes("image") || 
+          errorMessage.includes("invalid") ||
+          errorMessage.includes("format")) {
+        return NextResponse.json({ 
+          error: 'Invalid image format. Please upload a valid image file.' 
+        }, { status: 400 });
+      }
     }
-    return NextResponse.json({ error: 'Failed to identify cat breed.' }, { status: 500 });
+    
+    // 默认服务器错误
+    return NextResponse.json({ 
+      error: 'Failed to identify cat breed. Please try again later.' 
+    }, { status: 500 });
   }
 }

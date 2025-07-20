@@ -28,7 +28,7 @@ export default function HomePage() {
   const retryWithBackoff = async (
     fn: () => Promise<Response>,
     maxRetries: number = 3,
-    baseDelay: number = 1000
+    baseDelay: number = 1500
   ): Promise<Response> => {
     for (let attempt = 0; attempt <= maxRetries; attempt++) {
       try {
@@ -36,19 +36,27 @@ export default function HomePage() {
         if (response.ok) {
           return response;
         }
+        
         // 如果是客户端错误（4xx），不重试
         if (response.status >= 400 && response.status < 500) {
+          console.log(`Client error ${response.status}, not retrying`);
           return response;
         }
+        
+        // 服务器错误（5xx），抛出错误以触发重试
         throw new Error(`Server error: ${response.status}`);
-      } catch (error) {
+      } catch (error: any) {
+        console.error(`Frontend API call attempt ${attempt + 1} failed:`, error.message);
+        
         if (attempt === maxRetries) {
+          console.error(`All frontend retries failed. Final error:`, error);
           throw error;
         }
         
-        // 指数退避延迟
-        const delay = baseDelay * Math.pow(2, attempt);
-        console.log(`API call failed, retrying in ${delay}ms (attempt ${attempt + 1}/${maxRetries + 1})`);
+        // 指数退避延迟，加入随机抖动
+        const jitter = Math.random() * 500;
+        const delay = baseDelay * Math.pow(2, attempt) + jitter;
+        console.log(`Frontend retrying in ${Math.round(delay)}ms (attempt ${attempt + 1}/${maxRetries + 1})`);
         await new Promise(resolve => setTimeout(resolve, delay));
       }
     }
