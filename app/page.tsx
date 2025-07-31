@@ -395,7 +395,6 @@ export default function HomePage() {
                 </a>
               </div>
             </section>
-            <a href="https://magicbox.tools/" title="MagicBox.Tools - AI Tools Directory">MagicBox.Tools - AI Tools Diresctory</a>
       </div>
     </>
 
