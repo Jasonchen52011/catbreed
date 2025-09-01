@@ -29,7 +29,7 @@ export default function CallToAction({
       <div className="flex flex-col items-center justify-center w-full">
         <button 
           onClick={scrollToTop}
-          className="w-full max-w-sm md:w-auto bg-primary hover:bg-primary/80 text-white text-lg font-semibold px-8 py-3 rounded-xl shadow transition-colors flex items-center justify-center gap-2"
+          className="w-full max-w-sm md:w-auto bg-pink-500 hover:bg-pink-700 text-white text-lg font-semibold px-8 py-3 rounded-xl shadow transition-colors flex items-center justify-center gap-2"
         >
            {buttonText}
           <span className="ml-2">↑</span>

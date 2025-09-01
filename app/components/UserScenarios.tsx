@@ -39,7 +39,7 @@ export default function UserScenarios({ title, description, scenarios, buttonTex
                     </p>
                     <button
                       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                      className="bg-sky-500 hover:bg-sky-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+                      className="bg-pink-500 hover:bg-pink-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
                     >
                       {buttonText}
                       <i className="fas fa-arrow-right ml-2"></i>
@@ -71,7 +71,7 @@ export default function UserScenarios({ title, description, scenarios, buttonTex
                     </p>
                     <button
                       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                      className="bg-sky-500 hover:bg-sky-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+                      className="bg-pink-500 hover:bg-pink-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
                     >
                       {buttonText}
                       <i className="fas fa-arrow-right ml-2"></i>

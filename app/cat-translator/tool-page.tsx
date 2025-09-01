@@ -392,7 +392,7 @@ export default function CatTranslatorPage() {
           <button
             onClick={handleTranslate}
             disabled={isLoading}
-            className="px-8 py-3 bg-sky-500 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-8 py-3 bg-pink-500 hover:bg-pink-600 text-white font-semibold rounded-lg shadow-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isLoading ? 'Analyzing...' : 'See Kitty Vibe!'}
             <i className={`${isLoading ? 'fas fa-spinner animate-spin' : 'fas fa-paw'} ms-2`}></i>

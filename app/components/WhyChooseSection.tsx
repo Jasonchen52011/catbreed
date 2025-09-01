@@ -25,7 +25,7 @@ export default function WhyChooseSection({ whyChooseSection, testimonialsConfig 
         <div className="grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
           {whyChooseSection.features.map((feature, index) => (
             <div key={index} className="bg-white rounded-xl p-6 text-center shadow-sm border border-gray-100">
-              <div className="text-4xl text-sky-400 mb-6">
+              <div className="text-4xl text-pink-500 mb-6">
                 <span 
                   dangerouslySetInnerHTML={{
                     __html: `<i class="${feature.icon}" style="font-weight: 900;"></i>`

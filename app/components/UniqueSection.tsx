@@ -46,7 +46,7 @@ export default function UniqueSection({
               <div className="mt-8">
                 <button
                   onClick={scrollToTop}
-                  className="bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-6 rounded-lg text-base transition-colors hover:shadow-lg flex items-center gap-2"
+                  className="bg-pink-500 hover:bg-pink-700 text-white font-bold py-3 px-6 rounded-lg text-base transition-colors hover:shadow-lg flex items-center gap-2"
                 >
                   {backToTopText}
                   <svg 

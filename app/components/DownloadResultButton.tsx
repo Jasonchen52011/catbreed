@@ -701,7 +701,7 @@ export default function DownloadResultButton({
     <button
       onClick={downloadAsImage}
       disabled={disabled || isDownloading}
-      className={`px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-700 transition-colors whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 ${className}`}
+      className={`px-6 py-3 bg-pink-500 text-white rounded-lg hover:bg-pink-700 transition-colors whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 ${className}`}
     >
       {isDownloading ? (
         <>

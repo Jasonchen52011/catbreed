@@ -48,7 +48,7 @@ export default function HowToSection({
                 const icons = ['fa-weight', 'fa-list-check', 'fa-calculator', 'fa-clipboard-list'];
                 return (
                   <div key={index} className="flex items-start gap-4">
-                    <i className={`fas ${icons[index] || 'fa-circle'} text-2xl text-sky-400`}></i>
+                    <i className={`fas ${icons[index] || 'fa-circle'} text-2xl text-pink-500`}></i>
                     <div className="space-y-2">
                       <h3 className="text-lg font-semibold text-gray-800">Step {index + 1}: {step.title}</h3>
                       <p className="text-gray-600 text-lg">
@@ -79,7 +79,7 @@ export default function HowToSection({
 
       <div className="text-center mt-10">
         <ScrollToTop
-          className="bg-sky-500 hover:bg-sky-600 text-white font-bold py-4 px-12 rounded-lg text-lg shadow-lg hover:scale-105 transition duration-300 ease-in-out">
+          className="bg-pink-500 hover:bg-pink-700 text-white font-bold py-4 px-12 rounded-lg text-lg shadow-lg hover:scale-105 transition duration-300 ease-in-out">
           {ctaText}
           <i className={`fas ${ctaIcon} ms-2`}></i>
         </ScrollToTop>
