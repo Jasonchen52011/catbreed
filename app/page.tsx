@@ -4,7 +4,6 @@ import FAQ from './components/FAQ';
 import TestimonialCarousel from './components/TestimonialCarousel';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import Head from 'next/head';
-import Image from 'next/image';
 import { Metadata } from 'next';
 import config from '../config.json';
 
@@ -66,7 +65,7 @@ export default function HomePage() {
               <div className="grid md:grid-cols-2  gap-8 items-center">
                 {/* Left side - Image placeholder */}
                 <div className="h-100 rounded-lg overflow-hidden">
-                  <Image
+                  <img
                     src={content.sections.howAIWorks.image}
                     alt={content.sections.howAIWorks.imageAlt}
                     width={500}
@@ -94,7 +93,7 @@ export default function HomePage() {
 
                 {/* Mobile only image - positioned after intro text */}
                 <div className="md:hidden mb-8 h-90 rounded-lg overflow-hidden">
-                  <Image
+                  <img
                     src={content.sections.howTo.image}
                     alt={content.sections.howTo.imageAlt}
                     width={400}
@@ -120,7 +119,7 @@ export default function HomePage() {
 
                   {/* Right side - Image placeholder - hidden on mobile */}
                   <div className="hidden md:block md:col-span-2 h-120 rounded-lg overflow-hidden">
-                    <Image
+                    <img
                       src={content.sections.howTo.image}
                       alt={content.sections.howTo.imageAlt}
                       width={400}
@@ -145,7 +144,7 @@ export default function HomePage() {
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 {/* Left side - Image placeholder */}
                 <div className="h-80 rounded-lg overflow-hidden">
-                  <Image
+                  <img
                     src={content.sections.justGotNewCat.image}
                     alt={content.sections.justGotNewCat.imageAlt}
                     width={300}
@@ -177,13 +176,11 @@ export default function HomePage() {
             <section className="py-3 sm:py-12 px-4 max-w-6xl mx-auto">
               {/* Mobile only - Image before title */}
               <div className="md:hidden mb-6 h-80 rounded-lg overflow-hidden">
-                <Image
+                <img
                   src={content.sections.curiousAboutLooks.image}
                   alt={content.sections.curiousAboutLooks.imageAlt}
                   width={600}
                   height={400}
-                  quality={95}
-                  priority={true}
                   className="w-full h-full object-cover rounded-lg"
                 />
               </div>
@@ -208,14 +205,12 @@ export default function HomePage() {
                 
                 {/* Right side - Image placeholder - hidden on mobile */}
                 <div className="hidden md:block h-90 rounded-lg overflow-hidden">
-                  <Image
+                  <img
                     src={content.sections.curiousAboutLooks.image}
                     alt={content.sections.curiousAboutLooks.imageAlt}
                     width={600}
                     height={400}
-                    quality={95}
-                    priority={true}
-                    className="w-full h-full object-cover rounded-lg"
+                        className="w-full h-full object-cover rounded-lg"
                   />
                 </div>
               </div>
@@ -226,14 +221,12 @@ export default function HomePage() {
               <div className="grid md:grid-cols-2 gap-12 items-center">
                 {/* Left side - Image placeholder */}
                 <div className="h-80 rounded-lg overflow-hidden">
-                  <Image
+                  <img
                     src={content.sections.sharingWithFriends.image}
                     alt={content.sections.sharingWithFriends.imageAlt}
                     width={500}
                     height={400}
-                    quality={95}
-                    priority={true}
-                    className="w-full h-full object-cover rounded-lg"
+                        className="w-full h-full object-cover rounded-lg"
                   />
                 </div>
                 
@@ -260,13 +253,11 @@ export default function HomePage() {
             <section className="py-8 sm:py-16 px-4 max-w-6xl mx-auto">
               {/* Mobile only - Image before title */}
               <div className="md:hidden mb-6 h-80 rounded-lg overflow-hidden">
-                <Image
+                <img
                   src={content.sections.helpingKidsLearn.image}
                   alt={content.sections.helpingKidsLearn.imageAlt}
                   width={500}
                   height={400}
-                  quality={95}
-                  priority={true}
                   className="w-full h-full object-cover rounded-lg"
                 />
               </div>
@@ -291,14 +282,12 @@ export default function HomePage() {
                 
                 {/* Right side - Image placeholder - hidden on mobile */}
                 <div className="hidden md:block h-80 rounded-lg overflow-hidden">
-                  <Image
+                  <img
                     src={content.sections.helpingKidsLearn.image}
                     alt={content.sections.helpingKidsLearn.imageAlt}
                     width={500}
                     height={400}
-                    quality={95}
-                    priority={true}
-                    className="w-full h-full object-cover rounded-lg"
+                        className="w-full h-full object-cover rounded-lg"
                   />
                 </div>
               </div>

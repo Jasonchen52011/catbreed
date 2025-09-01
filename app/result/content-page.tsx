@@ -2,7 +2,6 @@
 
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useEffect, useState, Suspense, useRef } from 'react';
-import Image from 'next/image';
 import LoadingSpinner from '../components/LoadingSpinner';
 import DownloadResultButton from '../components/DownloadResultButton';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -265,7 +264,7 @@ function ResultContent() {
                       </div>
                     ) : currentDisplayImage && currentDisplayImage.image && (
                       <div className="relative rounded-lg overflow-hidden shadow-lg w-full h-64 lg:h-96">
-                        <Image 
+                        <img 
                           src={getImageSrc(currentDisplayImage.image)}
                           alt={currentDisplayImage.breed_name}
                           width={400}
@@ -298,7 +297,7 @@ function ResultContent() {
                         </div>
                         <div className="w-16 h-16 rounded flex-shrink-0 overflow-hidden">
                           {identifiedBreeds[0].image && (
-                            <Image 
+                            <img 
                               src={getImageSrc(identifiedBreeds[0].image)}
                               alt={identifiedBreeds[0].breed_name}
                               width={48}
@@ -330,7 +329,7 @@ function ResultContent() {
                             >
                               <div className="w-16 h-16 bg-gray-400 rounded overflow-hidden flex-shrink-0">
                                 {breed.image && (
-                                  <Image 
+                                  <img 
                                     src={getImageSrc(breed.image)}
                                     alt={breed.breed_name}
                                     width={64}

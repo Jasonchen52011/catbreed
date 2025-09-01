@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 import { useRouter, usePathname } from 'next/navigation';
 
 export default function Navbar() {
@@ -47,7 +46,7 @@ export default function Navbar() {
     <nav className="fixed top-0 w-full z-50 bg-white text-black shadow-md">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold flex items-center gap-2" onClick={closeMenu}>
-          <Image 
+          <img 
             src="/logo/favicon.ico" 
             alt="WhatBreedIsMyCat Logo" 
             width={32} 
@@ -60,6 +59,10 @@ export default function Navbar() {
         <div className="hidden md:flex space-x-8 items-center ml-auto">
           <Link href="/" className="transition-colors hover:text-pink-600 font-medium">
             Home
+          </Link>
+          
+          <Link href="/cat-translator" className="transition-colors hover:text-pink-600 font-medium">
+            Cat Translator
           </Link>
           
           <button 
@@ -114,6 +117,14 @@ export default function Navbar() {
             onClick={closeMenu}
           >
             Home
+          </Link>
+          
+          <Link 
+            href="/cat-translator" 
+            className="block py-2 px-4 rounded-md hover:bg-pink-50 hover:text-pink-600 transition-colors"
+            onClick={closeMenu}
+          >
+            Cat Translator
           </Link>
           
           <button 

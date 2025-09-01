@@ -44,4 +44,12 @@
     <priority>0.3</priority>
   </url>
 
+  <!-- Cat Translator - AI-powered cat language translator tool -->
+  <url>
+    <loc>https://whatbreedismycat.app/cat-translator</loc>
+    <lastmod>2025-09-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset> 

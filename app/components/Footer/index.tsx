@@ -1,5 +1,4 @@
 import { FaTwitter, FaGithub, FaEnvelope } from 'react-icons/fa';
-import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Footer() {
@@ -11,7 +10,7 @@ export default function Footer() {
           {/* 左侧LOGO和介绍 */}
           <div className="col-span-1 lg:col-span-2 flex flex-col items-center lg:items-start">
             <div className="flex items-center gap-2 mb-2">
-              <Image 
+              <img 
                 src="/logo/favicon.ico" 
                 alt="WhatBreedIsMyCat Logo" 
                 width={28} 
@@ -28,8 +27,17 @@ export default function Footer() {
           {/* 右侧链接区域 */}
           <div className="col-span-1 lg:col-span-3 text-sm grid grid-cols-1 md:grid-cols-3 gap-6">
             
+            {/* Fun Tools部分 - 现在在左边 */}
+            <div className="flex flex-col items-center md:items-start">
+              <h3 className="text-gray-300 text-lg font-medium mb-3">Fun Tools</h3>
+              <div className="flex flex-col space-y-2">
+                <Link href="/cat-translator" className="text-white hover:text-orange-400 transition-colors">
+                  Cat Translator
+                </Link>
+              </div>
+            </div>
             
-            {/* About部分 */}
+            {/* About部分 - 现在在中间 */}
             <div className="flex flex-col items-center md:items-start">
               <h3 className="text-gray-300 text-lg font-medium mb-3">About</h3>
               <div className="flex flex-col space-y-2">
@@ -45,7 +53,7 @@ export default function Footer() {
               </div>
             </div>
             
-            {/* Contact和Social合并 */}
+            {/* Contact部分 */}
             <div className="flex flex-col items-center md:items-start">
               <h3 className="text-gray-300 text-lg font-medium mb-3">Contact</h3>
               <div className="flex flex-col space-y-2 mb-4">
@@ -53,8 +61,6 @@ export default function Footer() {
                   hello@whatbreedismycat.app
                 </Link>
               </div>
-              
-、
             </div>
           </div>
         </div>

@@ -12,15 +12,15 @@ import path from 'path';
 
 
 // 从环境变量中获取 Gemini API 密钥
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 
-if (!GEMINI_API_KEY) {
-  console.error("Gemini API Key is not set in environment variables.");
+if (!GOOGLE_API_KEY) {
+  console.error("GOOGLE API Key is not set in environment variables.");
   // 在实际部署中，您可能希望以不同的方式处理此错误
 }
 
 // 初始化 Gemini AI 客户端
-const genAI = new GoogleGenerativeAI(GEMINI_API_KEY || '');
+const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY || '');
 
 
 const model = genAI.getGenerativeModel({
@@ -103,9 +103,12 @@ export async function POST(request: NextRequest) {
 
   
 
-  if (!GEMINI_API_KEY) {
-    return NextResponse.json({ error: 'API key not configured.' }, { status: 500 });
+  if (!GOOGLE_API_KEY) {
+    console.error('GOOGLE_API_KEY is missing:', GOOGLE_API_KEY);
+    return NextResponse.json({ error: 'Server configuration error: API key not found.' }, { status: 500 });
   }
+
+  console.log('API Key exists:', !!GOOGLE_API_KEY, 'Key length:', GOOGLE_API_KEY?.length);
 
   try {
     const data = await request.json();
