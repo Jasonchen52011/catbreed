@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import Navbar from './components/Navbar/index';
 import Footer from './components/Footer/index';
+import GoogleAdSense from './components/GoogleAdSense/index';
 
 
 
@@ -103,6 +104,7 @@ export default function RootLayout({
         />
       </head>
       <body >
+        <GoogleAdSense />
         <Navbar />
         {children}
         <Footer />
