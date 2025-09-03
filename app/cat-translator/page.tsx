@@ -91,7 +91,7 @@ const structuredData = {
 const organizationData = {
   '@type': 'Organization',
   name: 'whatbreedismycat.app',
-  url: 'https://whatbreedismycat.app/cat-translator',
+  url: 'https://whatbreedismycat.app',
   logo: {
     '@type': 'ImageObject',
     inLanguage: 'en-US',
@@ -99,7 +99,7 @@ const organizationData = {
     url: 'https://whatbreedismycat.app/logo/logo-96x96.png',
     width: '192',
     height: '192',
-    caption: 'Breed.dog Logo'
+    caption: 'whatbreedismycat.app Logo'
   }
 };
 

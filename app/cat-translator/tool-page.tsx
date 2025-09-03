@@ -354,7 +354,7 @@ export default function CatTranslatorPage() {
               aria-live="polite"
             >
               {isLoading ? (
-                <p>Tuning into dog frequencies...</p> // 正在调整到狗狗的频率...
+                <p>Tuning into cat frequencies...</p> // 正在调整到猫咪的频率...
               ) : error ? (
                 <p className="text-red-600">{error}</p>
               ) : catResponseMessage ? (
