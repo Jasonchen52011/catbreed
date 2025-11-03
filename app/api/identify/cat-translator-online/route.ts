@@ -8,15 +8,86 @@ const PROXY_URL = process.env.PROXY_URL || '';
 
 
 // 从环境变量中获取API密钥
-const API_KEY = process.env.GOOGLE_API_KEY;
+const API_KEY = process.env.GOOGLE_GENERATIVE_AI_API_KEY;
 
 // 确保API密钥已设置
 if (!API_KEY) {
-  console.error("Missing GOOGLE_API_KEY environment variable."); 
+  console.error("Missing GOOGLE_GENERATIVE_AI_API_KEY environment variable.");
 }
 
 // 初始化Gemini客户端
 const genAI = new GoogleGenerativeAI(API_KEY || "");
+
+// 模型优先级配置 - 猫翻译也优先使用gemini-2.0-flash
+const MODEL_PRIORITY = [
+  { name: 'gemini-2.0-flash', priority: 1 },
+  { name: 'gemini-2.5-flash', priority: 2 },
+];
+
+// 创建模型的辅助函数
+function createModel(modelName: string) {
+  return genAI.getGenerativeModel({
+    model: modelName,
+    safetySettings: [
+      { category: HarmCategory.HARM_CATEGORY_HARASSMENT, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE },
+      { category: HarmCategory.HARM_CATEGORY_HATE_SPEECH, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE },
+      { category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE },
+      { category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE },
+    ],
+    // 配置模型以输出纯文本
+    generationConfig: {
+      temperature: 0.3,
+      maxOutputTokens: 50,
+    } as GenerationConfig,
+  });
+}
+
+// 智能API调用函数 - 猫翻译专用
+async function callWithModelFallbackForTranslator(
+  prompt: string
+): Promise<{ result: string; usedModel: string }> {
+  const errors: any[] = [];
+
+  // 尝试每个模型
+  for (const modelConfig of MODEL_PRIORITY) {
+    console.log(`Translator trying model: ${modelConfig.name} (priority: ${modelConfig.priority})`);
+
+    try {
+      const currentModel = createModel(modelConfig.name);
+      const result = await currentModel.generateContent(prompt);
+      const response = result.response;
+      const responseText = response.text().trim().toLowerCase();
+
+      console.log(`✅ Translator success with model: ${modelConfig.name}, response: "${responseText}"`);
+      return { result: responseText, usedModel: modelConfig.name };
+
+    } catch (error: any) {
+      console.error(`❌ Translator model ${modelConfig.name} failed:`, error.message);
+      errors.push({ model: modelConfig.name, error });
+
+      // 如果是429配额错误，尝试下一个模型
+      if (error.status === 429 ||
+          error.message?.includes('429') ||
+          error.message?.includes('quota') ||
+          error.message?.includes('exceeded your current quota')) {
+        console.log(`Translator model ${modelConfig.name} quota exceeded, trying next model...`);
+        continue;
+      }
+
+      // 其他类型的错误也尝试下一个模型
+      if (modelConfig.priority < MODEL_PRIORITY.length) {
+        console.log(`Translator model ${modelConfig.name} failed, trying fallback model...`);
+        continue;
+      }
+
+      // 如果是最后一个模型，抛出错误
+      throw error;
+    }
+  }
+
+  // 所有模型都失败
+  throw new Error(`All translator models failed. Errors: ${errors.map(e => `${e.model}: ${e.error.message}`).join(', ')}`);
+}
 
 export async function POST(request: NextRequest) {
 
@@ -53,78 +124,37 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Input text is required and must be a non-empty string.' }, { status: 400 }); // 需要输入文本，且必须为非空字符串。
     }
 
-    // 尝试使用的模型列表，优先使用 2.0，如果失败则切换到 2.5
-    const models = ["gemini-2.0-flash", "gemini-2.5-flash"];
-    let lastError: any = null;
-    
     // 精心设计的提示，引导AI将情感分类为 "happy", "sad", "angry", 或 "normal"
-    const prompt = `You are an emotion classification AI. Analyze the human text and classify the dominant emotion into one of the following exact categories: "happy", "sad", "angry", "normal".
-- If the text expresses clear joy, excitement, or contentment, classify as "happy".
-- If the text expresses clear sadness, disappointment, or grief, classify as "sad".
-- If the text expresses clear anger, frustration, or aggression, classify as "angry".
-- For any other emotion (like confusion, curiosity, fear, surprise, or a neutral statement), or if the emotion is mixed or unclear, classify as "normal".
+    const prompt = `You are an emotion classification AI. Analyze the human text and classify the dominant emotion into one of the following exact categories: happy, sad, angry, or normal.
+
+- If the text expresses clear joy, excitement, or contentment, classify as "happy"
+- If the text expresses clear sadness, disappointment, or grief, classify as "sad"
+- If the text expresses clear anger, frustration, or aggression, classify as "angry"
+- For any other emotion (like confusion, curiosity, fear, surprise, or a neutral statement), or if the emotion is mixed or unclear, classify as "normal"
 
 Human text: "${humanText}"
 
-Respond with a JSON object containing a single key "emotion" with the value being one of the four lowercase emotion strings. For example: {"emotion": "happy"}`;
+Respond with ONLY one word from these four options: happy, sad, angry, normal`;
 
-    // 尝试每个模型
-    for (const modelName of models) {
-      try {
-        console.log(`Attempting to use model: ${modelName}`);
-        
-        const model = genAI.getGenerativeModel({
-          model: modelName,
-          safetySettings: [
-            { category: HarmCategory.HARM_CATEGORY_HARASSMENT, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE },
-            { category: HarmCategory.HARM_CATEGORY_HATE_SPEECH, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE },
-            { category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE },
-            { category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE },
-          ],
-          // 配置模型以输出JSON对象
-          generationConfig: {
-            responseMimeType: "application/json",
-          } as GenerationConfig,
-        });
+    // 使用智能模型降级机制
+    try {
+      const translationResult = await callWithModelFallbackForTranslator(prompt);
 
-        const result = await model.generateContent(prompt);
-        const response = result.response;
-        const responseText = response.text();
-        
-        console.log(`Successfully used model: ${modelName}`);
-
-        // 解析AI返回的JSON字符串
-        let parsedEmotion;
-        try {
-            parsedEmotion = JSON.parse(responseText);
-            if (!parsedEmotion.emotion || !['happy', 'sad', 'angry', 'normal'].includes(parsedEmotion.emotion)) {
-                console.warn("AI returned unexpected JSON structure or emotion value:", responseText);
-                parsedEmotion = { emotion: "normal" };
-            }
-        } catch (e) {
-            console.error('Failed to parse JSON response from AI:', responseText, e);
-            parsedEmotion = { emotion: "normal" };
-        }
-
-        return NextResponse.json(parsedEmotion); // 成功返回结果
-        
-      } catch (error: any) {
-        lastError = error;
-        console.error(`Failed with model ${modelName}:`, error.message);
-        
-        // 如果是 429 错误且还有其他模型可以尝试，继续下一个
-        if (error.message && error.message.includes('429') && modelName !== models[models.length - 1]) {
-          console.log(`Model ${modelName} hit quota limit, trying next model...`);
-          continue;
-        }
-        
-        // 如果不是 429 错误或者是最后一个模型，直接抛出错误
-        throw error;
+      // 验证AI返回的文本响应
+      let emotion = "normal"; // 默认值
+      if (['happy', 'sad', 'angry', 'normal'].includes(translationResult.result)) {
+          emotion = translationResult.result;
+      } else {
+          console.warn("AI returned unexpected emotion value:", translationResult.result);
       }
+
+      console.log(`Cat translation completed using model: ${translationResult.usedModel}`);
+      return NextResponse.json({ emotion }); // 成功返回结果
+
+    } catch (error: any) {
+      console.error('All translation models failed:', error);
+      throw error;
     }
-    
-    // 如果所有模型都失败了，抛出最后的错误
-    throw lastError || new Error('All models failed');
 
   } catch (error: any) {
     console.error('Error in cat translator API:', error); // Cat Translator API 出错：

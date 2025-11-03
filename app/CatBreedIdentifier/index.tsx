@@ -37,8 +37,12 @@ export default function HomePage() {
           return response;
         }
         
-        // 如果是客户端错误（4xx），不重试
+        // 如果是客户端错误（4xx），除了429外不重试
         if (response.status >= 400 && response.status < 500) {
+          if (response.status === 429) {
+            // 429错误需要特殊处理，抛出错误让前端显示配额超限信息
+            throw new Error(`Rate limit exceeded: ${response.status}`);
+          }
           console.log(`Client error ${response.status}, not retrying`);
           return response;
         }
@@ -150,6 +154,9 @@ export default function HomePage() {
               // 更友好的错误信息
               if (err.message.includes('fetch failed') || err.message.includes('Server error')) {
                 setError('Network connection failed. Please check your internet connection and try again.');
+              } else if (err.message.includes('Rate limit exceeded')) {
+                // 429错误的特殊处理
+                setError('⏰ AI service quota exceeded. Free tier limit reached. Please try again later or upgrade to premium for unlimited access!');
               } else {
               setError(err.message || 'Could not identify your cat. Please try again!');
               }

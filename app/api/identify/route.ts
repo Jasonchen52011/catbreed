@@ -12,7 +12,7 @@ import path from 'path';
 
 
 // 从环境变量中获取 Gemini API 密钥
-const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
+const GOOGLE_API_KEY = process.env.GOOGLE_GENERATIVE_AI_API_KEY;
 
 if (!GOOGLE_API_KEY) {
   console.error("GOOGLE API Key is not set in environment variables.");
@@ -22,26 +22,88 @@ if (!GOOGLE_API_KEY) {
 // 初始化 Gemini AI 客户端
 const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY || '');
 
+// 模型优先级配置 - 优先使用gemini-2.0-flash
+const MODEL_PRIORITY = [
+  { name: 'gemini-2.0-flash', priority: 1 },
+  { name: 'gemini-2.5-flash', priority: 2 },
+];
 
-const model = genAI.getGenerativeModel({
-  model: 'gemini-2.0-flash', 
-  safetySettings: [ // 配置内容安全设置
-    { category: HarmCategory.HARM_CATEGORY_HARASSMENT, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE },
-    { category: HarmCategory.HARM_CATEGORY_HATE_SPEECH, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE },
-    { category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE },
-    { category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE },
-  ],
-});
+// 创建模型的辅助函数
+function createModel(modelName: string) {
+  return genAI.getGenerativeModel({
+    model: modelName,
+    safetySettings: [ // 配置内容安全设置
+      { category: HarmCategory.HARM_CATEGORY_HARASSMENT, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE },
+      { category: HarmCategory.HARM_CATEGORY_HATE_SPEECH, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE },
+      { category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE },
+      { category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE },
+    ],
+  });
+}
+
+// 默认使用主模型 (现在优先使用gemini-2.0-flash)
+const model = createModel(MODEL_PRIORITY[0].name);
 
 interface BreedPrediction {
   breed_name: string;
   percentage: number;
 }
 
+// 智能API调用函数 - 支持模型降级
+async function callWithModelFallback(
+  prompt: string,
+  imagePart: any,
+  maxModelRetries: number = 2
+): Promise<{ result: any; usedModel: string }> {
+  const errors: any[] = [];
+
+  // 尝试每个模型
+  for (const modelConfig of MODEL_PRIORITY) {
+    console.log(`Trying model: ${modelConfig.name} (priority: ${modelConfig.priority})`);
+
+    try {
+      const currentModel = createModel(modelConfig.name);
+
+      // 使用重试机制调用当前模型
+      const result = await retryWithBackoff(async () => {
+        return await currentModel.generateContent([prompt, imagePart]);
+      });
+
+      console.log(`✅ Success with model: ${modelConfig.name}`);
+      return { result, usedModel: modelConfig.name };
+
+    } catch (error: any) {
+      console.error(`❌ Model ${modelConfig.name} failed:`, error.message);
+      errors.push({ model: modelConfig.name, error });
+
+      // 如果是429配额错误，尝试下一个模型
+      if (error.status === 429 ||
+          error.message?.includes('429') ||
+          error.message?.includes('quota') ||
+          error.message?.includes('exceeded your current quota')) {
+        console.log(`Model ${modelConfig.name} quota exceeded, trying next model...`);
+        continue;
+      }
+
+      // 其他类型的错误也尝试下一个模型
+      if (modelConfig.priority < MODEL_PRIORITY.length) {
+        console.log(`Model ${modelConfig.name} failed, trying fallback model...`);
+        continue;
+      }
+
+      // 如果是最后一个模型，抛出错误
+      throw error;
+    }
+  }
+
+  // 所有模型都失败
+  throw new Error(`All models failed. Errors: ${errors.map(e => `${e.model}: ${e.error.message}`).join(', ')}`);
+}
+
 // 重试机制函数
 async function retryWithBackoff<T>(
   fn: () => Promise<T>,
-  maxRetries: number = 4,
+  maxRetries: number = 3,
   baseDelay: number = 1000
 ): Promise<T> {
   for (let attempt = 0; attempt <= maxRetries; attempt++) {
@@ -49,12 +111,21 @@ async function retryWithBackoff<T>(
       return await fn();
     } catch (error: any) {
       console.error(`API call attempt ${attempt + 1} failed:`, error.message);
-      
+
+      // 特殊处理429错误 - 配额超限不重试
+      if (error.status === 429 ||
+          error.message?.includes('429') ||
+          error.message?.includes('quota') ||
+          error.message?.includes('exceeded your current quota')) {
+        console.error('Quota exceeded - not retrying for 429 error');
+        throw error;
+      }
+
       if (attempt === maxRetries) {
         console.error(`All ${maxRetries + 1} attempts failed. Final error:`, error);
         throw error;
       }
-      
+
       // 指数退避延迟，加入随机抖动
       const jitter = Math.random() * 1000;
       const delay = baseDelay * Math.pow(2, attempt) + jitter;
@@ -105,7 +176,7 @@ export async function POST(request: NextRequest) {
 
   if (!GOOGLE_API_KEY) {
     console.error('GOOGLE_API_KEY is missing:', GOOGLE_API_KEY);
-    return NextResponse.json({ error: 'Server configuration error: API key not found.' }, { status: 500 });
+    return NextResponse.json({ error: 'Server configuration error: API key not found.' }, { status: 503 });
   }
 
   console.log('API Key exists:', !!GOOGLE_API_KEY, 'Key length:', GOOGLE_API_KEY?.length);
@@ -129,14 +200,14 @@ export async function POST(request: NextRequest) {
       },
     };
 
-    // 第一步：检测图片中是否有猫 - 使用重试机制
+    // 第一步：检测图片中是否有猫 - 使用模型降级机制
     const catDetectionPrompt = `Analyze this image and determine if it contains a cat. Respond with ONLY one word: "YES" if there is a cat visible in the image, or "NO" if there is no cat in the image. Do not include any other text, explanations, or descriptions.`;
 
-    const detectionResult = await retryWithBackoff(async () => {
-      return await model.generateContent([catDetectionPrompt, imagePart]);
-    });
-    const detectionResponse = await detectionResult.response;
+    const detectionResult = await callWithModelFallback(catDetectionPrompt, imagePart);
+    const detectionResponse = await detectionResult.result.response;
     const detectionText = detectionResponse.text().trim().toUpperCase();
+
+    console.log(`Cat detection completed using model: ${detectionResult.usedModel}`);
 
     // 如果检测到没有猫，返回错误信息
     if (detectionText === "NO" || !detectionText.includes("YES")) {
@@ -145,7 +216,7 @@ export async function POST(request: NextRequest) {
       }, { status: 400 });
     }
 
-    // 第二步：如果检测到有猫，继续进行品种识别 - 使用重试机制
+    // 第二步：如果检测到有猫，继续进行品种识别 - 使用模型降级机制
     const breedIdentificationPrompt = `Identify the top 3 cat breeds in this image. For each breed, provide ONLY the breed name and a confidence percentage.
     Strictly follow this format for each identified breed, on a new line: Breed Name: XX.X%
     Example:
@@ -154,15 +225,15 @@ export async function POST(request: NextRequest) {
     Persian: 78.2%
     Do not add any other text, explanations, or introductory phrases. Only list the breeds and percentages. Focus on common and officially recognized cat breeds.`;
 
-    const result = await retryWithBackoff(async () => {
-      return await model.generateContent([breedIdentificationPrompt, imagePart]);
-    });
-    const response = await result.response;
+    const breedResult = await callWithModelFallback(breedIdentificationPrompt, imagePart);
+    const response = await breedResult.result.response;
+
+    console.log(`Breed identification completed using model: ${breedResult.usedModel}`);
     const text = response.text();
 
     // 解析 Gemini API 返回的文本
     const predictions: BreedPrediction[] = [];
-    const lines = text.split('\n').filter(line => line.trim() !== '');
+    const lines = text.split('\n').filter((line: string) => line.trim() !== '');
 
     for (const line of lines) {
       const parts = line.split(':');
@@ -291,13 +362,36 @@ export async function POST(request: NextRequest) {
         }, { status: 503 });
       }
       
+      // 配额超限错误 - 特殊处理429
+      if (errorMessage.includes("429") ||
+          errorMessage.includes("quota") ||
+          errorMessage.includes("exceeded your current quota")) {
+        // 尝试从错误信息中提取重试时间
+        let retryAfter = 60; // 默认60秒
+        const retryMatch = errorMessage.match(/Please retry in ([\d.]+)s/);
+        if (retryMatch) {
+          retryAfter = Math.ceil(parseFloat(retryMatch[1]));
+        }
+
+        return NextResponse.json({
+          error: `AI service quota exceeded. Free tier limit reached. Please try again in ${retryAfter} seconds or upgrade your plan for unlimited access.`,
+          retryAfter: retryAfter,
+          isQuotaError: true
+        }, {
+          status: 429,
+          headers: {
+            'Retry-After': retryAfter.toString()
+          }
+        });
+      }
+
       // API 限制或授权错误
-      if (errorMessage.includes("quota") || 
-          errorMessage.includes("limit") || 
+      if (errorMessage.includes("limit") ||
           errorMessage.includes("unauthorized") ||
-          errorMessage.includes("api key")) {
-        return NextResponse.json({ 
-          error: 'Service temporarily unavailable. Please try again later.' 
+          errorMessage.includes("api key") ||
+          errorMessage.includes("invalid")) {
+        return NextResponse.json({
+          error: 'Service temporarily unavailable. Please try again later.'
         }, { status: 503 });
       }
       
