@@ -28,9 +28,10 @@ if (!GOOGLE_API_KEY) {
 // 初始化 Gemini AI 客户端
 const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY || '');
 
-// 模型优先级配置 - 只使用确认可用的模型
+// 模型优先级配置 - 使用验证过的可用模型
 const MODEL_PRIORITY = [
-  { name: 'gemini-2.0-flash-exp', priority: 1 },
+  { name: 'gemini-2.5-pro', priority: 1 },        // 最强模型，优先使用
+  { name: 'gemini-2.0-flash-exp', priority: 2 }, // 备用模型，支持图片
 ];
 
 // 创建模型的辅助函数
@@ -155,7 +156,7 @@ function getRandomValidBreed(validBreeds: string[], excludeBreeds: string[] = []
 
 export async function POST(request: NextRequest) {
 
-  console.log('🚀 API ROUTE LOADED - Using gemini-2.0-flash-exp model');
+  console.log('🚀 API ROUTE LOADED - Using verified available models');
   console.log('📊 Available models:', MODEL_PRIORITY.map(m => m.name).join(', '));
 
   // //@ts-ignore
