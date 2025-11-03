@@ -28,10 +28,10 @@ if (!GOOGLE_API_KEY) {
 // 初始化 Gemini AI 客户端
 const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY || '');
 
-// 模型优先级配置 - 使用验证过的可用模型
+// 模型优先级配置 - 优先使用2.0系列模型
 const MODEL_PRIORITY = [
-  { name: 'gemini-2.5-pro', priority: 1 },        // 最强模型，优先使用
-  { name: 'gemini-2.0-flash-exp', priority: 2 }, // 备用模型，支持图片
+  { name: 'gemini-2.0-flash-exp', priority: 1 }, // 优先使用2.0实验版
+  { name: 'gemini-2.5-pro', priority: 2 },       // 备用2.5pro模型
 ];
 
 // 创建模型的辅助函数
