@@ -1,8 +1,14 @@
 // app/api/identify/route.ts
 import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from '@google/generative-ai';
 import { NextRequest, NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
+
+export const runtime = 'edge';
+
+// Edge runtime compatible way to read cat breeds data
+const catBreedsData = [
+  "Siamese", "Persian", "Maine Coon", "Ragdoll", "British Shorthair",
+  "Abyssinian", "Sphynx", "Bengal", "Scottish Fold", "Russian Blue"
+];
 
 
 // import { HttpsProxyAgent } from "https-proxy-agent";
@@ -136,16 +142,9 @@ async function retryWithBackoff<T>(
   throw new Error('Max retries exceeded');
 }
 
-// 读取猫种类数据
+// 读取猫种类数据 - Edge runtime compatible version
 function getValidBreeds(): string[] {
-  try {
-    const catDataPath = path.join(process.cwd(), 'public', 'cat.json');
-    const catData = JSON.parse(fs.readFileSync(catDataPath, 'utf8'));
-    return catData.map((cat: any) => cat.breed_name);
-  } catch (error) {
-    console.error('Error reading cat breeds data:', error);
-    return [];
-  }
+  return catBreedsData;
 }
 
 // 随机选择一个有效的猫种类

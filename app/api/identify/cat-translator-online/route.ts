@@ -2,9 +2,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold, GenerationConfig } from '@google/generative-ai';
 
-import { HttpsProxyAgent } from "https-proxy-agent";
-import nodefetch from "node-fetch";
-const PROXY_URL = process.env.PROXY_URL || '';
+export const runtime = 'edge';
 
 
 // 从环境变量中获取API密钥
