@@ -47,8 +47,8 @@ function createModel(modelName: string) {
   });
 }
 
-// 默认使用主模型 (现在优先使用gemini-2.0-flash)
-const model = createModel(MODEL_PRIORITY[0].name);
+// 默认使用主模型 (现在优先使用gemini-2.0-flash-exp)
+const defaultModel = createModel(MODEL_PRIORITY[0].name);
 
 interface BreedPrediction {
   breed_name: string;
@@ -58,8 +58,7 @@ interface BreedPrediction {
 // 智能API调用函数 - 支持模型降级
 async function callWithModelFallback(
   prompt: string,
-  imagePart: any,
-  maxModelRetries: number = 2
+  imagePart: any
 ): Promise<{ result: any; usedModel: string }> {
   const errors: any[] = [];
 
