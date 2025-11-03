@@ -157,6 +157,8 @@ export async function POST(request: NextRequest) {
 
   console.log('🚀 API ROUTE LOADED - Using verified available models');
   console.log('📊 Available models:', MODEL_PRIORITY.map(m => m.name).join(', '));
+  console.log('🔑 Environment check - Node version:', process.version);
+  console.log('🔑 Runtime check:', typeof window !== 'undefined' ? 'browser' : 'server');
 
   // //@ts-ignore
   // global.fetch = async (url: URL, options: RequestInit) => {
@@ -174,11 +176,17 @@ export async function POST(request: NextRequest) {
 
 
   if (!GOOGLE_API_KEY) {
-    console.error('GOOGLE_API_KEY is missing:', GOOGLE_API_KEY);
-    return NextResponse.json({ error: 'Server configuration error: API key not found.' }, { status: 503 });
+    console.error('❌ GOOGLE_API_KEY is missing');
+    return NextResponse.json({
+      error: 'Server configuration error: API key not found.',
+      debug: {
+        hasEnvVar: 'GOOGLE_GENERATIVE_AI_API_KEY' in process.env,
+        envVarValue: process.env.GOOGLE_GENERATIVE_AI_API_KEY?.substring(0, 5) + '...' || 'null'
+      }
+    }, { status: 503 });
   }
 
-  console.log('API Key exists:', !!GOOGLE_API_KEY, 'Key length:', GOOGLE_API_KEY?.length);
+  console.log('✅ API Key exists, length:', GOOGLE_API_KEY?.length);
 
   try {
     const data = await request.json();
