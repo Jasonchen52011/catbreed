@@ -155,7 +155,8 @@ function getRandomValidBreed(validBreeds: string[], excludeBreeds: string[] = []
 
 export async function POST(request: NextRequest) {
 
-
+  console.log('🚀 API ROUTE LOADED - Using gemini-2.0-flash-exp model');
+  console.log('📊 Available models:', MODEL_PRIORITY.map(m => m.name).join(', '));
 
   // //@ts-ignore
   // global.fetch = async (url: URL, options: RequestInit) => {
@@ -170,7 +171,7 @@ export async function POST(request: NextRequest) {
   // };
   // //@ts-ignore
 
-  
+
 
   if (!GOOGLE_API_KEY) {
     console.error('GOOGLE_API_KEY is missing:', GOOGLE_API_KEY);
